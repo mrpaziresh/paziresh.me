@@ -1,0 +1,152 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+body, html {
+height: 100%;
+width: 100%;
+font-family: 'Poppins', sans-serif;
+}
+
+app-root, app-sidebar, app-container, app-home, app-notebook, app-notebook-article, app-projects, app-project-detail, app-journey, app-contribution-graph {
+    display: block;
+}
+
+.bg-grid {
+    background-color: #fff;
+    background-image:
+      linear-gradient(to right, #eeeff35b 1px, transparent 1px),
+      linear-gradient(to bottom, #f1f3f53e 1px, transparent 1px);
+    background-size: 20px 20px;
+    width: 100%;
+}
+
+.back-banner {
+    background: rgba(255, 255, 255, 0.23);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(2.8px);
+    -webkit-backdrop-filter: blur(2.8px);
+}
+
+app-sidebar {
+    view-transition-name: sidebar;
+}
+
+::view-transition-group(sidebar),
+::view-transition-old(sidebar),
+::view-transition-new(sidebar) {
+    animation: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    ::view-transition-old(root),
+    ::view-transition-new(root) {
+        animation-duration: 0.28s;
+        animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    ::view-transition-old(root) {
+        animation-name: page-fade-out;
+    }
+
+    ::view-transition-new(root) {
+        animation-name: page-fade-in;
+    }
+
+    @keyframes page-fade-out {
+        to {
+            opacity: 0;
+            transform: translateY(-8px);
+        }
+    }
+
+    @keyframes page-fade-in {
+        from {
+            opacity: 0;
+            transform: translateY(8px);
+        }
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    ::view-transition-group(root) {
+        animation: none !important;
+    }
+}
+
+// Rendered from admin-authored Markdown via `marked` + [innerHTML] — plain
+// (unscoped) styles because Angular's view encapsulation doesn't reach
+// dynamically injected innerHTML content.
+.notebook-content {
+    h1, h2, h3 {
+        font-weight: 500;
+        color: #1f2937;
+        line-height: 1.4;
+        margin-top: 0.5em;
+    }
+    h1 { font-size: 1.375rem; }
+    h2 { font-size: 1.2rem; }
+    h3 { font-size: 1.05rem; }
+
+    p { margin: 0; }
+
+    a {
+        color: #1f2937;
+        text-decoration: underline;
+        text-underline-offset: 2px;
+    }
+    a:hover { color: #000; }
+
+    code {
+        font-family: ui-monospace, monospace;
+        font-size: 0.85em;
+        background: #f3f4f6;
+        border-radius: 4px;
+        padding: 0.15em 0.4em;
+    }
+
+    pre {
+        font-family: ui-monospace, monospace;
+        font-size: 0.85rem;
+        background: #f9fafb;
+        border-radius: 8px;
+        padding: 1rem;
+        overflow-x: auto;
+
+        code {
+            background: none;
+            padding: 0;
+        }
+    }
+
+    ul, ol {
+        padding-left: 1.25rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+    }
+    ul { list-style: disc; }
+    ol { list-style: decimal; }
+
+    blockquote {
+        border-left: 2px solid #e5e7eb;
+        padding-left: 1rem;
+        color: #6b7280;
+        font-style: italic;
+    }
+
+    img {
+        border-radius: 8px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        max-width: 100%;
+    }
+
+    hr {
+        border: none;
+        border-top: 1px solid #e5e7eb;
+    }
+}
+
+

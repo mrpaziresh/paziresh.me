@@ -1,0 +1,224 @@
+<aside class="hidden md:flex h-full w-full bg-[#f2f6ff] p-3 flex-col items-center">
+
+    <!-- Profile -->
+    <div class="flex flex-row gap-4 items-center  hover:bg-[#fdfeff] transition-all duration-300 p-3 rounded-md cursor-pointer" (click)="navigate('')">
+      <div>
+        <img class="rounded-full" height="40" width="40" src="./assets/images/Alireza-Paziresh.JPG" alt="profile-picture" />
+      </div>
+      <div class="flex flex-col text-sm w-full">
+        <h1 class="font-semibold text-gray-800">AliReza Paziresh</h1>
+        <p class="text-gray-600">Geek</p>
+      </div>
+    </div>
+  
+    <!-- Menu -->
+    <ul class="flex flex-col gap-1 w-full px-1 mt-6">
+  
+      <!-- Home -->
+      <li
+        [ngClass]="{
+          'bg-[#12182b] text-white': selectedMenuItem === '',
+          'text-gray-700 hover:bg-[#fdfeff]': selectedMenuItem !== ''
+        }"
+        class="w-full rounded-lg p-3 flex flex-row gap-2 font-normal text-sm cursor-pointer transition-all duration-300"
+        (click)="navigate('')"
+      >
+        <img *ngIf="selectedMenuItem === ''" src="../../assets/icons/home.svg" height="18" width="18" alt="home" />
+        <img *ngIf="selectedMenuItem !== ''" src="../../assets/icons/home-black.svg" height="18" width="18" alt="home" />
+        Home
+      </li>
+      <!-- Notebook -->
+      <li
+        [ngClass]="{
+          'bg-[#12182b] text-white': selectedMenuItem === 'notebook',
+          'text-gray-700 hover:bg-[#fdfeff]': selectedMenuItem !== 'notebook'
+        }"
+        class="w-full rounded-lg p-3 flex flex-row gap-2 font-normal text-sm cursor-pointer transition-all duration-300"
+        (click)="navigate('notebook')"
+      >
+      @if (selectedMenuItem === 'notebook') {
+        <img  src="../../assets/icons/notebook-white.svg" height="20" width="20" alt="note" />
+       }
+       @else{ <img  src="../../assets/icons/Note.svg" height="20" width="20" alt="note" />
+      }
+        Notebook
+      </li>
+  
+     
+      <li
+        [ngClass]="{
+          'bg-[#12182b] text-white': selectedMenuItem === 'journey',
+          'text-gray-700 hover:bg-[#fdfeff]': selectedMenuItem !== 'journey'
+        }"
+        class="w-full rounded-lg p-3 flex flex-row gap-2 font-normal text-sm cursor-pointer transition-all duration-300"
+        (click)="navigate('journey')"
+      >
+      @if (selectedMenuItem === 'journey') {
+        <img src="../../assets/icons/journey-white.svg" height="20" width="20" alt="journey" />
+       }
+       @else {
+        <img src="../../assets/icons/journey.svg" height="20" width="20" alt="journey" />
+
+       }
+       
+       Journey
+      </li>
+
+      <li
+      [ngClass]="{
+        'bg-[#12182b] text-white': selectedMenuItem === 'projects',
+        'text-gray-700 hover:bg-[#fdfeff]': selectedMenuItem !== 'projects'
+      }"
+      class="w-full rounded-lg p-3 flex flex-row gap-2 font-normal text-sm cursor-pointer transition-all duration-300"
+      (click)="navigate('projects')"
+    >
+    @if (selectedMenuItem === 'projects') {
+      <img src="../../assets/icons/project-white.svg" height="20" width="20" alt="note" />
+    }
+    @else {
+      <img src="../../assets/icons/projects.svg" height="20" width="20" alt="note" />
+    }
+      Projects
+    </li>
+  
+      <div class="mt-16">
+        <div class="border-t-2 border-gray-200 mb-2"></div>
+  
+
+        <li
+        class="w-full rounded-lg p-3 flex flex-row gap-2 font-normal text-sm cursor-pointer transition-all duration-300 hover:bg-[#fdfeff]"
+        (click)="Socialmedia('github')"
+      >
+        <img src="../../assets/icons/github.svg" height="20" width="20" alt="note" />
+        Github
+      </li>
+
+
+        <li
+          class="w-full rounded-lg p-3 flex flex-row gap-2 font-normal text-sm cursor-pointer transition-all duration-300 hover:bg-[#fdfeff]"
+          (click)="Socialmedia('linkedin')"
+        >
+          <img src="../../assets/icons/linkedin.svg" height="20" width="20" alt="note" />
+          Linkedin
+        </li>
+  
+
+
+ 
+
+
+    <li
+    class="w-full rounded-lg p-3 flex flex-row gap-2 font-normal text-sm cursor-pointer transition-all duration-300 hover:bg-[#fdfeff]"
+    (click)="Socialmedia('telegram')"
+  >
+    <img src="../../assets/icons/Telegram.svg" height="15" width="15" alt="telegram" />
+    Telegram
+  </li>
+     
+
+    <li
+    class="w-full rounded-lg p-3 flex flex-row gap-2 font-normal text-sm cursor-pointer transition-all duration-300 hover:bg-[#fdfeff]"
+    (click)="Socialmedia('x')"
+  >
+    <img src="../../assets/icons/Twitter.svg" height="15" width="15" alt="x" />
+    X (Twitter)
+  </li>
+      </div>
+    
+    </ul>
+    <!-- <button
+    type="button"
+    class="transtion group h-10 w-32 items-center justify-center rounded-full bg-gradient-to-r from-purple-500 via-red-500 to-yellow-500 p-[1.5px] text-gray-700 duration-300 absolute bottom-11 flex flex-row"
+  >
+    <div
+      class="flex h-full w-full items-center justify-center rounded-full bg-[#f2f6ff] transition duration-300 ease-in-out group-hover:bg-gradient-to-br group-hover:from-[#f2f6ff] group-hover:to-[#f9fbff] group-hover:transition group-hover:duration-300 group-hover:ease-in-out"
+    >
+      AI
+    </div>
+  </button> -->
+
+
+    <div class="text-gray-500 duration-300 absolute bottom-3 hover:bg-stone-200 text-sm cursor-pointer p-1 rounded-lg flex flex-row items-center justify-center gap-1">
+      <img src="./assets/icons/download.svg" height="18" width="18" alt="download">
+      Download resume</div>
+
+  </aside>
+
+  <!-- Mobile top bar -->
+  <header
+    class="flex md:hidden fixed top-0 inset-x-0 z-40 h-14 items-center justify-between px-4 bg-[#f2f6ff]/95 backdrop-blur-md border-b border-gray-200/70"
+  >
+    <div class="flex flex-row items-center gap-2 cursor-pointer" (click)="navigate('')">
+      <img class="rounded-full" height="30" width="30" src="./assets/images/Alireza-Paziresh.JPG" alt="profile-picture" />
+    </div>
+
+    <div class="flex flex-row items-center gap-4">
+      <img class="cursor-pointer" src="../../assets/icons/github.svg" height="18" width="18" alt="github" (click)="Socialmedia('github')" />
+      <img class="cursor-pointer" src="../../assets/icons/linkedin.svg" height="18" width="18" alt="linkedin" (click)="Socialmedia('linkedin')" />
+      <img class="cursor-pointer" src="../../assets/icons/Twitter.svg" height="16" width="16" alt="x" (click)="Socialmedia('x')" />
+      <img class="cursor-pointer" src="../../assets/icons/Telegram.svg" height="16" width="16" alt="telegram" (click)="Socialmedia('telegram')" />
+    </div>
+  </header>
+
+  <!-- Mobile bottom tab bar -->
+  <nav
+    class="flex md:hidden fixed bottom-0 inset-x-0 z-40 bg-white/95 backdrop-blur-md border-t border-gray-200/70 px-2"
+    style="padding-bottom: max(0.4rem, env(safe-area-inset-bottom)); padding-top: 0.4rem;"
+  >
+    <div class="flex flex-row w-full items-stretch justify-between gap-1">
+
+      <button
+        type="button"
+        class="flex flex-1 flex-col items-center justify-center gap-1 py-1.5 rounded-xl transition-colors duration-200"
+        [ngClass]="selectedMenuItem === '' ? 'bg-[#12182b] text-white' : 'text-gray-500'"
+        (click)="navigate('')"
+      >
+        <img *ngIf="selectedMenuItem === ''" src="../../assets/icons/home.svg" height="18" width="18" alt="home" />
+        <img *ngIf="selectedMenuItem !== ''" src="../../assets/icons/home-black.svg" height="18" width="18" alt="home" />
+        <span class="text-[10px] font-medium">Home</span>
+      </button>
+
+      <button
+        type="button"
+        class="flex flex-1 flex-col items-center justify-center gap-1 py-1.5 rounded-xl transition-colors duration-200"
+        [ngClass]="selectedMenuItem === 'notebook' ? 'bg-[#12182b] text-white' : 'text-gray-500'"
+        (click)="navigate('notebook')"
+      >
+        @if (selectedMenuItem === 'notebook') {
+          <img src="../../assets/icons/notebook-white.svg" height="20" width="20" alt="note" />
+        } @else {
+          <img src="../../assets/icons/Note.svg" height="20" width="20" alt="note" />
+        }
+        <span class="text-[10px] font-medium">Notebook</span>
+      </button>
+
+      <button
+        type="button"
+        class="flex flex-1 flex-col items-center justify-center gap-1 py-1.5 rounded-xl transition-colors duration-200"
+        [ngClass]="selectedMenuItem === 'journey' ? 'bg-[#12182b] text-white' : 'text-gray-500'"
+        (click)="navigate('journey')"
+      >
+        @if (selectedMenuItem === 'journey') {
+          <img src="../../assets/icons/journey-white.svg" height="20" width="20" alt="journey" />
+        } @else {
+          <img src="../../assets/icons/journey.svg" height="20" width="20" alt="journey" />
+        }
+        <span class="text-[10px] font-medium">Journey</span>
+      </button>
+
+      <button
+        type="button"
+        class="flex flex-1 flex-col items-center justify-center gap-1 py-1.5 rounded-xl transition-colors duration-200"
+        [ngClass]="selectedMenuItem === 'projects' ? 'bg-[#12182b] text-white' : 'text-gray-500'"
+        (click)="navigate('projects')"
+      >
+        @if (selectedMenuItem === 'projects') {
+          <img src="../../assets/icons/project-white.svg" height="20" width="20" alt="projects" />
+        } @else {
+          <img src="../../assets/icons/projects.svg" height="20" width="20" alt="projects" />
+        }
+        <span class="text-[10px] font-medium">Projects</span>
+      </button>
+
+    </div>
+  </nav>

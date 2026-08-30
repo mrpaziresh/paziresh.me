@@ -1,0 +1,407 @@
+<main class=" h-full w-full flex flex-col items-center p-4 bg-white">
+    <div class="mt-6 sm:mt-10 text-start w-full flex flex-col items-center gap-8 sm:gap-12">
+
+
+    <section class="text-gray-700 w-full sm:w-5/6 md:w-4/6 flex flex-col sm:flex-row gap-1 sm:gap-8">
+        <p class="font-medium leading-7 sm:leading-10">Hey  👋</p>
+        <p class="font-normal w-full sm:w-5/6 leading-7 sm:leading-10 flex flex-row items-start justify-start">
+                I am AliReza.
+                <br>
+                A software engineer. An absolute computer geek, if I may.
+                <br>
+
+                I have founded many unreleased products, have released many unused features, and have
+                written lots of unshared code.
+         </p>
+    </section>
+
+
+    <section class="text-gray-700 w-full sm:w-5/6 md:w-4/6 flex flex-col gap-2 ">
+
+        <div class="flex flex-col sm:flex-row gap-1 sm:gap-10 leading-7 sm:leading-10">
+        <p class="font-medium leading-7 sm:leading-10">I write</p>
+
+        <p>mostly about software engineering and artificial intelligence.
+
+            <br>
+            Here are some of my recent posts:</p>
+
+        </div>
+
+        <div class="flex flex-col gap-2 w-full sm:w-4/6 my-4 sm:my-6 font-mono text-sm ml-0 sm:ml-24">
+
+            <ng-container *ngFor="let post of latestPosts">
+                <div class="border-t-[0.5px] border-gray-100 border-[0.5px] w-full"></div>
+                <a
+                    [routerLink]="['/notebook', post.slug]"
+                    class="flex flex-row gap-4 py-1 cursor-pointer hover:text-black transition-colors duration-200"
+                >
+                    <p class="text-gray-400">{{ post.date }}</p>
+                    <p>{{ post.title }}</p>
+                </a>
+            </ng-container>
+            <div class="border-t-[0.5px] border-gray-100 border-[0.5px] w-full"></div>
+
+        </div>
+    </section>
+
+
+    <section class="text-gray-700 w-full sm:w-5/6 md:w-4/6 flex flex-col sm:flex-row gap-1 sm:gap-8">
+        <p class="font-medium leading-7 sm:leading-10">Live</p>
+        <p class="font-normal w-full sm:w-5/6 leading-7 sm:leading-10 flex flex-row items-start justify-start">
+
+            in the beautiful city of Tehran in The Iran. If you ever found yourself in Iran, let's grab a coffee.
+
+         </p>
+    </section>
+
+
+
+    <section class="text-gray-700 flex flex-col sm:flex-row gap-1 sm:gap-8 w-full sm:w-5/6 md:w-4/6">
+        <p class="font-medium leading-7 sm:leading-10">I travel</p>
+
+        <div class="flex flex-col">
+        <div class="flex flex-row flex-wrap">
+        <p class="font-normal leading-7 sm:leading-10 mr-2">
+          Love to see different culture I have been to 4 countries:
+        </p>
+          <div class="flex flex-row gap-2 leading-7 sm:leading-10">
+            <div
+              *ngFor="let country of visitedCountries"
+              class="relative group"
+            >
+
+              <div
+                class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2
+                bg-black text-white text-xs rounded px-2 py-1 opacity-0 group-hover:opacity-100
+                transition-opacity duration-200"
+              >
+                {{ country.name }}
+              </div>
+
+
+              <div class="cursor-pointer">
+                {{ country.flag }}
+              </div>
+            </div>
+          </div>
+         <br />
+
+        </div>
+      </div>
+
+      </section>
+
+
+
+
+      <ng-template #mediaRow let-items>
+        <div
+          *ngFor="let item of items"
+          #mediaEl
+          class="relative group cursor-pointer flex-shrink-0"
+          (click)="openMedia(item)"
+          (mouseenter)="showMediaTooltip(item, mediaEl)"
+          (mouseleave)="hideTooltip()"
+        >
+          <img
+            *ngIf="!item.failed"
+            [src]="item.thumbUrl"
+            [alt]="item.title"
+            (error)="item.failed = true"
+            class="w-12 h-[4.5rem] sm:w-14 sm:h-[5.25rem] object-cover rounded-sm
+            shadow-sm grayscale group-hover:grayscale-0 group-hover:shadow-md group-hover:-translate-y-1
+            transition-all duration-300 ease-out"
+          />
+
+          <div
+            *ngIf="item.failed"
+            class="w-12 h-[4.5rem] sm:w-14 sm:h-[5.25rem] rounded-sm shadow-sm flex items-center justify-center
+            text-white text-[8px] font-mono text-center p-1
+            group-hover:shadow-md group-hover:-translate-y-1 transition-all duration-300 ease-out"
+            [ngClass]="item.color"
+          >
+            {{ item.title }}
+          </div>
+        </div>
+      </ng-template>
+
+      <section class="text-gray-700 w-full sm:w-5/6 md:w-4/6 flex flex-col gap-2">
+
+        <div class="flex flex-col sm:flex-row gap-1 sm:gap-10 leading-7 sm:leading-10">
+          <p class="font-medium leading-7 sm:leading-10">I read</p>
+
+          <p>mostly non-fiction — software engineering, AI, and a bit of philosophy.
+            <br>
+            A few that stuck with me:</p>
+        </div>
+
+        <div class="relative flex flex-row items-center gap-2 my-4 sm:my-6 ml-0 sm:ml-24">
+          <button
+            *ngIf="bookScrollState.hasOverflow"
+            (click)="scrollRow(booksRow, 'left')"
+            [class.invisible]="bookScrollState.atStart"
+            class="flex-shrink-0 text-gray-300 hover:text-gray-600 transition-colors duration-200 cursor-pointer"
+            aria-label="Scroll books left"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+
+          <div
+            #booksRow
+            (scroll)="updateScrollState(booksRow, bookScrollState)"
+            class="flex flex-row flex-nowrap gap-3 sm:gap-4 overflow-x-auto no-scrollbar scroll-smooth py-1"
+          >
+            <ng-container *ngTemplateOutlet="mediaRow; context: { $implicit: books }"></ng-container>
+          </div>
+
+          <button
+            *ngIf="bookScrollState.hasOverflow"
+            (click)="scrollRow(booksRow, 'right')"
+            [class.invisible]="bookScrollState.atEnd"
+            class="flex-shrink-0 text-gray-300 hover:text-gray-600 transition-colors duration-200 cursor-pointer"
+            aria-label="Scroll books right"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
+        </div>
+
+        <button
+          type="button"
+          (click)="openSuggest('book')"
+          class="flex flex-row items-center gap-1.5 text-xs text-gray-500 border border-gray-200 rounded-full px-3 py-1.5 hover:bg-gray-50 transition-colors duration-200 w-fit ml-0 sm:ml-24 cursor-pointer"
+        >
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+          Suggest a book
+        </button>
+
+      </section>
+
+
+      <section class="text-gray-700 w-full sm:w-5/6 md:w-4/6 flex flex-col gap-2">
+
+        <div class="flex flex-col sm:flex-row gap-1 sm:gap-10 leading-7 sm:leading-10">
+          <p class="font-medium leading-7 sm:leading-10">I watch</p>
+
+          <p>mostly sci-fi and anything about AI eating the world.
+            <br>
+            A few favorites:</p>
+        </div>
+
+        <div class="relative flex flex-row items-center gap-2 my-4 sm:my-6 ml-0 sm:ml-24">
+          <button
+            *ngIf="movieScrollState.hasOverflow"
+            (click)="scrollRow(moviesRow, 'left')"
+            [class.invisible]="movieScrollState.atStart"
+            class="flex-shrink-0 text-gray-300 hover:text-gray-600 transition-colors duration-200 cursor-pointer"
+            aria-label="Scroll movies left"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+
+          <div
+            #moviesRow
+            (scroll)="updateScrollState(moviesRow, movieScrollState)"
+            class="flex flex-row flex-nowrap gap-3 sm:gap-4 overflow-x-auto no-scrollbar scroll-smooth py-1"
+          >
+            <ng-container *ngTemplateOutlet="mediaRow; context: { $implicit: movies }"></ng-container>
+          </div>
+
+          <button
+            *ngIf="movieScrollState.hasOverflow"
+            (click)="scrollRow(moviesRow, 'right')"
+            [class.invisible]="movieScrollState.atEnd"
+            class="flex-shrink-0 text-gray-300 hover:text-gray-600 transition-colors duration-200 cursor-pointer"
+            aria-label="Scroll movies right"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
+        </div>
+
+        <button
+          type="button"
+          (click)="openSuggest('movie')"
+          class="flex flex-row items-center gap-1.5 text-xs text-gray-500 border border-gray-200 rounded-full px-3 py-1.5 hover:bg-gray-50 transition-colors duration-200 w-fit ml-0 sm:ml-24 cursor-pointer"
+        >
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+          Suggest a movie
+        </button>
+
+      </section>
+
+
+      <div
+        *ngIf="selectedMedia"
+        class="fixed inset-0 z-50 flex items-center justify-center p-4 transition-opacity duration-300"
+        [class.opacity-100]="mediaModalVisible"
+        [class.opacity-0]="!mediaModalVisible"
+        (click)="closeMedia()"
+      >
+        <div class="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
+
+        <div
+          class="relative bg-white rounded-lg shadow-2xl p-5 flex flex-col items-center gap-3 w-full max-w-[260px]
+          transition-all duration-300 ease-out"
+          [class.opacity-100]="mediaModalVisible"
+          [class.scale-100]="mediaModalVisible"
+          [class.opacity-0]="!mediaModalVisible"
+          [class.scale-90]="!mediaModalVisible"
+          (click)="$event.stopPropagation()"
+        >
+          <button
+            (click)="closeMedia()"
+            class="absolute top-2 right-2 text-gray-400 hover:text-gray-700 text-lg leading-none cursor-pointer"
+          >&times;</button>
+
+          <img
+            *ngIf="!mediaCoverFailed"
+            [src]="selectedMedia.coverUrl"
+            [alt]="selectedMedia.title"
+            class="w-36 sm:w-40 h-auto rounded shadow-md"
+            (error)="mediaCoverFailed = true"
+          />
+
+          <div
+            *ngIf="mediaCoverFailed"
+            class="w-36 sm:w-40 h-52 rounded shadow-md flex items-center justify-center text-white text-xs font-mono p-3 text-center"
+            [ngClass]="selectedMedia.color"
+          >
+            {{ selectedMedia.title }}
+          </div>
+
+          <div class="text-center">
+            <p class="font-medium text-gray-800 text-sm">{{ selectedMedia.title }}</p>
+            <p class="text-gray-400 text-xs font-mono">{{ selectedMedia.subtitle }}</p>
+          </div>
+        </div>
+      </div>
+
+
+      <div
+        *ngIf="suggestKind"
+        class="fixed inset-0 z-50 flex items-center justify-center p-4 transition-opacity duration-300"
+        [class.opacity-100]="suggestModalVisible"
+        [class.opacity-0]="!suggestModalVisible"
+        (click)="closeSuggest()"
+      >
+        <div class="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
+
+        <div
+          class="relative bg-white rounded-lg shadow-2xl p-6 flex flex-col gap-4 w-full max-w-[300px]
+          transition-all duration-300 ease-out"
+          [class.opacity-100]="suggestModalVisible"
+          [class.scale-100]="suggestModalVisible"
+          [class.opacity-0]="!suggestModalVisible"
+          [class.scale-90]="!suggestModalVisible"
+          (click)="$event.stopPropagation()"
+        >
+          <button
+            (click)="closeSuggest()"
+            class="absolute top-2 right-2 text-gray-400 hover:text-gray-700 text-lg leading-none cursor-pointer"
+          >&times;</button>
+
+          <ng-container *ngIf="!suggestSubmitted; else suggestThanks">
+            <p class="font-medium text-gray-800 text-sm">Suggest a {{ suggestKind }}</p>
+
+            <input
+              #suggestInput
+              type="text"
+              [(ngModel)]="suggestValue"
+              [placeholder]="suggestKind === 'book' ? 'e.g. Atomic Habits' : 'e.g. Blade Runner 2049'"
+              (keydown.enter)="submitSuggestion()"
+              class="border border-gray-200 rounded-md px-3 py-2 text-sm text-gray-700 focus:outline-none focus:border-gray-400 transition-colors duration-200"
+            />
+
+            <button
+              type="button"
+              (click)="submitSuggestion()"
+              [disabled]="!suggestValue.trim()"
+              class="text-sm text-white bg-gray-800 rounded-full px-4 py-2 hover:bg-gray-700 disabled:opacity-30 disabled:cursor-not-allowed transition-colors duration-200 cursor-pointer w-fit self-end"
+            >
+              Send
+            </button>
+          </ng-container>
+
+          <ng-template #suggestThanks>
+            <p class="font-medium text-gray-800 text-sm text-center py-4">Thanks — noted! 🙌</p>
+          </ng-template>
+        </div>
+      </div>
+
+
+
+      <section class="text-gray-700 w-full sm:w-5/6 md:w-4/6 flex flex-col sm:flex-row gap-1 sm:gap-8">
+        <p class="font-medium leading-7 sm:leading-10">I code</p>
+        <p class="font-normal w-full sm:w-5/6 leading-7 sm:leading-10 flex flex-row items-start justify-start">
+
+          and workout quite a lot! Here's my activity graph in the last 6 months:
+
+         </p>
+
+
+
+
+    </section>
+
+
+    <div class="w-full sm:w-5/6 md:w-4/6 flex flex-col items-center h-full mb-16 sm:mb-24 md:mb-36 gap-3">
+
+      <div #gridScroll class="w-full overflow-x-auto">
+        <div class="flex space-x-0.5 sm:space-x-1 w-max mx-auto">
+          <div *ngFor="let week of weeks; let i = index" class="flex flex-col items-start gap-0.5 sm:gap-1">
+            <span class="text-[9px] text-gray-400 h-3 leading-3">{{ monthLabels[i] }}</span>
+            <div class="flex flex-col space-y-0.5 sm:space-y-1">
+              <div
+                *ngFor="let day of week"
+                #cell
+                class="w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-sm cursor-pointer hover:ring-2 hover:ring-gray-300 transition-shadow duration-150"
+                (mouseenter)="showTooltip(day, cell)"
+                (mouseleave)="hideTooltip()"
+                (click)="showTooltip(day, cell)"
+              >
+                <!-- Both activities: diagonal split -->
+                <ng-container *ngIf="day.code && day.workout; else singleColor">
+                  <div
+                    class="w-full h-full rounded-sm"
+                    [ngClass]="getCellClass(day.code, day.workout)">
+                  </div>
+                </ng-container>
+
+                <!-- Only one activity or none -->
+                <ng-template #singleColor>
+                  <div
+                    class="w-full h-full rounded-sm"
+                    [ngClass]="getSingleColorClass(day.code, day.workout)">
+                  </div>
+                </ng-template>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div #tooltip class="fixed hidden bg-black text-white text-xs px-2 py-1 rounded-md whitespace-nowrap z-50 pointer-events-none"></div>
+
+      <div class="flex flex-row items-center gap-4 text-xs text-gray-500">
+        <div class="flex flex-row items-center gap-1.5">
+          <span class="w-3 h-3 rounded-sm bg-green-400"></span>
+          Code
+        </div>
+        <div class="flex flex-row items-center gap-1.5">
+          <span class="w-3 h-3 rounded-sm bg-purple-400"></span>
+          Workout
+        </div>
+        <div class="flex flex-row items-center gap-1.5">
+          <span class="w-3 h-3 rounded-sm bg-green-purple"></span>
+          Both
+        </div>
+      </div>
+
+    </div>
+
+
+
+
+
+</div>
+</main>

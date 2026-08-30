@@ -1,0 +1,12 @@
+.bg-green-purple {
+    background: linear-gradient(135deg, #4ade80 50%, #c084fc 50%);
+  }
+
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}

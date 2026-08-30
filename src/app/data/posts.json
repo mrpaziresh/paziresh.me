@@ -1,0 +1,23 @@
+[
+  {
+    "slug": "type-safe-group-by-in-typescript",
+    "title": "A try at type-safe groupBy function in TypeScript",
+    "date": "June 2, 2025",
+    "content": "In this post, I discuss how to integrate Prettier with ESLint using the `eslint-config-prettier` plugin, including tips and gotchas.\n\n## Why bother\n\nRunning Prettier and ESLint side by side without the config plugin means their formatting rules fight each other on every save.\n\n## The fix\n\n```ts\nfunction groupBy<T, K extends PropertyKey>(items: T[], key: (item: T) => K): Record<K, T[]> {\n  return items.reduce((acc, item) => {\n    const group = key(item);\n    (acc[group] ??= []).push(item);\n    return acc;\n  }, {} as Record<K, T[]>);\n}\n```\n\nA few gotchas worth calling out:\n\n- Type inference breaks down once the key function returns a union wider than the actual keys present.\n- `Record<K, T[]>` assumes every possible `K` value shows up, which isn't guaranteed at runtime.\n- A `Partial<Record<K, T[]>>` return type is more honest, at the cost of forcing callers to handle `undefined`.\n",
+    "published": true
+  },
+  {
+    "slug": "adding-prettier-to-eslint",
+    "title": "Adding prettier to eslint",
+    "date": "April 10, 2025",
+    "content": "",
+    "published": false
+  },
+  {
+    "slug": "upgrading-my-blog-to-next-15",
+    "title": "Upgrading my blog to Next 15",
+    "date": "April 10, 2025",
+    "content": "",
+    "published": false
+  }
+]

@@ -1,0 +1,66 @@
+<div class="bg-grid min-h-screen z-10">
+
+    <main class="h-full w-full flex flex-col items-center p-4 z-50">
+        <div class="mt-6 sm:mt-10 w-full sm:w-5/6 flex flex-col gap-6 sm:gap-10 pb-16">
+
+            <section class="text-gray-700 flex flex-col gap-2">
+                <h1 class="font-medium text-xl text-gray-800">Projects</h1>
+                <p class="font-normal text-gray-600">
+                    A few things I've built. Tap a cover to see what it's about, then "View project" for the full story.
+                </p>
+            </section>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+
+                <a
+                    *ngFor="let project of projects"
+                    [routerLink]="['/projects', project.slug]"
+                    class="back-banner group flex flex-col gap-3 p-3 border-2 border-gray-100 rounded-2xl cursor-pointer transition-shadow duration-300 hover:shadow-lg"
+                >
+                    <div class="relative w-full aspect-[4/3] rounded-xl overflow-hidden bg-gray-100">
+
+                        <img
+                            [src]="project.image"
+                            [alt]="project.title"
+                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        />
+
+                        <div
+                            class="absolute inset-0 flex flex-col justify-end gap-3 p-4 bg-gradient-to-t from-[#12182b]/95 via-[#12182b]/50 to-transparent opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300"
+                        >
+                            <div class="flex flex-row flex-wrap gap-1.5">
+                                <span
+                                    *ngFor="let tag of project.tags"
+                                    class="text-[10px] uppercase tracking-wide font-medium text-white/90 bg-white/15 rounded-full px-2 py-0.5"
+                                >
+                                    {{ tag }}
+                                </span>
+                            </div>
+
+                            <p class="text-white text-sm leading-snug">{{ project.description }}</p>
+
+                            <span
+                                class="self-start flex flex-row items-center gap-1.5 bg-white text-[#12182b] text-xs font-medium rounded-full px-3.5 py-2 transition-transform duration-300 group-hover:translate-x-0.5"
+                            >
+                                View project
+                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M2.5 9.5L9.5 2.5M9.5 2.5H4M9.5 2.5V8" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </span>
+                        </div>
+
+                    </div>
+
+                    <div class="flex flex-col gap-0.5 px-1">
+                        <h2 class="font-medium text-sm text-gray-800">{{ project.title }}</h2>
+                        <p class="text-xs text-gray-500">{{ project.tagline }}</p>
+                    </div>
+
+                </a>
+
+            </div>
+
+        </div>
+    </main>
+
+</div>
