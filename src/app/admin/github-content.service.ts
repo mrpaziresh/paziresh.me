@@ -13,6 +13,12 @@ export interface GithubFile {
   sha: string;
 }
 
+export class GithubApiError extends Error {
+  constructor(public status: number, message: string) {
+    super(message);
+  }
+}
+
 const STORAGE_KEY = 'admin.github.credentials';
 
 function utf8ToBase64(str: string): string {
@@ -60,7 +66,7 @@ export class GithubContentService {
     const res = await fetch(url, init);
     if (!res.ok) {
       const body = await res.text().catch(() => '');
-      throw new Error(`GitHub API ${res.status}: ${body || res.statusText}`);
+      throw new GithubApiError(res.status, `GitHub API ${res.status}: ${body || res.statusText}`);
     }
     return res;
   }
@@ -97,5 +103,47 @@ export class GithubContentService {
         branch: creds.branch,
       }),
     });
+  }
+
+  /**
+   * Fetches a JSON file, applies `mutate`, and writes it back — retrying with
+   * a fresh `sha` if another write landed in between (GitHub 409). A single
+   * admin operator triggering two actions in quick succession is the normal
+   * case that causes this, not a real conflict, so retrying is safe here.
+   */
+  async readModifyWriteJson<T>(
+    creds: GithubCredentials,
+    path: string,
+    message: string,
+    mutate: (data: T) => T,
+    fallback: T,
+    maxAttempts = 3
+  ): Promise<T> {
+    let lastErr: unknown;
+    for (let attempt = 0; attempt < maxAttempts; attempt++) {
+      let file: GithubFile | null;
+      try {
+        file = await this.getTextFile(creds, path);
+      } catch (err) {
+        if (err instanceof GithubApiError && err.status === 404) {
+          file = null;
+        } else {
+          throw err;
+        }
+      }
+
+      const data = file?.content.trim() ? (JSON.parse(file.content) as T) : fallback;
+      const updated = mutate(data);
+
+      try {
+        await this.putTextFile(creds, path, JSON.stringify(updated, null, 2) + '\n', file?.sha ?? null, message);
+        return updated;
+      } catch (err) {
+        lastErr = err;
+        if (!(err instanceof GithubApiError && err.status === 409)) throw err;
+        // sha went stale between our GET and PUT — loop to re-fetch and retry
+      }
+    }
+    throw lastErr;
   }
 }

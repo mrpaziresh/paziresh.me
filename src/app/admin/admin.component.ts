@@ -32,7 +32,6 @@ export class AdminComponent {
   activityMessage = '';
 
   posts: Post[] = [];
-  postsSha: string | null = null;
   postsLoading = false;
   postsError = '';
 
@@ -67,24 +66,23 @@ export class AdminComponent {
     if (!this.creds || this.activityBusy) return;
     this.activityBusy = true;
     this.activityMessage = '';
+    const key = this.todayKey();
     try {
-      const file = await this.github.getTextFile(this.creds, ACTIVITY_PATH);
-      const entries: ActivityEntry[] = JSON.parse(file.content || '[]');
-      const key = this.todayKey();
-      let entry = entries.find((e) => e.date === key);
-      if (!entry) {
-        entry = { date: key, code: false, workout: false };
-        entries.push(entry);
-      }
-      if (kind === 'code' || kind === 'both') entry.code = true;
-      if (kind === 'workout' || kind === 'both') entry.workout = true;
-
-      await this.github.putTextFile(
+      await this.github.readModifyWriteJson<ActivityEntry[]>(
         this.creds,
         ACTIVITY_PATH,
-        JSON.stringify(entries, null, 2) + '\n',
-        file.sha,
-        `Log ${kind} activity for ${key}`
+        `Log ${kind} activity for ${key}`,
+        (entries) => {
+          let entry = entries.find((e) => e.date === key);
+          if (!entry) {
+            entry = { date: key, code: false, workout: false };
+            entries.push(entry);
+          }
+          if (kind === 'code' || kind === 'both') entry.code = true;
+          if (kind === 'workout' || kind === 'both') entry.workout = true;
+          return entries;
+        },
+        []
       );
       this.activityMessage = `Logged ${kind} for ${key}. Site will redeploy shortly.`;
     } catch (err) {
@@ -101,7 +99,6 @@ export class AdminComponent {
     try {
       const file = await this.github.getTextFile(this.creds, POSTS_PATH);
       this.posts = JSON.parse(file.content || '[]');
-      this.postsSha = file.sha;
     } catch (err) {
       this.postsError = `Failed to load posts: ${(err as Error).message}`;
     } finally {
@@ -164,31 +161,31 @@ export class AdminComponent {
         content += `\n\n![](assets/uploads/${filename})`;
       }
 
-      const file = await this.github.getTextFile(this.creds, POSTS_PATH);
-      const posts: Post[] = JSON.parse(file.content || '[]');
-      const existing = posts.find((p) => p.slug === this.editingSlug);
-
-      if (existing) {
-        existing.title = this.form.title;
-        existing.slug = this.form.slug;
-        existing.content = content;
-        existing.published = this.form.published;
-      } else {
-        posts.unshift({
-          slug: this.form.slug,
-          title: this.form.title,
-          date: new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),
-          content,
-          published: this.form.published,
-        });
-      }
-
-      await this.github.putTextFile(
+      const editingSlug = this.editingSlug;
+      const form = this.form;
+      const posts = await this.github.readModifyWriteJson<Post[]>(
         this.creds,
         POSTS_PATH,
-        JSON.stringify(posts, null, 2) + '\n',
-        file.sha,
-        this.editingSlug ? `Update post ${this.form.slug}` : `Add post ${this.form.slug}`
+        editingSlug ? `Update post ${form.slug}` : `Add post ${form.slug}`,
+        (posts) => {
+          const existing = posts.find((p) => p.slug === editingSlug);
+          if (existing) {
+            existing.title = form.title;
+            existing.slug = form.slug;
+            existing.content = content;
+            existing.published = form.published;
+          } else {
+            posts.unshift({
+              slug: form.slug,
+              title: form.title,
+              date: new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),
+              content,
+              published: form.published,
+            });
+          }
+          return posts;
+        },
+        []
       );
 
       this.posts = posts;
@@ -204,16 +201,16 @@ export class AdminComponent {
     if (!this.creds) return;
     post.published = !post.published;
     try {
-      const file = await this.github.getTextFile(this.creds, POSTS_PATH);
-      const posts: Post[] = JSON.parse(file.content || '[]');
-      const target = posts.find((p) => p.slug === post.slug);
-      if (target) target.published = post.published;
-      await this.github.putTextFile(
+      this.posts = await this.github.readModifyWriteJson<Post[]>(
         this.creds,
         POSTS_PATH,
-        JSON.stringify(posts, null, 2) + '\n',
-        file.sha,
-        `${post.published ? 'Publish' : 'Unpublish'} post ${post.slug}`
+        `${post.published ? 'Publish' : 'Unpublish'} post ${post.slug}`,
+        (posts) => {
+          const target = posts.find((p) => p.slug === post.slug);
+          if (target) target.published = post.published;
+          return posts;
+        },
+        []
       );
     } catch (err) {
       post.published = !post.published; // revert on failure
@@ -224,16 +221,13 @@ export class AdminComponent {
   async deletePost(post: Post) {
     if (!this.creds || !this.isBrowser || !confirm(`Delete "${post.title}"?`)) return;
     try {
-      const file = await this.github.getTextFile(this.creds, POSTS_PATH);
-      const posts: Post[] = JSON.parse(file.content || '[]').filter((p: Post) => p.slug !== post.slug);
-      await this.github.putTextFile(
+      this.posts = await this.github.readModifyWriteJson<Post[]>(
         this.creds,
         POSTS_PATH,
-        JSON.stringify(posts, null, 2) + '\n',
-        file.sha,
-        `Delete post ${post.slug}`
+        `Delete post ${post.slug}`,
+        (posts) => posts.filter((p) => p.slug !== post.slug),
+        []
       );
-      this.posts = posts;
     } catch (err) {
       this.postsError = `Failed to delete: ${(err as Error).message}`;
     }
