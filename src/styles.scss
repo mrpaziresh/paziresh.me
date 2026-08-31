@@ -30,16 +30,6 @@ app-root, app-sidebar, app-container, app-home, app-notebook, app-notebook-artic
     -webkit-backdrop-filter: blur(2.8px);
 }
 
-app-sidebar {
-    view-transition-name: sidebar;
-}
-
-::view-transition-group(sidebar),
-::view-transition-old(sidebar),
-::view-transition-new(sidebar) {
-    animation: none;
-}
-
 @media (prefers-reduced-motion: no-preference) {
     ::view-transition-old(root),
     ::view-transition-new(root) {
