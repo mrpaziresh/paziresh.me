@@ -5,6 +5,7 @@ import { RouterLink } from '@angular/router';
 import activityData from '../data/activity.json';
 import { ActivityEntry } from '../data/types';
 import { ARTICLES } from '../notebook/notebook.data';
+import { Web3FormsService } from '../shared/web3forms.service';
 
 interface DayData {
   date: Date;
@@ -46,6 +47,8 @@ interface PressItem {
 })
 export class HomeComponent implements OnInit, AfterViewInit {
 
+  constructor(private web3forms: Web3FormsService) {}
+
   visitedCountries = [
     { name: 'Qatar', flag: '🇶🇦 -' },
     { name: 'Turkey', flag: '🇹🇷 -' },
@@ -54,6 +57,9 @@ export class HomeComponent implements OnInit, AfterViewInit {
   ];
 
   books: MediaItem[] = [
+    { title: 'Build', subtitle: 'Tony Fadell', color: 'bg-gray-700', thumbUrl: 'https://covers.openlibrary.org/b/isbn/9781787634114-M.jpg', coverUrl: 'https://covers.openlibrary.org/b/isbn/9781787634114-L.jpg' },
+    { title: 'Reboot', subtitle: 'Jerry Colonna', color: 'bg-gray-800', thumbUrl: 'https://covers.openlibrary.org/b/isbn/9780062977120-M.jpg', coverUrl: 'https://covers.openlibrary.org/b/isbn/9780062977120-L.jpg' },
+    { title: 'Scramble', subtitle: 'Marty Neumeier', color: 'bg-gray-600', thumbUrl: 'https://images.squarespace-cdn.com/content/v1/57b27c5be58c62b96df66901/1527626332973-S1XLI5LS3OJC5GAYXFN8/SCRAMBLE-cover_vertical_300pxbook.png', coverUrl: 'https://images.squarespace-cdn.com/content/v1/57b27c5be58c62b96df66901/1527626332973-S1XLI5LS3OJC5GAYXFN8/SCRAMBLE-cover_vertical_300pxbook.png' },
     { title: 'Thinking, Fast and Slow', subtitle: 'Daniel Kahneman', color: 'bg-gray-800', thumbUrl: 'https://covers.openlibrary.org/b/isbn/9780374533557-M.jpg', coverUrl: 'https://covers.openlibrary.org/b/isbn/9780374533557-L.jpg' },
     { title: 'The Pragmatic Programmer', subtitle: 'Hunt & Thomas', color: 'bg-gray-700', thumbUrl: 'https://covers.openlibrary.org/b/isbn/9780201616224-M.jpg', coverUrl: 'https://covers.openlibrary.org/b/isbn/9780201616224-L.jpg' },
     { title: 'Clean Code', subtitle: 'Robert C. Martin', color: 'bg-gray-600', thumbUrl: 'https://covers.openlibrary.org/b/isbn/9780132350884-M.jpg', coverUrl: 'https://covers.openlibrary.org/b/isbn/9780132350884-L.jpg' },
@@ -64,6 +70,9 @@ export class HomeComponent implements OnInit, AfterViewInit {
   ];
 
   movies: MediaItem[] = [
+    { title: 'Silicon Valley', subtitle: '2014', color: 'bg-gray-700', thumbUrl: 'https://upload.wikimedia.org/wikipedia/en/4/44/Silicon_Valley_Season_1.jpg', coverUrl: 'https://upload.wikimedia.org/wikipedia/en/4/44/Silicon_Valley_Season_1.jpg' },
+    { title: 'From', subtitle: '2022', color: 'bg-gray-800', thumbUrl: 'https://upload.wikimedia.org/wikipedia/en/f/fa/From_title_card.jpg', coverUrl: 'https://upload.wikimedia.org/wikipedia/en/f/fa/From_title_card.jpg' },
+    { title: 'Free Guy', subtitle: '2021', color: 'bg-gray-600', thumbUrl: 'https://upload.wikimedia.org/wikipedia/en/1/1c/Free_Guy_2021_Poster.jpg', coverUrl: 'https://upload.wikimedia.org/wikipedia/en/1/1c/Free_Guy_2021_Poster.jpg' },
     { title: 'The Matrix', subtitle: '1999', color: 'bg-gray-800', thumbUrl: 'https://upload.wikimedia.org/wikipedia/en/d/db/The_Matrix.png', coverUrl: 'https://upload.wikimedia.org/wikipedia/en/d/db/The_Matrix.png' },
     { title: 'Interstellar', subtitle: '2014', color: 'bg-gray-700', thumbUrl: 'https://upload.wikimedia.org/wikipedia/en/b/bc/Interstellar_film_poster.jpg', coverUrl: 'https://upload.wikimedia.org/wikipedia/en/b/bc/Interstellar_film_poster.jpg' },
     { title: 'The Social Network', subtitle: '2010', color: 'bg-gray-600', thumbUrl: 'https://upload.wikimedia.org/wikipedia/en/8/8c/The_Social_Network_film_poster.png', coverUrl: 'https://upload.wikimedia.org/wikipedia/en/8/8c/The_Social_Network_film_poster.png' },
@@ -83,34 +92,35 @@ export class HomeComponent implements OnInit, AfterViewInit {
       thumbUrl: './assets/images/journey/thumbs/digiato-news.jpg'
     },
     {
-      title: 'Peivast — Web Summit Qatar',
-      subtitle: 'Peivast News · Web Summit Qatar',
-      description: 'Peivast covered our presence at Web Summit Qatar, one of the largest tech events in the region.',
-      mediaUrl: './assets/images/journey/thumbs/payvast.mp4',
-      thumbUrl: './assets/images/journey/thumbs/payvast.jpg'
-    },
-    {
-      title: 'Featured on Channel 5 News',
-      subtitle: 'Channel 5 · TV News',
-      description: 'A segment on Channel 5 TV news.',
-      mediaUrl: './assets/images/journey/thumbs/TV5.mp4',
-      thumbUrl: './assets/images/journey/thumbs/TV5.jpg'
-    },
-    {
       title: 'European Young Innovators Award',
       subtitle: 'World Summit Award (WSA) · Austria',
       description: 'AISA School was named a winner by the World Summit Award (WSA) Global, recognizing European young innovators.',
       mediaUrl: 'https://wsa-global.org/wp-content/uploads/2024/09/thumbnail_IMG_0631.jpg',
       link: 'https://wsa-global.org/winner/aisa-school/'
     },
+     {
+      title: 'Featured on TV Channel 5 News',
+      subtitle: 'Channel 5 · TV News',
+      description: 'A segment on Channel 5 TV news.',
+      mediaUrl: './assets/images/journey/thumbs/TV5.mp4',
+      thumbUrl: './assets/images/journey/thumbs/TV5.jpg'
+    },
+    {
+      title: 'Peivast — Web Summit Qatar',
+      subtitle: 'Peivast News · Web Summit Qatar',
+      description: 'Peivast covered our presence at Web Summit Qatar, one of the largest tech events in the region.',
+      mediaUrl: './assets/images/journey/thumbs/payvast.mp4',
+      thumbUrl: './assets/images/journey/thumbs/payvast.jpg'
+    },
+
     {
       title: 'Talk — Networking for Gen Z',
       subtitle: 'Speech · Career & Networking',
       description: 'A talk on networking and career growth for Gen Z.',
       // Google Drive's thumbnail endpoint gets blocked by Chrome's Opaque
       // Response Blocking when hotlinked directly, so this is a local copy.
-      mediaUrl: './assets/images/journey/genz-networking-talk.jpg',
-      thumbUrl: './assets/images/journey/thumbs/genz-networking-talk.jpg',
+      mediaUrl: './assets/images/journey/gen-z-seminar1.JPG',
+      thumbUrl: './assets/images/journey/gen-z-seminar1.JPG',
       link: 'https://drive.google.com/file/d/17N8qb6wDa0iMYCGQvqlFGUNi62wPXcfz/view?usp=drive_link'
     },
     {
@@ -141,6 +151,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
   suggestModalVisible = false;
   suggestValue = '';
   suggestSubmitted = false;
+  suggestSending = false;
+  suggestError = false;
 
   @ViewChild('suggestInput') suggestInputRef?: ElementRef<HTMLInputElement>;
 
@@ -273,7 +285,32 @@ export class HomeComponent implements OnInit, AfterViewInit {
     return /\.(mp4|webm|mov|ogg)$/i.test(path);
   }
 
+  // Distinguishes a tap from a scroll-drag on horizontally scrolling rows —
+  // otherwise a touch-drag scroll on mobile also fires a click and opens the item.
+  private rowDragStart: { x: number; y: number } | null = null;
+  private rowDragged = false;
+
+  onRowPointerDown(event: PointerEvent) {
+    this.rowDragStart = { x: event.clientX, y: event.clientY };
+  }
+
+  onRowPointerUp(event: PointerEvent) {
+    if (this.rowDragStart) {
+      const dx = Math.abs(event.clientX - this.rowDragStart.x);
+      const dy = Math.abs(event.clientY - this.rowDragStart.y);
+      this.rowDragged = dx > 6 || dy > 6;
+    }
+    this.rowDragStart = null;
+  }
+
+  private consumeRowDrag(): boolean {
+    const dragged = this.rowDragged;
+    this.rowDragged = false;
+    return dragged;
+  }
+
   openPress(item: PressItem) {
+    if (this.consumeRowDrag()) return;
     this.selectedPress = item;
     requestAnimationFrame(() => requestAnimationFrame(() => (this.pressPanelVisible = true)));
   }
@@ -284,6 +321,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   openMedia(item: MediaItem) {
+    if (this.consumeRowDrag()) return;
     this.mediaCoverFailed = false;
     this.selectedMedia = item;
     requestAnimationFrame(() => requestAnimationFrame(() => (this.mediaModalVisible = true)));
@@ -298,6 +336,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.suggestKind = kind;
     this.suggestValue = '';
     this.suggestSubmitted = false;
+    this.suggestError = false;
+    this.suggestSending = false;
     requestAnimationFrame(() => requestAnimationFrame(() => {
       this.suggestModalVisible = true;
       this.suggestInputRef?.nativeElement.focus();
@@ -309,10 +349,24 @@ export class HomeComponent implements OnInit, AfterViewInit {
     setTimeout(() => (this.suggestKind = null), 300);
   }
 
-  submitSuggestion() {
-    if (!this.suggestValue.trim()) return;
-    this.suggestSubmitted = true;
-    setTimeout(() => this.closeSuggest(), 1400);
+  async submitSuggestion() {
+    if (!this.suggestValue.trim() || this.suggestSending) return;
+    this.suggestSending = true;
+    this.suggestError = false;
+
+    const ok = await this.web3forms.submit({
+      subject: `Portfolio: new ${this.suggestKind} suggestion`,
+      from_name: `Suggest a ${this.suggestKind}`,
+      message: this.suggestValue.trim(),
+    });
+
+    this.suggestSending = false;
+    if (ok) {
+      this.suggestSubmitted = true;
+      setTimeout(() => this.closeSuggest(), 1400);
+    } else {
+      this.suggestError = true;
+    }
   }
 
   @HostListener('document:keydown.escape')

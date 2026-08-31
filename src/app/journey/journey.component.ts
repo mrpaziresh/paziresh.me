@@ -161,10 +161,10 @@ export class JourneyComponent {
       tags: ['Award']
     },
     {
-      year: 'Now',
-      title: 'Still geeking out',
-      subtitle: 'Open to interesting problems',
-      description: 'Currently looking for the next hard, weird, worth-solving problem. Ask me about it.',
+      year: '2026',
+      title: 'Building What’s Next',
+      subtitle: 'Turning ideas into products',
+      description: 'Today, I’m working as a CTO at AISA, building technology to make communication more accessible. Alongside AISA, I continue working on Joule as a side project, exploring smarter ways to optimize energy consumption and create meaningful impact.',
       tags: ['Present'],
       current: true
     }

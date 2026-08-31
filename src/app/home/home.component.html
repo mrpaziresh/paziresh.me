@@ -81,6 +81,8 @@ But seriously, I haven’t changed people’s lives yet. I’m still searching f
           <div
             #pressRow
             (scroll)="updateScrollState(pressRow, pressScrollState)"
+            (pointerdown)="onRowPointerDown($event)"
+            (pointerup)="onRowPointerUp($event)"
             class="flex flex-row flex-nowrap gap-4 sm:gap-5 overflow-x-auto no-scrollbar scroll-smooth py-1"
           >
             <button
@@ -184,107 +186,111 @@ But seriously, I haven’t changed people’s lives yet. I’m still searching f
         </div>
       </ng-template>
 
-      <section class="text-gray-700 w-full sm:w-5/6 md:w-4/6 flex flex-col gap-2">
+      <section class="text-gray-700 w-full sm:w-5/6 md:w-4/6 flex flex-col sm:flex-row gap-1 sm:gap-10">
+        <p class="font-medium leading-7 sm:leading-10">I read</p>
 
-        <div class="flex flex-col sm:flex-row gap-1 sm:gap-10 leading-7 sm:leading-10">
-          <p class="font-medium leading-7 sm:leading-10">I read</p>
+        <div class="w-full sm:w-5/6 flex flex-col gap-2">
+          <p class="leading-7 sm:leading-10">mostly non-fiction — software engineering, AI, and a bit of philosophy.</p>
 
-          <p>mostly non-fiction — software engineering, AI, and a bit of philosophy.
-            <br>
-            A few that stuck with me:</p>
-        </div>
+          <div class="flex flex-row items-center justify-between gap-2">
+            <p class="leading-7 sm:leading-10">A few that stuck with me:</p>
 
-        <div class="relative flex flex-row items-center gap-2 my-4 sm:my-6 ml-0 sm:ml-24">
-          <button
-            *ngIf="bookScrollState.hasOverflow"
-            (click)="scrollRow(booksRow, 'left')"
-            [class.invisible]="bookScrollState.atStart"
-            class="flex-shrink-0 text-gray-300 hover:text-gray-600 transition-colors duration-200 cursor-pointer"
-            aria-label="Scroll books left"
-          >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
-          </button>
-
-          <div
-            #booksRow
-            (scroll)="updateScrollState(booksRow, bookScrollState)"
-            class="flex flex-row flex-nowrap gap-3 sm:gap-4 overflow-x-auto no-scrollbar scroll-smooth py-1"
-          >
-            <ng-container *ngTemplateOutlet="mediaRow; context: { $implicit: books }"></ng-container>
+            <button
+              type="button"
+              (click)="openSuggest('book')"
+              class="shrink-0 flex flex-row items-center gap-1.5 text-xs text-gray-500 border border-gray-200 rounded-full px-3 py-1.5 hover:bg-gray-50 transition-colors duration-200 w-fit cursor-pointer"
+            >
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+              Suggest a book
+            </button>
           </div>
 
-          <button
-            *ngIf="bookScrollState.hasOverflow"
-            (click)="scrollRow(booksRow, 'right')"
-            [class.invisible]="bookScrollState.atEnd"
-            class="flex-shrink-0 text-gray-300 hover:text-gray-600 transition-colors duration-200 cursor-pointer"
-            aria-label="Scroll books right"
-          >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
-          </button>
+          <div class="relative my-2 sm:my-4">
+            <button
+              *ngIf="bookScrollState.hasOverflow"
+              (click)="scrollRow(booksRow, 'left')"
+              [class.invisible]="bookScrollState.atStart"
+              class="absolute left-0 top-1/2 -translate-y-1/2 z-10 flex items-center justify-center h-6 w-6 rounded-full bg-white/90 shadow-sm text-gray-400 hover:text-gray-700 transition-colors duration-200 cursor-pointer"
+              aria-label="Scroll books left"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+            </button>
+
+            <div
+              #booksRow
+              (scroll)="updateScrollState(booksRow, bookScrollState)"
+              (pointerdown)="onRowPointerDown($event)"
+              (pointerup)="onRowPointerUp($event)"
+              class="flex flex-row flex-nowrap gap-3 sm:gap-4 overflow-x-auto no-scrollbar scroll-smooth py-1"
+            >
+              <ng-container *ngTemplateOutlet="mediaRow; context: { $implicit: books }"></ng-container>
+            </div>
+
+            <button
+              *ngIf="bookScrollState.hasOverflow"
+              (click)="scrollRow(booksRow, 'right')"
+              [class.invisible]="bookScrollState.atEnd"
+              class="absolute right-0 top-1/2 -translate-y-1/2 z-10 flex items-center justify-center h-6 w-6 rounded-full bg-white/90 shadow-sm text-gray-400 hover:text-gray-700 transition-colors duration-200 cursor-pointer"
+              aria-label="Scroll books right"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+            </button>
+          </div>
         </div>
-
-        <button
-          type="button"
-          (click)="openSuggest('book')"
-          class="flex flex-row items-center gap-1.5 text-xs text-gray-500 border border-gray-200 rounded-full px-3 py-1.5 hover:bg-gray-50 transition-colors duration-200 w-fit ml-0 sm:ml-24 cursor-pointer"
-        >
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
-          Suggest a book
-        </button>
-
       </section>
 
 
-      <section class="text-gray-700 w-full sm:w-5/6 md:w-4/6 flex flex-col gap-2">
+      <section class="text-gray-700 w-full sm:w-5/6 md:w-4/6 flex flex-col sm:flex-row gap-1 sm:gap-10">
+        <p class="font-medium leading-7 sm:leading-10">I watch</p>
 
-        <div class="flex flex-col sm:flex-row gap-1 sm:gap-10 leading-7 sm:leading-10">
-          <p class="font-medium leading-7 sm:leading-10">I watch</p>
+        <div class="w-full sm:w-5/6 flex flex-col gap-2">
+          <p class="leading-7 sm:leading-10">mostly sci-fi and anything about the future.</p>
 
-          <p>mostly sci-fi and anything about AI eating the world.
-            <br>
-            A few favorites:</p>
-        </div>
+          <div class="flex flex-row items-center justify-between gap-2">
+            <p class="leading-7 sm:leading-10">A few favorites:</p>
 
-        <div class="relative flex flex-row items-center gap-2 my-4 sm:my-6 ml-0 sm:ml-24">
-          <button
-            *ngIf="movieScrollState.hasOverflow"
-            (click)="scrollRow(moviesRow, 'left')"
-            [class.invisible]="movieScrollState.atStart"
-            class="flex-shrink-0 text-gray-300 hover:text-gray-600 transition-colors duration-200 cursor-pointer"
-            aria-label="Scroll movies left"
-          >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
-          </button>
-
-          <div
-            #moviesRow
-            (scroll)="updateScrollState(moviesRow, movieScrollState)"
-            class="flex flex-row flex-nowrap gap-3 sm:gap-4 overflow-x-auto no-scrollbar scroll-smooth py-1"
-          >
-            <ng-container *ngTemplateOutlet="mediaRow; context: { $implicit: movies }"></ng-container>
+            <button
+              type="button"
+              (click)="openSuggest('movie')"
+              class="shrink-0 flex flex-row items-center gap-1.5 text-xs text-gray-500 border border-gray-200 rounded-full px-3 py-1.5 hover:bg-gray-50 transition-colors duration-200 w-fit cursor-pointer"
+            >
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+              Suggest a movie
+            </button>
           </div>
 
-          <button
-            *ngIf="movieScrollState.hasOverflow"
-            (click)="scrollRow(moviesRow, 'right')"
-            [class.invisible]="movieScrollState.atEnd"
-            class="flex-shrink-0 text-gray-300 hover:text-gray-600 transition-colors duration-200 cursor-pointer"
-            aria-label="Scroll movies right"
-          >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
-          </button>
+          <div class="relative my-2 sm:my-4">
+            <button
+              *ngIf="movieScrollState.hasOverflow"
+              (click)="scrollRow(moviesRow, 'left')"
+              [class.invisible]="movieScrollState.atStart"
+              class="absolute left-0 top-1/2 -translate-y-1/2 z-10 flex items-center justify-center h-6 w-6 rounded-full bg-white/90 shadow-sm text-gray-400 hover:text-gray-700 transition-colors duration-200 cursor-pointer"
+              aria-label="Scroll movies left"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+            </button>
+
+            <div
+              #moviesRow
+              (scroll)="updateScrollState(moviesRow, movieScrollState)"
+              (pointerdown)="onRowPointerDown($event)"
+              (pointerup)="onRowPointerUp($event)"
+              class="flex flex-row flex-nowrap gap-3 sm:gap-4 overflow-x-auto no-scrollbar scroll-smooth py-1"
+            >
+              <ng-container *ngTemplateOutlet="mediaRow; context: { $implicit: movies }"></ng-container>
+            </div>
+
+            <button
+              *ngIf="movieScrollState.hasOverflow"
+              (click)="scrollRow(moviesRow, 'right')"
+              [class.invisible]="movieScrollState.atEnd"
+              class="absolute right-0 top-1/2 -translate-y-1/2 z-10 flex items-center justify-center h-6 w-6 rounded-full bg-white/90 shadow-sm text-gray-400 hover:text-gray-700 transition-colors duration-200 cursor-pointer"
+              aria-label="Scroll movies right"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+            </button>
+          </div>
         </div>
-
-        <button
-          type="button"
-          (click)="openSuggest('movie')"
-          class="flex flex-row items-center gap-1.5 text-xs text-gray-500 border border-gray-200 rounded-full px-3 py-1.5 hover:bg-gray-50 transition-colors duration-200 w-fit ml-0 sm:ml-24 cursor-pointer"
-        >
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
-          Suggest a movie
-        </button>
-
       </section>
 
 
@@ -422,13 +428,15 @@ But seriously, I haven’t changed people’s lives yet. I’m still searching f
               class="border border-gray-200 rounded-md px-3 py-2 text-sm text-gray-700 focus:outline-none focus:border-gray-400 transition-colors duration-200"
             />
 
+            <p *ngIf="suggestError" class="text-xs text-red-500">Couldn't send that — mind trying again?</p>
+
             <button
               type="button"
               (click)="submitSuggestion()"
-              [disabled]="!suggestValue.trim()"
+              [disabled]="!suggestValue.trim() || suggestSending"
               class="text-sm text-white bg-gray-800 rounded-full px-4 py-2 hover:bg-gray-700 disabled:opacity-30 disabled:cursor-not-allowed transition-colors duration-200 cursor-pointer w-fit self-end"
             >
-              Send
+              {{ suggestSending ? 'Sending…' : 'Send' }}
             </button>
           </ng-container>
 
@@ -454,59 +462,63 @@ But seriously, I haven’t changed people’s lives yet. I’m still searching f
     </section>
 
 
-    <div class="w-full sm:w-5/6 md:w-4/6 flex flex-col items-center h-full mb-16 sm:mb-24 md:mb-36 gap-3">
+    <div class="w-full sm:w-5/6 md:w-4/6 flex flex-col sm:flex-row gap-1 sm:gap-8 mb-16 sm:mb-24 md:mb-36">
+      <p class="font-medium leading-7 sm:leading-10 invisible" aria-hidden="true">I code</p>
 
-      <div #gridScroll class="w-full overflow-x-auto">
-        <div class="flex space-x-0.5 sm:space-x-1 w-max mx-auto">
-          <div *ngFor="let week of weeks; let i = index" class="flex flex-col items-start gap-0.5 sm:gap-1">
-            <span class="text-[9px] text-gray-400 h-3 leading-3">{{ monthLabels[i] }}</span>
-            <div class="flex flex-col space-y-0.5 sm:space-y-1">
-              <div
-                *ngFor="let day of week"
-                #cell
-                class="w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-sm cursor-pointer hover:ring-2 hover:ring-gray-300 transition-shadow duration-150"
-                (mouseenter)="showTooltip(day, cell)"
-                (mouseleave)="hideTooltip()"
-                (click)="showTooltip(day, cell)"
-              >
-                <!-- Both activities: diagonal split -->
-                <ng-container *ngIf="day.code && day.workout; else singleColor">
-                  <div
-                    class="w-full h-full rounded-sm"
-                    [ngClass]="getCellClass(day.code, day.workout)">
-                  </div>
-                </ng-container>
+      <div class="w-full sm:w-5/6 flex flex-col items-start h-full gap-3">
 
-                <!-- Only one activity or none -->
-                <ng-template #singleColor>
-                  <div
-                    class="w-full h-full rounded-sm"
-                    [ngClass]="getSingleColorClass(day.code, day.workout)">
-                  </div>
-                </ng-template>
+        <div #gridScroll class="w-full overflow-x-auto">
+          <div class="flex space-x-0.5 sm:space-x-1 w-max">
+            <div *ngFor="let week of weeks; let i = index" class="flex flex-col items-start gap-0.5 sm:gap-1">
+              <span class="text-[9px] text-gray-400 h-3 leading-3">{{ monthLabels[i] }}</span>
+              <div class="flex flex-col space-y-0.5 sm:space-y-1">
+                <div
+                  *ngFor="let day of week"
+                  #cell
+                  class="w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-sm cursor-pointer hover:ring-2 hover:ring-gray-300 transition-shadow duration-150"
+                  (mouseenter)="showTooltip(day, cell)"
+                  (mouseleave)="hideTooltip()"
+                  (click)="showTooltip(day, cell)"
+                >
+                  <!-- Both activities: diagonal split -->
+                  <ng-container *ngIf="day.code && day.workout; else singleColor">
+                    <div
+                      class="w-full h-full rounded-sm"
+                      [ngClass]="getCellClass(day.code, day.workout)">
+                    </div>
+                  </ng-container>
+
+                  <!-- Only one activity or none -->
+                  <ng-template #singleColor>
+                    <div
+                      class="w-full h-full rounded-sm"
+                      [ngClass]="getSingleColorClass(day.code, day.workout)">
+                    </div>
+                  </ng-template>
+                </div>
               </div>
             </div>
           </div>
         </div>
+
+        <div #tooltip class="fixed hidden bg-black text-white text-xs px-2 py-1 rounded-md whitespace-nowrap z-50 pointer-events-none"></div>
+
+        <div class="flex flex-row items-center gap-4 text-xs text-gray-500">
+          <div class="flex flex-row items-center gap-1.5">
+            <span class="w-3 h-3 rounded-sm bg-green-400"></span>
+            Code
+          </div>
+          <div class="flex flex-row items-center gap-1.5">
+            <span class="w-3 h-3 rounded-sm bg-purple-400"></span>
+            Workout
+          </div>
+          <div class="flex flex-row items-center gap-1.5">
+            <span class="w-3 h-3 rounded-sm bg-green-purple"></span>
+            Both
+          </div>
+        </div>
+
       </div>
-
-      <div #tooltip class="fixed hidden bg-black text-white text-xs px-2 py-1 rounded-md whitespace-nowrap z-50 pointer-events-none"></div>
-
-      <div class="flex flex-row items-center gap-4 text-xs text-gray-500">
-        <div class="flex flex-row items-center gap-1.5">
-          <span class="w-3 h-3 rounded-sm bg-green-400"></span>
-          Code
-        </div>
-        <div class="flex flex-row items-center gap-1.5">
-          <span class="w-3 h-3 rounded-sm bg-purple-400"></span>
-          Workout
-        </div>
-        <div class="flex flex-row items-center gap-1.5">
-          <span class="w-3 h-3 rounded-sm bg-green-purple"></span>
-          Both
-        </div>
-      </div>
-
     </div>
 
 
