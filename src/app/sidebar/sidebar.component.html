@@ -148,15 +148,41 @@
   <header
     class="flex md:hidden fixed top-0 inset-x-0 z-40 h-14 items-center justify-between px-4 bg-[#f2f6ff]/95 backdrop-blur-md border-b border-gray-200/70"
   >
-    <div class="flex flex-row items-center gap-2 cursor-pointer" (click)="navigate('')">
-      <img class="rounded-full" height="30" width="30" src="./assets/images/Alireza-Paziresh.JPG" alt="profile-picture" />
+    <div class="flex flex-row items-baseline gap-1.5 min-w-0 overflow-hidden cursor-pointer" (click)="navigate('')">
+      <span class="font-semibold text-sm text-[#12182b] shrink-0">paziresh<span class="text-[#1564fc]">.</span>me</span>
+      <span class="text-gray-300 text-sm shrink-0">|</span>
+      <span class="font-light text-xs text-gray-500 truncate">Ali Reza Paziresh personal website</span>
     </div>
 
-    <div class="flex flex-row items-center gap-4">
-      <img class="cursor-pointer" src="./assets/icons/github.svg" height="18" width="18" alt="github" (click)="Socialmedia('github')" />
-      <img class="cursor-pointer" src="./assets/icons/linkedin.svg" height="18" width="18" alt="linkedin" (click)="Socialmedia('linkedin')" />
-      <img class="cursor-pointer" src="./assets/icons/Twitter.svg" height="16" width="16" alt="x" (click)="Socialmedia('x')" />
-      <img class="cursor-pointer" src="./assets/icons/Telegram.svg" height="16" width="16" alt="telegram" (click)="Socialmedia('telegram')" />
+    <div class="relative shrink-0">
+      <button
+        type="button"
+        class="flex items-center gap-1 text-sm font-medium text-gray-700 px-3 py-1.5 rounded-full border border-gray-200/80 hover:bg-white/60 transition-colors duration-200"
+        (click)="toggleContactMenu($event)"
+      >
+        Contact
+      </button>
+
+      @if (contactMenuOpen) {
+        <div class="absolute right-0 top-[calc(100%+0.5rem)] flex flex-col gap-0.5 bg-white/70 backdrop-blur-2xl rounded-2xl border border-white/50 shadow-[0_8px_30px_rgba(0,0,0,0.12)] p-1.5 min-w-[10rem]">
+          <button type="button" class="flex items-center gap-3 px-3 py-2 rounded-xl text-sm text-gray-700 hover:bg-white/70 transition-colors duration-200" (click)="Socialmedia('github')">
+            <img src="./assets/icons/github.svg" height="18" width="18" alt="github" />
+            Github
+          </button>
+          <button type="button" class="flex items-center gap-3 px-3 py-2 rounded-xl text-sm text-gray-700 hover:bg-white/70 transition-colors duration-200" (click)="Socialmedia('linkedin')">
+            <img src="./assets/icons/linkedin.svg" height="18" width="18" alt="linkedin" />
+            LinkedIn
+          </button>
+          <button type="button" class="flex items-center gap-3 px-3 py-2 rounded-xl text-sm text-gray-700 hover:bg-white/70 transition-colors duration-200" (click)="Socialmedia('x')">
+            <img src="./assets/icons/Twitter.svg" height="16" width="16" alt="x" />
+            X (Twitter)
+          </button>
+          <button type="button" class="flex items-center gap-3 px-3 py-2 rounded-xl text-sm text-gray-700 hover:bg-white/70 transition-colors duration-200" (click)="Socialmedia('telegram')">
+            <img src="./assets/icons/Telegram.svg" height="16" width="16" alt="telegram" />
+            Telegram
+          </button>
+        </div>
+      }
     </div>
   </header>
 

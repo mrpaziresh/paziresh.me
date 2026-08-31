@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, HostListener, ViewEncapsulation } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
@@ -12,6 +12,8 @@ import { NavigationEnd, Router } from '@angular/router';
 })
 export class SidebarComponent {
   selectedMenuItem: string = '';
+  contactMenuOpen = false;
+
   constructor(private router: Router) {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
@@ -20,14 +22,25 @@ export class SidebarComponent {
       }
     });
   }
-  
+
 
 navigate(path: string) {
   this.selectedMenuItem = path;
   this.router.navigate([path]);
 }
 
+toggleContactMenu(event: MouseEvent) {
+  event.stopPropagation();
+  this.contactMenuOpen = !this.contactMenuOpen;
+}
+
+@HostListener('document:click')
+closeContactMenu() {
+  this.contactMenuOpen = false;
+}
+
 Socialmedia(media: string){
+  this.contactMenuOpen = false;
 
   switch (media) {
     case "github":
