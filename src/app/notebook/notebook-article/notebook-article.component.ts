@@ -6,7 +6,7 @@ import { marked } from 'marked';
 import { Article, getArticleBySlug, getArticleByShortCode, getExcerpt, estimateReadTime, shortCode } from '../notebook.data';
 
 const SITE_TITLE = 'Paziresh.me';
-const SITE_URL = 'https://mrpaziresh.github.io/paziresh.me';
+const SITE_URL = 'https://paziresh.me';
 
 @Component({
   selector: 'app-notebook-article',
