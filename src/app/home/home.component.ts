@@ -32,7 +32,8 @@ interface PressItem {
   subtitle: string;
   description: string;
   mediaUrl: string; // full-res image or video, shown in the detail panel
-  thumbUrl?: string; // small grid thumbnail (images only); videos reuse mediaUrl
+  thumbUrl?: string; // small grid/preview thumbnail — generated for local media, see scripts/generate-journey-thumbnails.mjs
+  link?: string; // external page/video this item points to — shown as a button instead of inline playback
 }
 
 
@@ -75,24 +76,39 @@ export class HomeComponent implements OnInit, AfterViewInit {
   // Sample entries — swap in real press/speaking links & write-ups as they happen.
   pressItems: PressItem[] = [
     {
-      title: 'TEDxTehran — Curation Team',
-      subtitle: 'TEDxTehran · 2025',
-      description: 'I joined the curation and speaker team at TEDxTehran, one of the largest TED conferences in the Middle East, helping speakers shape their ideas into meaningful stories.',
-      mediaUrl: './assets/images/journey/tedxtehran1.JPG',
-      thumbUrl: './assets/images/journey/thumbs/tedxtehran1.jpg'
+      title: 'Digiato — Elecom Pitch Winners',
+      subtitle: 'Digiato · Elecom Competition',
+      description: "Digiato's coverage of the Elecom Pitch competition, where the top prize went to a medical AI startup.",
+      mediaUrl: './assets/images/journey/digiato-news.png',
+      thumbUrl: './assets/images/journey/thumbs/digiato-news.jpg'
     },
     {
-      title: 'Gen Z at Work — Panel Talk',
-      subtitle: 'Industrial Management Institute · 2024',
-      description: 'Invited to speak about Gen Z in the workplace, sharing experiences with career growth, technology, and networking with students and professionals.',
-      mediaUrl: './assets/images/journey/gen-z-seminar.JPG',
-      thumbUrl: './assets/images/journey/thumbs/gen-z-seminar.jpg'
+      title: 'Peivast — Web Summit Qatar',
+      subtitle: 'Peivast News · Web Summit Qatar',
+      description: 'Peivast covered our presence at Web Summit Qatar, one of the largest tech events in the region.',
+      mediaUrl: './assets/images/journey/thumbs/payvast.mp4',
+      thumbUrl: './assets/images/journey/thumbs/payvast.jpg'
     },
     {
-      title: 'CS50 Interview',
-      subtitle: "Harvard CS50 · 2021",
-      description: 'Interviewed about BUF, the education platform I built with my best friend to make studying more social.',
-      mediaUrl: './assets/images/journey/cs50interview.mp4'
+      title: 'Featured on Channel 5 News',
+      subtitle: 'Channel 5 · TV News',
+      description: 'A segment on Channel 5 TV news.',
+      mediaUrl: './assets/images/journey/thumbs/TV5.mp4',
+      thumbUrl: './assets/images/journey/thumbs/TV5.jpg'
+    },
+    {
+      title: 'European Young Innovators Award',
+      subtitle: 'World Summit Award (WSA) · Austria',
+      description: 'AISA School was named a winner by the World Summit Award (WSA) Global, recognizing European young innovators.',
+      mediaUrl: 'https://wsa-global.org/wp-content/uploads/2024/09/thumbnail_IMG_0631.jpg',
+      link: 'https://wsa-global.org/winner/aisa-school/'
+    },
+    {
+      title: 'Talk — Networking for Gen Z',
+      subtitle: 'Speech · Career & Networking',
+      description: 'A talk on networking and career growth for Gen Z.',
+      mediaUrl: 'https://drive.google.com/thumbnail?id=17N8qb6wDa0iMYCGQvqlFGUNi62wPXcfz&sz=w1000',
+      link: 'https://drive.google.com/file/d/17N8qb6wDa0iMYCGQvqlFGUNi62wPXcfz/view?usp=drive_link'
     }
   ];
 

@@ -74,17 +74,7 @@
                 class="group flex flex-col gap-1.5 w-24 sm:w-28 text-left cursor-pointer"
             >
                 <div class="relative h-24 w-24 sm:h-28 sm:w-28 rounded-lg overflow-hidden border-2 border-gray-100 group-hover:opacity-80 transition-opacity duration-200">
-                    <video
-                        *ngIf="isVideo(item.mediaUrl); else pressPhoto"
-                        [src]="item.mediaUrl"
-                        class="h-full w-full object-cover"
-                        muted
-                        playsinline
-                        preload="metadata"
-                    ></video>
-                    <ng-template #pressPhoto>
-                        <img [src]="item.thumbUrl || item.mediaUrl" alt="" class="h-full w-full object-cover" loading="lazy" decoding="async" />
-                    </ng-template>
+                    <img [src]="item.thumbUrl || item.mediaUrl" alt="" class="h-full w-full object-cover" loading="lazy" decoding="async" />
                     <span
                         *ngIf="isVideo(item.mediaUrl)"
                         class="absolute inset-0 flex items-center justify-center bg-black/15"
@@ -355,6 +345,16 @@
             <p class="font-mono text-xs text-gray-400">{{ item.subtitle }}</p>
             <h2 class="font-medium text-gray-800 text-lg">{{ item.title }}</h2>
             <p class="text-sm text-gray-600 leading-6">{{ item.description }}</p>
+
+            <a
+                *ngIf="item.link"
+                [href]="item.link"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex flex-row items-center gap-1.5 text-xs text-gray-500 border border-gray-200 rounded-full px-3 py-1.5 hover:bg-gray-50 transition-colors duration-200 w-fit mt-2"
+            >
+                Open original ↗
+            </a>
           </div>
         </ng-container>
       </div>
