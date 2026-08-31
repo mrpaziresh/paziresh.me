@@ -85,9 +85,9 @@ export class HomeComponent implements OnInit, AfterViewInit {
   // Sample entries — swap in real press/speaking links & write-ups as they happen.
   pressItems: PressItem[] = [
     {
-      title: 'Digiato — Elecom Pitch Winners',
-      subtitle: 'Digiato · Elecom Competition',
-      description: "Digiato's coverage of the Elecom Pitch competition, where the top prize went to a medical AI startup.",
+      title: 'Digiato — Elecomp Pitch Winners',
+      subtitle: 'Digiato · Elecomp Competition',
+      description: "Digiato's coverage of the Elecomp Pitch competition, where the top prize went to a medical AI startup.",
       mediaUrl: './assets/images/journey/digiato-news.png',
       thumbUrl: './assets/images/journey/thumbs/digiato-news.jpg'
     },
