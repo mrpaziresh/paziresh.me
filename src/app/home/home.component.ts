@@ -107,8 +107,18 @@ export class HomeComponent implements OnInit, AfterViewInit {
       title: 'Talk — Networking for Gen Z',
       subtitle: 'Speech · Career & Networking',
       description: 'A talk on networking and career growth for Gen Z.',
-      mediaUrl: 'https://drive.google.com/thumbnail?id=17N8qb6wDa0iMYCGQvqlFGUNi62wPXcfz&sz=w1000',
+      // Google Drive's thumbnail endpoint gets blocked by Chrome's Opaque
+      // Response Blocking when hotlinked directly, so this is a local copy.
+      mediaUrl: './assets/images/journey/genz-networking-talk.jpg',
+      thumbUrl: './assets/images/journey/thumbs/genz-networking-talk.jpg',
       link: 'https://drive.google.com/file/d/17N8qb6wDa0iMYCGQvqlFGUNi62wPXcfz/view?usp=drive_link'
+    },
+    {
+      title: 'CS50x Iran Interview',
+      subtitle: 'CS50x Iran · 2021',
+      description: 'Interviewed for CS50x Iran about BUF, the education platform I built with my best friend to make studying more social.',
+      mediaUrl: './assets/images/journey/cs50interview.mp4',
+      thumbUrl: './assets/images/journey/thumbs/cs50interview.jpg'
     }
   ];
 
@@ -121,9 +131,11 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   bookScrollState: ScrollState = { atStart: true, atEnd: false, hasOverflow: false };
   movieScrollState: ScrollState = { atStart: true, atEnd: false, hasOverflow: false };
+  pressScrollState: ScrollState = { atStart: true, atEnd: false, hasOverflow: false };
 
   @ViewChild('booksRow') booksRow?: ElementRef<HTMLElement>;
   @ViewChild('moviesRow') moviesRow?: ElementRef<HTMLElement>;
+  @ViewChild('pressRow') pressRow?: ElementRef<HTMLElement>;
 
   suggestKind: 'book' | 'movie' | null = null;
   suggestModalVisible = false;
@@ -197,6 +209,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
     setTimeout(() => {
       this.updateScrollState(this.booksRow?.nativeElement, this.bookScrollState);
       this.updateScrollState(this.moviesRow?.nativeElement, this.movieScrollState);
+      this.updateScrollState(this.pressRow?.nativeElement, this.pressScrollState);
     });
   }
 
@@ -204,6 +217,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   onWindowResize() {
     this.updateScrollState(this.booksRow?.nativeElement, this.bookScrollState);
     this.updateScrollState(this.moviesRow?.nativeElement, this.movieScrollState);
+    this.updateScrollState(this.pressRow?.nativeElement, this.pressScrollState);
   }
 
   updateScrollState(el: HTMLElement | undefined, state: ScrollState) {

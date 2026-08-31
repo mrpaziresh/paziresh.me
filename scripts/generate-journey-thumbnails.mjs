@@ -19,7 +19,7 @@ const VIDEO_EXT = new Set(['.mov', '.mp4']);
 
 const entries = readdirSync(journeyDir, { withFileTypes: true }).filter((e) => e.isFile());
 const photos = entries.filter((e) => PHOTO_EXT.has(extname(e.name).toLowerCase()));
-const videos = entries.filter((e) => VIDEO_EXT.has(extname(e.name).toLowerCase()) && extname(e.name).toLowerCase() !== '.mp4');
+const videos = entries.filter((e) => VIDEO_EXT.has(extname(e.name).toLowerCase()));
 
 await Promise.all(
   photos.map(async (entry) => {
