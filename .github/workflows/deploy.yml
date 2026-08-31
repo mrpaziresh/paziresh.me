@@ -27,7 +27,7 @@ jobs:
 
       - run: npm ci
 
-      - run: npm run generate:routes && npm run generate:og
+      - run: npm run generate:routes && npm run generate:og && npm run generate:journey-thumbs
 
       - run: npx ng build --base-href=/${{ github.event.repository.name }}/
 

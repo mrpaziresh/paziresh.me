@@ -6,7 +6,8 @@
     "start": "ng serve",
     "generate:routes": "node scripts/generate-routes.mjs",
     "generate:og": "node scripts/generate-og-images.mjs",
-    "prebuild": "npm run generate:routes && npm run generate:og",
+    "generate:journey-thumbs": "node scripts/generate-journey-thumbnails.mjs",
+    "prebuild": "npm run generate:routes && npm run generate:og && npm run generate:journey-thumbs",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
@@ -48,6 +49,7 @@
     "karma-jasmine-html-reporter": "~2.1.0",
     "postcss": "^8.5.5",
     "satori": "^0.33.4",
+    "sharp": "^0.35.4",
     "tailwindcss": "^3.4.17",
     "typescript": "~5.5.2"
   }

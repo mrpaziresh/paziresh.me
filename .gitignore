@@ -9,6 +9,7 @@
 # Generated at build time (see scripts/generate-*.mjs)
 /routes.txt
 /public/og
+/src/assets/images/journey/thumbs
 
 # Node
 /node_modules

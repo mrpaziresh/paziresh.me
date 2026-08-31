@@ -76,7 +76,15 @@
                                     preload="metadata"
                                 ></video>
                                 <ng-template #photoThumb>
-                                    <img [src]="media" alt="" class="h-full w-full object-cover" />
+                                    <img
+                                        [src]="thumb(media)"
+                                        alt=""
+                                        class="h-full w-full object-cover"
+                                        width="96"
+                                        height="96"
+                                        loading="lazy"
+                                        decoding="async"
+                                    />
                                 </ng-template>
                                 <span
                                     *ngIf="isVideo(media)"
@@ -132,6 +140,7 @@
                 [src]="lightboxImages[lightboxIndex]"
                 alt=""
                 class="max-h-[80vh] max-w-[90vw] object-contain rounded-lg"
+                decoding="async"
                 (click)="$event.stopPropagation()"
             />
         </ng-template>

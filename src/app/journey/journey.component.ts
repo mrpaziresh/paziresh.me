@@ -138,15 +138,24 @@ export class JourneyComponent {
       ],
       tags: ['Award']
     },
-                    {
+    {
       year: '2025',
-      title: 'Second Place at Samsung Solve for Tomorrow 🥈',
-      subtitle: 'Using design thinking to solve real-world problems.',
-      description: 'Through Samsung Solve for Tomorrow, we learned how to approach challenges with design thinking and turn ideas into meaningful solutions. With our Joule project, we focused on solving energy consumption problems in Iran by building a smarter way to optimize energy usage.',
+      title: 'Join to TEDxTehran',
+      subtitle: 'Helping ideas become powerful stories.',
+      description: 'I joined the curation and speaker team at TEDxTehran, one of the largest TED conferences in the Middle East. I had the opportunity to work with inspiring speakers, helping them shape their ideas and transform their experiences into meaningful stories. thanks to my team lead, S. Sabouri.',
                images: [
-        './assets/images/journey/samsung1.jpg',
-        './assets/images/journey/samsung2.jpg',
-        './assets/images/journey/samsung3.jpg',
+        './assets/images/journey/tedxtehran1.JPG',
+
+      ],
+      tags: ['TALK']
+    },
+        {
+      year: '2026',
+      title: 'Winner of Iran’s Largest Student Startup Competition 🏆',
+      subtitle: 'Building smarter solutions for a more sustainable future.',
+      description: 'With our Joule project, we won the top prize at the Jana Social Prize, one of Iran’s largest student startup competitions. Joule focuses on solving energy consumption challenges by helping optimize energy usage and reduce waste through smarter technology.',
+               images: [
+        './assets/images/journey/janaprize.JPG',
 
       ],
       tags: ['Award']
@@ -175,6 +184,19 @@ export class JourneyComponent {
 
   isVideo(path: string): boolean {
     return /\.(mp4|webm|mov|ogg)$/i.test(path);
+  }
+
+  // Timeline thumbnails use a small build-generated copy (see
+  // scripts/generate-journey-thumbnails.mjs) instead of the full-res photo,
+  // which was tanking scroll performance (some source photos are 20MP+).
+  thumb(media: string): string {
+    if (this.isVideo(media)) {
+      return media;
+    }
+    const parts = media.split('/');
+    const filename = parts.pop()!.replace(/\.[^.]+$/, '.jpg');
+    parts.push('thumbs', filename);
+    return parts.join('/');
   }
 
   showPrev(event: Event): void {
