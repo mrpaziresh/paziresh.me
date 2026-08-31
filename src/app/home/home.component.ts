@@ -27,6 +27,13 @@ interface ScrollState {
   hasOverflow: boolean;
 }
 
+interface PressItem {
+  title: string;
+  subtitle: string;
+  description: string;
+  mediaUrl: string;
+}
+
 
 @Component({
   selector: 'app-home',
@@ -63,6 +70,31 @@ export class HomeComponent implements OnInit, AfterViewInit {
     { title: 'Whiplash', subtitle: '2014', color: 'bg-gray-700', thumbUrl: 'https://upload.wikimedia.org/wikipedia/en/0/01/Whiplash_poster.jpg', coverUrl: 'https://upload.wikimedia.org/wikipedia/en/0/01/Whiplash_poster.jpg' },
     { title: 'Her', subtitle: '2013', color: 'bg-gray-800', thumbUrl: 'https://upload.wikimedia.org/wikipedia/en/4/44/Her2013Poster.jpg', coverUrl: 'https://upload.wikimedia.org/wikipedia/en/4/44/Her2013Poster.jpg' },
   ];
+
+  // Sample entries — swap in real press/speaking links & write-ups as they happen.
+  pressItems: PressItem[] = [
+    {
+      title: 'TEDxTehran — Curation Team',
+      subtitle: 'TEDxTehran · 2025',
+      description: 'I joined the curation and speaker team at TEDxTehran, one of the largest TED conferences in the Middle East, helping speakers shape their ideas into meaningful stories.',
+      mediaUrl: './assets/images/journey/thumbs/tedxtehran1.jpg'
+    },
+    {
+      title: 'Gen Z at Work — Panel Talk',
+      subtitle: 'Industrial Management Institute · 2024',
+      description: 'Invited to speak about Gen Z in the workplace, sharing experiences with career growth, technology, and networking with students and professionals.',
+      mediaUrl: './assets/images/journey/thumbs/gen-z-seminar.jpg'
+    },
+    {
+      title: 'CS50 Interview',
+      subtitle: "Harvard CS50 · 2021",
+      description: 'Interviewed about BUF, the education platform I built with my best friend to make studying more social.',
+      mediaUrl: './assets/images/journey/cs50interview.mp4'
+    }
+  ];
+
+  selectedPress: PressItem | null = null;
+  pressPanelVisible = false;
 
   selectedMedia: MediaItem | null = null;
   mediaModalVisible = false;
@@ -204,6 +236,20 @@ export class HomeComponent implements OnInit, AfterViewInit {
     if (tooltip) tooltip.style.display = 'none';
   }
 
+  isVideo(path: string): boolean {
+    return /\.(mp4|webm|mov|ogg)$/i.test(path);
+  }
+
+  openPress(item: PressItem) {
+    this.selectedPress = item;
+    requestAnimationFrame(() => requestAnimationFrame(() => (this.pressPanelVisible = true)));
+  }
+
+  closePress() {
+    this.pressPanelVisible = false;
+    setTimeout(() => (this.selectedPress = null), 300);
+  }
+
   openMedia(item: MediaItem) {
     this.mediaCoverFailed = false;
     this.selectedMedia = item;
@@ -240,6 +286,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   onEscape() {
     if (this.selectedMedia) this.closeMedia();
     if (this.suggestKind) this.closeSuggest();
+    if (this.selectedPress) this.closePress();
   }
 
   getCellClass(code?: number, workout?: number): string {

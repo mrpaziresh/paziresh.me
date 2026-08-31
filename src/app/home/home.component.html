@@ -58,6 +58,45 @@
     </section>
 
 
+    <section class="text-gray-700 w-full sm:w-5/6 md:w-4/6 flex flex-col gap-2">
+        <div class="flex flex-col sm:flex-row gap-1 sm:gap-10 leading-7 sm:leading-10">
+            <p class="font-medium leading-7 sm:leading-10">In the news</p>
+            <p>talks, interviews, and press mentions.
+                <br>
+                Tap one for more:</p>
+        </div>
+
+        <div class="flex flex-row flex-wrap gap-4 sm:gap-5 my-4 sm:my-6 ml-0 sm:ml-24">
+            <button
+                *ngFor="let item of pressItems"
+                type="button"
+                (click)="openPress(item)"
+                class="group flex flex-col gap-1.5 w-24 sm:w-28 text-left cursor-pointer"
+            >
+                <div class="relative h-24 w-24 sm:h-28 sm:w-28 rounded-lg overflow-hidden border-2 border-gray-100 group-hover:opacity-80 transition-opacity duration-200">
+                    <video
+                        *ngIf="isVideo(item.mediaUrl); else pressPhoto"
+                        [src]="item.mediaUrl"
+                        class="h-full w-full object-cover"
+                        muted
+                        playsinline
+                        preload="metadata"
+                    ></video>
+                    <ng-template #pressPhoto>
+                        <img [src]="item.mediaUrl" alt="" class="h-full w-full object-cover" loading="lazy" decoding="async" />
+                    </ng-template>
+                    <span
+                        *ngIf="isVideo(item.mediaUrl)"
+                        class="absolute inset-0 flex items-center justify-center bg-black/15"
+                    >
+                        <svg width="20" height="20" viewBox="0 0 16 16" fill="white"><path d="M4 2.5v11l10-5.5z" /></svg>
+                    </span>
+                </div>
+                <p class="text-xs text-gray-600 group-hover:text-black transition-colors duration-200">{{ item.title }}</p>
+            </button>
+        </div>
+    </section>
+
 
     <section class="text-gray-700 flex flex-col sm:flex-row gap-1 sm:gap-8 w-full sm:w-5/6 md:w-4/6">
         <p class="font-medium leading-7 sm:leading-10">I travel</p>
@@ -275,6 +314,46 @@
             <p class="font-medium text-gray-800 text-sm">{{ selectedMedia.title }}</p>
             <p class="text-gray-400 text-xs font-mono">{{ selectedMedia.subtitle }}</p>
           </div>
+        </div>
+      </div>
+
+
+      <div
+        *ngIf="selectedPress"
+        class="fixed inset-0 z-50 transition-opacity duration-300"
+        [class.opacity-100]="pressPanelVisible"
+        [class.opacity-0]="!pressPanelVisible"
+      >
+        <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" (click)="closePress()"></div>
+
+        <div
+          class="absolute inset-y-0 right-0 w-full sm:max-w-md bg-white shadow-2xl flex flex-col overflow-y-auto transition-transform duration-300 ease-out"
+          [class.translate-x-0]="pressPanelVisible"
+          [class.translate-x-full]="!pressPanelVisible"
+        >
+          <button
+            (click)="closePress()"
+            class="absolute top-3 right-3 z-10 bg-white/90 hover:bg-white text-gray-500 hover:text-gray-800 text-lg leading-none rounded-full w-8 h-8 flex items-center justify-center shadow-sm cursor-pointer"
+          >&times;</button>
+
+          <ng-container *ngIf="selectedPress as item">
+            <video
+                *ngIf="isVideo(item.mediaUrl); else pressPanelPhoto"
+                [src]="item.mediaUrl"
+                class="w-full aspect-video object-cover bg-black"
+                controls
+                playsinline
+            ></video>
+            <ng-template #pressPanelPhoto>
+                <img [src]="item.mediaUrl" alt="" class="w-full aspect-video object-cover" />
+            </ng-template>
+
+            <div class="flex flex-col gap-2 p-5">
+                <p class="font-mono text-xs text-gray-400">{{ item.subtitle }}</p>
+                <h2 class="font-medium text-gray-800 text-lg">{{ item.title }}</h2>
+                <p class="text-sm text-gray-600 leading-6">{{ item.description }}</p>
+            </div>
+          </ng-container>
         </div>
       </div>
 
