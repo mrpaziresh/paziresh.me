@@ -12,7 +12,7 @@
                 A software engineer passionate about building products, entrepreneurship, and startups.
                 <br>
 
-I have built some products and written code that people loved, but honestly, I don't feel attached to any of them ( I’m trying not to become obsessed with what I build ).
+I have built some products and written code that people loved, but honestly, I don't feel attached to any of them, I’m trying not to become obsessed with what I build.
    <br>
 But seriously, I haven’t changed people’s lives yet. I’m still searching for the right way to create something meaningful and become more effective.
          </p>
@@ -49,11 +49,11 @@ But seriously, I haven’t changed people’s lives yet. I’m still searching f
     </section>
 
 
-    <section class="text-gray-700 w-full sm:w-5/6 md:w-4/6 flex flex-col sm:flex-row gap-1 sm:gap-8">
+    <section class="text-gray-700 w-full sm:w-5/6 md:w-4/6 flex flex-col sm:flex-row gap-1 sm:gap-12">
         <p class="font-medium leading-7 sm:leading-10">Live</p>
         <p class="font-normal w-full sm:w-5/6 leading-7 sm:leading-10 flex flex-row items-start justify-start">
 
-            in the beautiful city of Tehran in The Iran.
+           in the beautiful city of Tehran, Iran. I was born and raised here.
 
          </p>
     </section>
@@ -67,12 +67,12 @@ But seriously, I haven’t changed people’s lives yet. I’m still searching f
                 Tap one for more:</p>
         </div>
 
-        <div class="relative flex flex-row items-center gap-2 my-4 sm:my-6 ml-0 sm:ml-24">
+        <div class="relative flex flex-row items-center gap-2 my-4 sm:my-6">
           <button
             *ngIf="pressScrollState.hasOverflow"
             (click)="scrollRow(pressRow, 'left')"
             [class.invisible]="pressScrollState.atStart"
-            class="flex-shrink-0 text-gray-300 hover:text-gray-600 transition-colors duration-200 cursor-pointer"
+            class="flex-shrink-0 flex items-center justify-center h-7 w-7 rounded-full bg-white border border-gray-200 shadow-sm text-gray-500 hover:text-gray-800 hover:bg-gray-50 transition-colors duration-200 cursor-pointer"
             aria-label="Scroll press left"
           >
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
@@ -106,7 +106,7 @@ But seriously, I haven’t changed people’s lives yet. I’m still searching f
             *ngIf="pressScrollState.hasOverflow"
             (click)="scrollRow(pressRow, 'right')"
             [class.invisible]="pressScrollState.atEnd"
-            class="flex-shrink-0 text-gray-300 hover:text-gray-600 transition-colors duration-200 cursor-pointer"
+            class="flex-shrink-0 flex items-center justify-center h-7 w-7 rounded-full bg-white border border-gray-200 shadow-sm text-gray-500 hover:text-gray-800 hover:bg-gray-50 transition-colors duration-200 cursor-pointer"
             aria-label="Scroll press right"
           >
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
