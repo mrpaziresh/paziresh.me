@@ -16,8 +16,7 @@ interface Milestone {
   standalone: true,
   imports: [CommonModule],
   templateUrl: './journey.component.html',
-  styleUrl: './journey.component.scss'
-})
+  styleUrl: './journey.component.scss'})
 export class JourneyComponent {
   milestones: Milestone[] = [
     {
@@ -125,6 +124,32 @@ export class JourneyComponent {
 
       ],
       tags: ['Talk']
+    },
+                  {
+      year: '2025',
+      title: 'Second Place at Samsung Solve for Tomorrow 🥈',
+      subtitle: 'Using design thinking to solve real-world problems.',
+      description: 'Through Samsung Solve for Tomorrow, we learned how to approach challenges with design thinking and turn ideas into meaningful solutions. With our Joule project, we focused on solving energy consumption problems in Iran by building a smarter way to optimize energy usage.',
+               images: [
+        './assets/images/journey/samsung1.jpg',
+        './assets/images/journey/samsung2.jpg',
+        './assets/images/journey/samsung3.jpg',
+
+      ],
+      tags: ['Award']
+    },
+                    {
+      year: '2025',
+      title: 'Second Place at Samsung Solve for Tomorrow 🥈',
+      subtitle: 'Using design thinking to solve real-world problems.',
+      description: 'Through Samsung Solve for Tomorrow, we learned how to approach challenges with design thinking and turn ideas into meaningful solutions. With our Joule project, we focused on solving energy consumption problems in Iran by building a smarter way to optimize energy usage.',
+               images: [
+        './assets/images/journey/samsung1.jpg',
+        './assets/images/journey/samsung2.jpg',
+        './assets/images/journey/samsung3.jpg',
+
+      ],
+      tags: ['Award']
     },
     {
       year: 'Now',
