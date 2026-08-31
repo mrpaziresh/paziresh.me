@@ -6,6 +6,7 @@ import { marked } from 'marked';
 import { Article, getArticleBySlug, getExcerpt, estimateReadTime } from '../notebook.data';
 
 const SITE_TITLE = 'AlirezaOS';
+const SITE_URL = 'https://mrpaziresh.github.io/paziresh.me';
 
 @Component({
   selector: 'app-notebook-article',
@@ -27,8 +28,21 @@ export class NotebookArticleComponent implements OnDestroy {
       this.readTime = this.article ? estimateReadTime(this.article.content) : 0;
 
       if (this.article) {
-        this.titleService.setTitle(`${this.article.title} — ${SITE_TITLE}`);
-        this.meta.updateTag({ name: 'description', content: getExcerpt(this.article.content) });
+        const title = this.article.title;
+        const description = getExcerpt(this.article.content);
+        const image = `${SITE_URL}/og/${this.article.slug}.png`;
+        const url = `${SITE_URL}/notebook/${this.article.slug}`;
+
+        this.titleService.setTitle(`${title} — ${SITE_TITLE}`);
+        this.meta.updateTag({ name: 'description', content: description });
+        this.meta.updateTag({ property: 'og:title', content: title });
+        this.meta.updateTag({ property: 'og:description', content: description });
+        this.meta.updateTag({ property: 'og:image', content: image });
+        this.meta.updateTag({ property: 'og:url', content: url });
+        this.meta.updateTag({ property: 'og:type', content: 'article' });
+        this.meta.updateTag({ name: 'twitter:title', content: title });
+        this.meta.updateTag({ name: 'twitter:description', content: description });
+        this.meta.updateTag({ name: 'twitter:image', content: image });
       }
     });
   }
@@ -42,5 +56,14 @@ export class NotebookArticleComponent implements OnDestroy {
 
   ngOnDestroy() {
     this.titleService.setTitle(SITE_TITLE);
+    this.meta.updateTag({ name: 'description', content: 'Ali Reza Paziresh personal website' });
+    this.meta.updateTag({ property: 'og:title', content: 'Paziresh.me' });
+    this.meta.updateTag({ property: 'og:description', content: 'Ali Reza Paziresh personal website' });
+    this.meta.updateTag({ property: 'og:image', content: `${SITE_URL}/website-preview.png` });
+    this.meta.updateTag({ property: 'og:url', content: `${SITE_URL}/` });
+    this.meta.updateTag({ property: 'og:type', content: 'website' });
+    this.meta.updateTag({ name: 'twitter:title', content: 'Paziresh.me' });
+    this.meta.updateTag({ name: 'twitter:description', content: 'Ali Reza Paziresh personal website' });
+    this.meta.updateTag({ name: 'twitter:image', content: `${SITE_URL}/website-preview.png` });
   }
 }

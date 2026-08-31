@@ -27,6 +27,8 @@ jobs:
 
       - run: npm ci
 
+      - run: npm run generate:routes && npm run generate:og
+
       - run: npx ng build --base-href=/${{ github.event.repository.name }}/
 
       - name: Add SPA fallback for GitHub Pages
