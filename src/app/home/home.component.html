@@ -83,7 +83,7 @@
                         preload="metadata"
                     ></video>
                     <ng-template #pressPhoto>
-                        <img [src]="item.mediaUrl" alt="" class="h-full w-full object-cover" loading="lazy" decoding="async" />
+                        <img [src]="item.thumbUrl || item.mediaUrl" alt="" class="h-full w-full object-cover" loading="lazy" decoding="async" />
                     </ng-template>
                     <span
                         *ngIf="isVideo(item.mediaUrl)"
@@ -320,41 +320,43 @@
 
       <div
         *ngIf="selectedPress"
-        class="fixed inset-0 z-50 transition-opacity duration-300"
+        class="fixed inset-0 z-50 bg-black/90 flex flex-col sm:flex-row transition-opacity duration-300"
         [class.opacity-100]="pressPanelVisible"
         [class.opacity-0]="!pressPanelVisible"
       >
-        <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" (click)="closePress()"></div>
+        <button
+          (click)="closePress()"
+          class="absolute top-3 right-3 z-10 bg-white/90 hover:bg-white text-gray-500 hover:text-gray-800 text-lg leading-none rounded-full w-8 h-8 flex items-center justify-center shadow-sm cursor-pointer"
+        >&times;</button>
 
-        <div
-          class="absolute inset-y-0 right-0 w-full sm:max-w-md bg-white shadow-2xl flex flex-col overflow-y-auto transition-transform duration-300 ease-out"
-          [class.translate-x-0]="pressPanelVisible"
-          [class.translate-x-full]="!pressPanelVisible"
-        >
-          <button
-            (click)="closePress()"
-            class="absolute top-3 right-3 z-10 bg-white/90 hover:bg-white text-gray-500 hover:text-gray-800 text-lg leading-none rounded-full w-8 h-8 flex items-center justify-center shadow-sm cursor-pointer"
-          >&times;</button>
-
-          <ng-container *ngIf="selectedPress as item">
+        <ng-container *ngIf="selectedPress as item">
+          <!-- Left: media -->
+          <div class="flex-1 min-h-0 flex items-center justify-center p-4 sm:p-10" (click)="closePress()">
             <video
                 *ngIf="isVideo(item.mediaUrl); else pressPanelPhoto"
                 [src]="item.mediaUrl"
-                class="w-full aspect-video object-cover bg-black"
+                class="max-h-full max-w-full rounded-lg"
                 controls
                 playsinline
+                (click)="$event.stopPropagation()"
             ></video>
             <ng-template #pressPanelPhoto>
-                <img [src]="item.mediaUrl" alt="" class="w-full aspect-video object-cover" />
+                <img
+                    [src]="item.mediaUrl"
+                    alt=""
+                    class="max-h-full max-w-full object-contain rounded-lg"
+                    (click)="$event.stopPropagation()"
+                />
             </ng-template>
+          </div>
 
-            <div class="flex flex-col gap-2 p-5">
-                <p class="font-mono text-xs text-gray-400">{{ item.subtitle }}</p>
-                <h2 class="font-medium text-gray-800 text-lg">{{ item.title }}</h2>
-                <p class="text-sm text-gray-600 leading-6">{{ item.description }}</p>
-            </div>
-          </ng-container>
-        </div>
+          <!-- Right: details -->
+          <div class="w-full sm:w-80 shrink-0 bg-white flex flex-col gap-2 p-6 overflow-y-auto">
+            <p class="font-mono text-xs text-gray-400">{{ item.subtitle }}</p>
+            <h2 class="font-medium text-gray-800 text-lg">{{ item.title }}</h2>
+            <p class="text-sm text-gray-600 leading-6">{{ item.description }}</p>
+          </div>
+        </ng-container>
       </div>
 
 

@@ -31,7 +31,8 @@ interface PressItem {
   title: string;
   subtitle: string;
   description: string;
-  mediaUrl: string;
+  mediaUrl: string; // full-res image or video, shown in the detail panel
+  thumbUrl?: string; // small grid thumbnail (images only); videos reuse mediaUrl
 }
 
 
@@ -77,13 +78,15 @@ export class HomeComponent implements OnInit, AfterViewInit {
       title: 'TEDxTehran — Curation Team',
       subtitle: 'TEDxTehran · 2025',
       description: 'I joined the curation and speaker team at TEDxTehran, one of the largest TED conferences in the Middle East, helping speakers shape their ideas into meaningful stories.',
-      mediaUrl: './assets/images/journey/thumbs/tedxtehran1.jpg'
+      mediaUrl: './assets/images/journey/tedxtehran1.JPG',
+      thumbUrl: './assets/images/journey/thumbs/tedxtehran1.jpg'
     },
     {
       title: 'Gen Z at Work — Panel Talk',
       subtitle: 'Industrial Management Institute · 2024',
       description: 'Invited to speak about Gen Z in the workplace, sharing experiences with career growth, technology, and networking with students and professionals.',
-      mediaUrl: './assets/images/journey/thumbs/gen-z-seminar.jpg'
+      mediaUrl: './assets/images/journey/gen-z-seminar.JPG',
+      thumbUrl: './assets/images/journey/thumbs/gen-z-seminar.jpg'
     },
     {
       title: 'CS50 Interview',
