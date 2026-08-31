@@ -3,9 +3,9 @@ import { Component, OnDestroy } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Meta, Title } from '@angular/platform-browser';
 import { marked } from 'marked';
-import { Article, getArticleBySlug, getExcerpt, estimateReadTime } from '../notebook.data';
+import { Article, getArticleBySlug, getArticleByShortCode, getExcerpt, estimateReadTime, shortCode } from '../notebook.data';
 
-const SITE_TITLE = 'AlirezaOS';
+const SITE_TITLE = 'Paziresh.me';
 const SITE_URL = 'https://mrpaziresh.github.io/paziresh.me';
 
 @Component({
@@ -23,7 +23,8 @@ export class NotebookArticleComponent implements OnDestroy {
 
   constructor(private route: ActivatedRoute, private titleService: Title, private meta: Meta) {
     this.route.paramMap.subscribe((params) => {
-      this.article = getArticleBySlug(params.get('slug') ?? '');
+      const code = params.get('code');
+      this.article = code ? getArticleByShortCode(code) : getArticleBySlug(params.get('slug') ?? '');
       this.contentHtml = this.article ? (marked.parse(this.article.content) as string) : '';
       this.readTime = this.article ? estimateReadTime(this.article.content) : 0;
 
@@ -33,7 +34,7 @@ export class NotebookArticleComponent implements OnDestroy {
         const image = `${SITE_URL}/og/${this.article.slug}.png`;
         // Trailing slash matches the URL GitHub Pages serves directly (200) rather
         // than the no-slash path, which 301-redirects and trips up some link-preview bots.
-        const url = `${SITE_URL}/notebook/${this.article.slug}/`;
+        const url = code ? `${SITE_URL}/n/${code}/` : `${SITE_URL}/notebook/${this.article.slug}/`;
 
         this.titleService.setTitle(`${title} — ${SITE_TITLE}`);
         this.meta.updateTag({ name: 'description', content: description });
@@ -53,7 +54,7 @@ export class NotebookArticleComponent implements OnDestroy {
   }
 
   copyLink() {
-    const url = this.article ? `${SITE_URL}/notebook/${this.article.slug}/` : window.location.href;
+    const url = this.article ? `${SITE_URL}/n/${shortCode(this.article.slug)}/` : window.location.href;
     navigator.clipboard.writeText(url).then(() => {
       this.linkCopied = true;
       setTimeout(() => (this.linkCopied = false), 2000);

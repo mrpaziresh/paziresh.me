@@ -27,6 +27,10 @@ export const routes: Routes = [
         component: NotebookArticleComponent
   },
   {
+    path: 'n/:code',
+        component: NotebookArticleComponent
+  },
+  {
     path: 'projects',
         component: ProjectsComponent
   },
