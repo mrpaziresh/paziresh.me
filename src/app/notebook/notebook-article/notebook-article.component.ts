@@ -62,15 +62,16 @@ export class NotebookArticleComponent implements OnDestroy {
   }
 
   ngOnDestroy() {
-    this.titleService.setTitle(SITE_TITLE);
-    this.meta.updateTag({ name: 'description', content: 'Ali Reza Paziresh personal website' });
-    this.meta.updateTag({ property: 'og:title', content: 'Paziresh.me' });
-    this.meta.updateTag({ property: 'og:description', content: 'Ali Reza Paziresh personal website' });
+    const defaultDescription = 'Ali Reza Paziresh is a startup founder and software engineer based in Tehran, Iran, building products and writing about software engineering, entrepreneurship, and startups.';
+    this.titleService.setTitle(`Ali Reza Paziresh — Startup Founder & Software Engineer | ${SITE_TITLE}`);
+    this.meta.updateTag({ name: 'description', content: defaultDescription });
+    this.meta.updateTag({ property: 'og:title', content: 'Ali Reza Paziresh — Startup Founder & Software Engineer' });
+    this.meta.updateTag({ property: 'og:description', content: defaultDescription });
     this.meta.updateTag({ property: 'og:image', content: `${SITE_URL}/website-preview.png` });
     this.meta.updateTag({ property: 'og:url', content: `${SITE_URL}/` });
     this.meta.updateTag({ property: 'og:type', content: 'website' });
-    this.meta.updateTag({ name: 'twitter:title', content: 'Paziresh.me' });
-    this.meta.updateTag({ name: 'twitter:description', content: 'Ali Reza Paziresh personal website' });
+    this.meta.updateTag({ name: 'twitter:title', content: 'Ali Reza Paziresh — Startup Founder & Software Engineer' });
+    this.meta.updateTag({ name: 'twitter:description', content: defaultDescription });
     this.meta.updateTag({ name: 'twitter:image', content: `${SITE_URL}/website-preview.png` });
     this.meta.removeTag('property="article:published_time"');
     this.meta.removeTag('property="article:author"');
