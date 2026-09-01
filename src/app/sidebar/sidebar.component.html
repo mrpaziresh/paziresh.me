@@ -1,12 +1,12 @@
-<aside class="hidden md:flex h-full w-full bg-[#f2f6ff] p-3 flex-col items-center">
+<aside class="hidden md:flex h-full w-full bg-[#f2f6ff] p-3 flex-col items-center" style="view-transition-name: sidebar-desktop">
 
     <!-- Profile -->
     <div class="flex flex-row gap-4 items-center  hover:bg-[#fdfeff] transition-all duration-300 p-3 rounded-md cursor-pointer" (click)="navigate('')">
       <div>
-        <img class="rounded-full" height="40" width="40" src="./assets/images/Alireza-Paziresh.JPG" alt="profile-picture" />
+        <img class="rounded-full" height="40" width="40" src="./assets/images/Alireza-Paziresh.JPG" alt="Ali Reza Paziresh" />
       </div>
       <div class="flex flex-col text-sm w-full">
-        <h1 class="font-semibold text-gray-800">AliReza Paziresh</h1>
+        <p class="font-semibold text-gray-800">AliReza Paziresh</p>
         <p class="text-gray-600">Engineer</p>
       </div>
     </div>
@@ -151,6 +151,7 @@
   <!-- Mobile top bar -->
   <header
     class="flex md:hidden fixed top-0 inset-x-0 z-40 h-14 items-center justify-between px-4 bg-[#f2f6ff]/95 backdrop-blur-md border-b border-gray-200/70"
+    style="view-transition-name: mobile-header"
   >
     <div class="flex flex-row items-baseline gap-1.5 min-w-0 overflow-hidden cursor-pointer" (click)="navigate('')">
       <span class="font-semibold text-sm text-[#12182b] shrink-0">Paziresh<span class="text-[#1564fc]">.</span>me</span>
@@ -193,13 +194,13 @@
   <!-- Mobile bottom tab bar -->
   <nav
     class="flex md:hidden fixed inset-x-4 z-40 bg-white/70 backdrop-blur-2xl rounded-full border border-white/50 shadow-[0_8px_30px_rgba(0,0,0,0.12)] px-2 py-1.5"
-    style="bottom: calc(env(safe-area-inset-bottom, 0px) + 14px);"
+    style="bottom: calc(env(safe-area-inset-bottom, 0px) + 14px); view-transition-name: mobile-nav"
   >
     <div class="flex flex-row w-full items-stretch justify-between gap-1">
 
       <button
         type="button"
-        class="flex flex-1 flex-col items-center justify-center gap-1 py-1.5 rounded-xl transition-colors duration-200"
+        class="flex flex-1 flex-col items-center justify-center gap-1 py-1.5 rounded-full transition-colors duration-200"
         [ngClass]="selectedMenuItem === '' ? 'bg-[#12182b] text-white' : 'text-gray-500'"
         (click)="navigate('')"
       >
@@ -210,7 +211,7 @@
 
       <button
         type="button"
-        class="flex flex-1 flex-col items-center justify-center gap-1 py-1.5 rounded-xl transition-colors duration-200"
+        class="flex flex-1 flex-col items-center justify-center gap-1 py-1.5 rounded-full transition-colors duration-200"
         [ngClass]="selectedMenuItem === 'notebook' ? 'bg-[#12182b] text-white' : 'text-gray-500'"
         (click)="navigate('notebook')"
       >
@@ -224,7 +225,7 @@
 
       <button
         type="button"
-        class="flex flex-1 flex-col items-center justify-center gap-1 py-1.5 rounded-xl transition-colors duration-200"
+        class="flex flex-1 flex-col items-center justify-center gap-1 py-1.5 rounded-full transition-colors duration-200"
         [ngClass]="selectedMenuItem === 'journey' ? 'bg-[#12182b] text-white' : 'text-gray-500'"
         (click)="navigate('journey')"
       >
@@ -238,7 +239,7 @@
 
       <button
         type="button"
-        class="flex flex-1 flex-col items-center justify-center gap-1 py-1.5 rounded-xl transition-colors duration-200"
+        class="flex flex-1 flex-col items-center justify-center gap-1 py-1.5 rounded-full transition-colors duration-200"
         [ngClass]="selectedMenuItem === 'projects' ? 'bg-[#12182b] text-white' : 'text-gray-500'"
         (click)="navigate('projects')"
       >

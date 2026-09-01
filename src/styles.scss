@@ -66,6 +66,14 @@ app-root, app-sidebar, app-container, app-home, app-notebook, app-notebook-artic
     }
 }
 
+// Sidebar / mobile header / mobile bottom nav stay static across route
+// changes instead of being swept into the root page fade+slide.
+::view-transition-group(sidebar-desktop),
+::view-transition-group(mobile-header),
+::view-transition-group(mobile-nav) {
+    animation: none !important;
+}
+
 // Rendered from admin-authored Markdown via `marked` + [innerHTML] — plain
 // (unscoped) styles because Angular's view encapsulation doesn't reach
 // dynamically injected innerHTML content.
