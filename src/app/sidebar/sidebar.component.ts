@@ -55,7 +55,10 @@ Socialmedia(media: string){
     case "telegram":
       window.open('https://telegram.me/mrpaziresh')
     break;
-  
+    case "email":
+      window.location.href = 'mailto:hi@paziresh.me'
+    break;
+
     default:
       break;
   }
