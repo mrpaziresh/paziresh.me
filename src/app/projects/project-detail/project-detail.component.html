@@ -30,14 +30,37 @@
                 <h1 class="font-medium text-2xl text-gray-800">{{ project.title }}</h1>
                 <p class="text-gray-600">{{ project.tagline }}</p>
 
-                <div class="flex flex-row gap-6 sm:gap-8 text-sm text-gray-500 mt-1">
-                    <div class="flex flex-col gap-0.5">
-                        <span class="text-gray-400 text-xs">Year</span>
-                        <span class="text-gray-700">{{ project.year }}</span>
+                <div class="flex flex-row flex-wrap items-center justify-between gap-4 mt-1">
+                    <div class="flex flex-row gap-6 sm:gap-8 text-sm text-gray-500">
+                        <div class="flex flex-col gap-0.5">
+                            <span class="text-gray-400 text-xs">Year</span>
+                            <span class="text-gray-700">{{ project.year }}</span>
+                        </div>
+                        <div class="flex flex-col gap-0.5">
+                            <span class="text-gray-400 text-xs">Role</span>
+                            <span class="text-gray-700">{{ project.role }}</span>
+                        </div>
                     </div>
-                    <div class="flex flex-col gap-0.5">
-                        <span class="text-gray-400 text-xs">Role</span>
-                        <span class="text-gray-700">{{ project.role }}</span>
+
+                    <div class="flex flex-row flex-wrap gap-2.5" *ngIf="project.liveUrl || project.repoUrl">
+                        <a
+                            *ngIf="project.liveUrl"
+                            [href]="project.liveUrl"
+                            target="_blank"
+                            rel="noopener"
+                            class="bg-[#12182b] text-white text-sm font-medium rounded-full px-5 py-2.5 shadow-sm hover:opacity-90 hover:shadow-md transition-all duration-200"
+                        >
+                            {{ project.liveLabel || 'View live' }}
+                        </a>
+                        <a
+                            *ngIf="project.repoUrl"
+                            [href]="project.repoUrl"
+                            target="_blank"
+                            rel="noopener"
+                            class="border-2 border-gray-200 text-gray-700 text-sm font-medium rounded-full px-5 py-2 hover:bg-gray-50 transition-colors duration-200"
+                        >
+                            View code
+                        </a>
                     </div>
                 </div>
             </section>
@@ -67,27 +90,6 @@
                         {{ tech }}
                     </span>
                 </div>
-            </section>
-
-            <section class="flex flex-row flex-wrap gap-3 mt-2" *ngIf="project.liveUrl || project.repoUrl">
-                <a
-                    *ngIf="project.liveUrl"
-                    [href]="project.liveUrl"
-                    target="_blank"
-                    rel="noopener"
-                    class="bg-[#12182b] text-white text-sm font-medium rounded-full px-5 py-2.5 hover:opacity-90 transition-opacity duration-200"
-                >
-                    View live
-                </a>
-                <a
-                    *ngIf="project.repoUrl"
-                    [href]="project.repoUrl"
-                    target="_blank"
-                    rel="noopener"
-                    class="border-2 border-gray-200 text-gray-700 text-sm font-medium rounded-full px-5 py-2 hover:bg-gray-50 transition-colors duration-200"
-                >
-                    View code
-                </a>
             </section>
 
         </div>

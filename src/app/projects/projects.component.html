@@ -58,6 +58,25 @@
 
                 </a>
 
+                <div
+                    *ngIf="showLogoShowcase"
+                    class="hidden lg:block relative w-full aspect-[4/3]"
+                >
+                    <a
+                        *ngFor="let slot of logoSlots"
+                        [routerLink]="['/projects', slot.project.slug]"
+                        [attr.aria-label]="slot.project.title"
+                        class="absolute w-10 h-10 -mt-5 -ml-5 transition-[opacity,transform] duration-700 ease-out will-change-transform"
+                        [style.top.%]="slot.top"
+                        [style.left.%]="slot.left"
+                        [style.opacity]="slot.visible ? 1 : 0"
+                        [style.transform]="'rotate(' + slot.rotation + 'deg) scale(' + (slot.visible ? 1 : 0.6) + ')'"
+                        [style.filter]="'drop-shadow(0 8px 10px rgba(18,24,43,0.18)) drop-shadow(0 2px 4px rgba(18,24,43,0.12))'"
+                    >
+                        <img [src]="slot.project.logo" [alt]="slot.project.title" class="w-full h-full object-contain" />
+                    </a>
+                </div>
+
             </div>
 
         </div>
