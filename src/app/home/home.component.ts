@@ -89,7 +89,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
       subtitle: 'Digiato · Elecomp Competition',
       description: "Digiato's coverage of the Elecomp Pitch competition, where the top prize went to a medical AI startup.",
       mediaUrl: './assets/images/journey/digiato-news.png',
-      thumbUrl: './assets/images/journey/thumbs/digiato-news.jpg'
+      thumbUrl: './assets/images/journey/thumbs/digiato-news.jpg',
+      link: 'https://digiato.com/iran-technology-news/the-winners-of-elecom-pitch-were-announced'
     },
     {
       title: 'European Young Innovators Award',
@@ -110,7 +111,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
       subtitle: 'Peivast News · Web Summit Qatar',
       description: 'Peivast covered our presence at Web Summit Qatar, one of the largest tech events in the region.',
       mediaUrl: './assets/images/journey/thumbs/payvast.mp4',
-      thumbUrl: './assets/images/journey/thumbs/payvast.jpg'
+      thumbUrl: './assets/images/journey/thumbs/payvast.jpg',
+      link: 'https://www.instagram.com/reel/DGi0S_dyyp-/'
     },
 
     {
