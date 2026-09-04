@@ -93,7 +93,7 @@ But seriously, I haven’t changed people’s lives yet. I’m still searching f
                 class="group flex flex-col gap-1.5 w-24 sm:w-28 shrink-0 text-left cursor-pointer"
             >
                 <div class="relative h-24 w-24 sm:h-28 sm:w-28 rounded-lg overflow-hidden border-2 border-gray-100 group-hover:opacity-80 transition-opacity duration-200">
-                    <img [src]="item.thumbUrl || item.mediaUrl" alt="" class="h-full w-full object-cover" loading="lazy" decoding="async" />
+                    <img [src]="item.thumbUrl || item.mediaUrl" [attr.alt]="item.title" class="h-full w-full object-cover" loading="lazy" decoding="async" />
                     <span
                         *ngIf="isVideo(item.mediaUrl)"
                         class="absolute inset-0 flex items-center justify-center bg-black/15"
@@ -367,7 +367,7 @@ But seriously, I haven’t changed people’s lives yet. I’m still searching f
             <ng-template #pressPanelPhoto>
                 <img
                     [src]="item.mediaUrl"
-                    alt=""
+                    [attr.alt]="item.title"
                     class="max-h-full max-w-full object-contain rounded-lg"
                     (click)="$event.stopPropagation()"
                 />

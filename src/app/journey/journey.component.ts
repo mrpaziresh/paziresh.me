@@ -172,10 +172,12 @@ export class JourneyComponent {
 
   lightboxImages: string[] = [];
   lightboxIndex = 0;
+  lightboxTitle = '';
 
-  openLightbox(images: string[], index: number): void {
+  openLightbox(images: string[], index: number, title: string): void {
     this.lightboxImages = images;
     this.lightboxIndex = index;
+    this.lightboxTitle = title;
   }
 
   closeLightbox(): void {

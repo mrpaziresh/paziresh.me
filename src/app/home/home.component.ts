@@ -131,6 +131,14 @@ export class HomeComponent implements OnInit, AfterViewInit {
       description: 'Interviewed for CS50x Iran about BUF, the education platform I built with my best friend to make studying more social.',
       mediaUrl: './assets/images/journey/cs50interview.mp4',
       thumbUrl: './assets/images/journey/thumbs/cs50interview.jpg'
+    },
+    {
+      title: 'Interview with 7learn',
+      subtitle: '7learn · Interview',
+      description: 'Interviewed by 7learn.',
+      mediaUrl: 'https://img.youtube.com/vi/Mi_uFTeLRsk/maxresdefault.jpg',
+      thumbUrl: 'https://img.youtube.com/vi/Mi_uFTeLRsk/hqdefault.jpg',
+      link: 'https://www.youtube.com/watch?v=Mi_uFTeLRsk'
     }
   ];
 
