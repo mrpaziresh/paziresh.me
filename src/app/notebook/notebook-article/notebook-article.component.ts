@@ -1,12 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnDestroy } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { Meta, Title } from '@angular/platform-browser';
 import { marked } from 'marked';
 import { Article, getArticleBySlug, getArticleByShortCode, getExcerpt, estimateReadTime, shortCode } from '../notebook.data';
-
-const SITE_TITLE = 'Paziresh.me';
-const SITE_URL = 'https://paziresh.me';
+import { SeoService, SITE_URL } from '../../shared/seo.service';
 
 @Component({
   selector: 'app-notebook-article',
@@ -21,7 +18,7 @@ export class NotebookArticleComponent implements OnDestroy {
   readTime = 0;
   linkCopied = false;
 
-  constructor(private route: ActivatedRoute, private titleService: Title, private meta: Meta) {
+  constructor(private route: ActivatedRoute, private seo: SeoService) {
     this.route.paramMap.subscribe((params) => {
       const code = params.get('code');
       this.article = code ? getArticleByShortCode(code) : getArticleBySlug(params.get('slug') ?? '');
@@ -29,26 +26,19 @@ export class NotebookArticleComponent implements OnDestroy {
       this.readTime = this.article ? estimateReadTime(this.article.content) : 0;
 
       if (this.article) {
-        const title = this.article.title;
-        const description = getExcerpt(this.article.content);
-        const image = `${SITE_URL}/og/${this.article.slug}.png`;
         // Trailing slash matches the URL GitHub Pages serves directly (200) rather
         // than the no-slash path, which 301-redirects and trips up some link-preview bots.
-        const url = code ? `${SITE_URL}/n/${code}/` : `${SITE_URL}/notebook/${this.article.slug}/`;
+        const path = code ? `/n/${code}/` : `/notebook/${this.article.slug}/`;
 
-        this.titleService.setTitle(`${title} — ${SITE_TITLE}`);
-        this.meta.updateTag({ name: 'description', content: description });
-        this.meta.updateTag({ property: 'og:title', content: title });
-        this.meta.updateTag({ property: 'og:description', content: description });
-        this.meta.updateTag({ property: 'og:image', content: image });
-        this.meta.updateTag({ property: 'og:url', content: url });
-        this.meta.updateTag({ property: 'og:type', content: 'article' });
-        this.meta.updateTag({ property: 'article:published_time', content: new Date(this.article.date).toISOString() });
-        this.meta.updateTag({ property: 'article:author', content: 'Ali Reza Paziresh' });
-        this.meta.updateTag({ property: 'article:section', content: 'Notebook' });
-        this.meta.updateTag({ name: 'twitter:title', content: title });
-        this.meta.updateTag({ name: 'twitter:description', content: description });
-        this.meta.updateTag({ name: 'twitter:image', content: image });
+        this.seo.set({
+          title: this.article.title,
+          description: getExcerpt(this.article.content),
+          path,
+          image: `${SITE_URL}/og/${this.article.slug}.png`,
+          type: 'article',
+          publishedTime: new Date(this.article.date).toISOString(),
+          section: 'Notebook',
+        });
       }
     });
   }
@@ -62,19 +52,6 @@ export class NotebookArticleComponent implements OnDestroy {
   }
 
   ngOnDestroy() {
-    const defaultDescription = 'Ali Reza Paziresh is a startup founder and software engineer based in Tehran, Iran, building products and writing about software engineering, entrepreneurship, and startups.';
-    this.titleService.setTitle(`Ali Reza Paziresh — Startup Founder & Software Engineer | ${SITE_TITLE}`);
-    this.meta.updateTag({ name: 'description', content: defaultDescription });
-    this.meta.updateTag({ property: 'og:title', content: 'Ali Reza Paziresh — Startup Founder & Software Engineer' });
-    this.meta.updateTag({ property: 'og:description', content: defaultDescription });
-    this.meta.updateTag({ property: 'og:image', content: `${SITE_URL}/website-preview.png` });
-    this.meta.updateTag({ property: 'og:url', content: `${SITE_URL}/` });
-    this.meta.updateTag({ property: 'og:type', content: 'website' });
-    this.meta.updateTag({ name: 'twitter:title', content: 'Ali Reza Paziresh — Startup Founder & Software Engineer' });
-    this.meta.updateTag({ name: 'twitter:description', content: defaultDescription });
-    this.meta.updateTag({ name: 'twitter:image', content: `${SITE_URL}/website-preview.png` });
-    this.meta.removeTag('property="article:published_time"');
-    this.meta.removeTag('property="article:author"');
-    this.meta.removeTag('property="article:section"');
+    this.seo.reset();
   }
 }

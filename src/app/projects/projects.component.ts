@@ -2,6 +2,7 @@ import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { Component, Inject, OnDestroy, OnInit, PLATFORM_ID } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { PROJECTS, Project } from './projects.data';
+import { SeoService } from '../shared/seo.service';
 
 interface LogoSlot {
   project: Project;
@@ -37,9 +38,15 @@ export class ProjectsComponent implements OnInit, OnDestroy {
 
   private timers: ReturnType<typeof setTimeout>[] = [];
 
-  constructor(@Inject(PLATFORM_ID) private platformId: object) {}
+  constructor(@Inject(PLATFORM_ID) private platformId: object, private seo: SeoService) {}
 
   ngOnInit(): void {
+    this.seo.set({
+      title: 'Projects',
+      description: 'Products built by Ali Reza Paziresh — AI-powered learning tools, energy optimization, resume scoring, and more.',
+      path: '/projects/',
+    });
+
     // The recursive setTimeout cycle never lets zone.js reach a stable
     // state, which would hang SSR prerendering — only animate in the browser.
     if (!this.showLogoShowcase || !isPlatformBrowser(this.platformId)) {
@@ -72,6 +79,7 @@ export class ProjectsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.timers.forEach((timer) => clearTimeout(timer));
+    this.seo.reset();
   }
 
   private scheduleCycle(slot: LogoSlot, index: number): void {

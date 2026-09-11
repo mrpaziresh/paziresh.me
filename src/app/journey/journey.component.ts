@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
+import { SeoService } from '../shared/seo.service';
 
 interface Milestone {
   year: string;
@@ -17,7 +18,21 @@ interface Milestone {
   imports: [CommonModule],
   templateUrl: './journey.component.html',
   styleUrl: './journey.component.scss'})
-export class JourneyComponent {
+export class JourneyComponent implements OnInit, OnDestroy {
+  constructor(private seo: SeoService) {}
+
+  ngOnInit(): void {
+    this.seo.set({
+      title: 'Journey',
+      description: "Ali Reza Paziresh's journey from writing his first line of code to founding startups — plus press mentions and speaking appearances.",
+      path: '/journey/',
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.seo.reset();
+  }
+
   milestones: Milestone[] = [
     {
       year: '2019',

@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { Web3FormsService } from '../shared/web3forms.service';
+import { SeoService } from '../shared/seo.service';
 import { ARTICLES, estimateReadTime, getExcerpt } from './notebook.data';
 
 @Component({
@@ -12,12 +13,24 @@ import { ARTICLES, estimateReadTime, getExcerpt } from './notebook.data';
   templateUrl: './notebook.component.html',
   styleUrl: './notebook.component.scss'
 })
-export class NotebookComponent {
+export class NotebookComponent implements OnInit, OnDestroy {
   articles = ARTICLES;
   getExcerpt = getExcerpt;
   getReadTime = estimateReadTime;
 
-  constructor(private web3forms: Web3FormsService) {}
+  constructor(private web3forms: Web3FormsService, private seo: SeoService) {}
+
+  ngOnInit(): void {
+    this.seo.set({
+      title: 'Notebook',
+      description: 'Notes on software engineering, startups, and building products, written by Ali Reza Paziresh.',
+      path: '/notebook/',
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.seo.reset();
+  }
 
   subscribeOpen = false;
   subscribeModalVisible = false;

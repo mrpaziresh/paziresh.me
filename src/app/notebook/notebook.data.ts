@@ -35,7 +35,10 @@ export function getExcerpt(markdown: string, length = 140): string {
     .replace(/\s+/g, ' ')
     .trim();
   if (!text) return "Coming soon — this one's still being written.";
-  return text.length > length ? text.slice(0, length).trim() + '…' : text;
+  if (text.length <= length) return text;
+  const sliced = text.slice(0, length);
+  const lastSpace = sliced.lastIndexOf(' ');
+  return (lastSpace > 0 ? sliced.slice(0, lastSpace) : sliced).trim() + '…';
 }
 
 export function estimateReadTime(markdown: string): number {
