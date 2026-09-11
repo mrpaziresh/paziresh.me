@@ -396,7 +396,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
     if (workout) {
       return 'bg-purple-400';
     }
-    return 'bg-gray-100'; // default (empty)
+    return 'bg-gray-100 dark:bg-white/10'; // default (empty)
   }
 
 
@@ -435,7 +435,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   getSingleColorClass(code?: number, workout?: number): string {
     if (code && code > 0) return 'bg-green-400';
     if (workout && workout > 0) return 'bg-purple-400';
-    return 'bg-gray-100'; // default (empty)
+    return 'bg-gray-100 dark:bg-white/10'; // default (empty)
   }
   
   

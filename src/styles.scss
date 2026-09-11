@@ -7,6 +7,11 @@ body, html {
 height: 100%;
 width: 100%;
 font-family: 'Poppins', sans-serif;
+background-color: #fff;
+}
+
+html.dark body, html.dark {
+    background-color: #121212;
 }
 
 app-root, app-sidebar, app-container, app-home, app-notebook, app-notebook-article, app-projects, app-project-detail, app-journey, app-contribution-graph {
@@ -20,14 +25,29 @@ app-root, app-sidebar, app-container, app-home, app-notebook, app-notebook-artic
       linear-gradient(to bottom, #f1f3f53e 1px, transparent 1px);
     background-size: 20px 20px;
     width: 100%;
+    transition: background-color 0.2s ease;
+}
+
+// Not pure black — a soft near-black gray, with subtle white gridlines mirroring
+// the light-mode pattern above.
+.dark .bg-grid {
+    background-color: #121212;
+    background-image:
+      linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.022) 1px, transparent 1px);
 }
 
 .back-banner {
-    background: rgba(255, 255, 255, 0.23);
+    background: rgba(33, 33, 33, 0.84);
     border-radius: 16px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(2.8px);
-    -webkit-backdrop-filter: blur(2.8px);
+    backdrop-filter: blur(84px);
+    -webkit-backdrop-filter: blur(84px);
+}
+
+.dark .back-banner {
+    background: rgba(33, 33, 33, 0.84);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -144,6 +164,37 @@ app-root, app-sidebar, app-container, app-home, app-notebook, app-notebook-artic
     hr {
         border: none;
         border-top: 1px solid #e5e7eb;
+    }
+}
+
+.dark .notebook-content {
+    h1, h2, h3 { color: #f4f4f5; }
+
+    a { color: #e4e4e7; }
+    a:hover { color: #fff; }
+
+    code {
+        background: rgba(255, 255, 255, 0.08);
+        color: #e4e4e7;
+    }
+
+    pre {
+        background: rgba(255, 255, 255, 0.05);
+
+        code { background: none; }
+    }
+
+    blockquote {
+        border-left-color: rgba(255, 255, 255, 0.15);
+        color: #a1a1aa;
+    }
+
+    img {
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+    }
+
+    hr {
+        border-top-color: rgba(255, 255, 255, 0.12);
     }
 }
 

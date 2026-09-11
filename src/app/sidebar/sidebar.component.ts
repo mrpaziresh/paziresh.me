@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, HostListener, ViewEncapsulation } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
+import { ThemeService } from '../shared/theme.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -13,14 +14,19 @@ import { NavigationEnd, Router } from '@angular/router';
 export class SidebarComponent {
   selectedMenuItem: string = '';
   contactMenuOpen = false;
+  resumeState: 'idle' | 'downloading' | 'done' = 'idle';
 
-  constructor(private router: Router) {
+  constructor(private router: Router, public themeService: ThemeService) {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         const url = event.urlAfterRedirects.split('/')[1];
         this.selectedMenuItem = url;
       }
     });
+  }
+
+  toggleTheme(): void {
+    this.themeService.toggle();
   }
 
 
@@ -37,6 +43,35 @@ toggleContactMenu(event: MouseEvent) {
 @HostListener('document:click')
 closeContactMenu() {
   this.contactMenuOpen = false;
+}
+
+async downloadResume(event: MouseEvent) {
+  event.preventDefault();
+
+  if (this.resumeState !== 'idle') {
+    return;
+  }
+
+  this.resumeState = 'downloading';
+
+  try {
+    const response = await fetch('./assets/Alireza-Paziresh-Cv.pdf');
+    const blob = await response.blob();
+    const url = window.URL.createObjectURL(blob);
+
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'Alireza-Paziresh-Cv.pdf';
+    link.click();
+
+    window.URL.revokeObjectURL(url);
+    this.resumeState = 'done';
+  } catch {
+    this.resumeState = 'idle';
+    return;
+  }
+
+  setTimeout(() => (this.resumeState = 'idle'), 2000);
 }
 
 Socialmedia(media: string){

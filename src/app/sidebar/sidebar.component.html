@@ -1,37 +1,52 @@
-<aside class="hidden md:flex h-full w-full bg-[#f2f6ff] p-3 flex-col items-center" style="view-transition-name: sidebar-desktop">
+<aside class="hidden md:flex h-full w-full bg-[#f2f6ff] dark:bg-[#1c1c1f] p-3 flex-col items-center relative" style="view-transition-name: sidebar-desktop">
 
+  <button
+    type="button"
+    (click)="toggleTheme()"
+    class="absolute top-3 right-3 z-10 flex items-center justify-center h-8 w-8 rounded-full text-gray-500 hover:bg-white/70 hover:text-gray-800 dark:text-gray-400 dark:hover:bg-white/10 dark:hover:text-gray-100 transition-colors duration-200 cursor-pointer"
+    [attr.aria-label]="themeService.theme() === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'"
+    [attr.title]="themeService.theme() === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'"
+  >
+    @if (themeService.theme() === 'dark') {
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+    } @else {
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
+    }
+  </button>
+
+  <div class="flex flex-col items-center w-full flex-1 min-h-0 overflow-y-auto pb-16">
     <!-- Profile -->
-    <div class="flex flex-row gap-4 items-center  hover:bg-[#fdfeff] transition-all duration-300 p-3 rounded-md cursor-pointer" (click)="navigate('')">
+    <div class="flex flex-row gap-4 items-center  hover:bg-[#fdfeff] dark:hover:bg-white/5 transition-all duration-300 p-3 rounded-md cursor-pointer w-full" (click)="navigate('')">
       <div>
         <img class="rounded-full" height="40" width="40" src="./assets/images/Alireza-Paziresh.JPG" alt="Ali Reza Paziresh" />
       </div>
       <div class="flex flex-col text-sm w-full">
-        <p class="font-semibold text-gray-800">AliReza Paziresh</p>
-        <p class="text-gray-600">Engineer</p>
+        <p class="font-semibold text-gray-800 dark:text-gray-100">AliReza Paziresh</p>
+        <p class="text-gray-600 dark:text-gray-400">Engineer</p>
       </div>
     </div>
-  
+
     <!-- Menu -->
     <ul class="flex flex-col gap-1 w-full px-1 mt-6">
-  
+
       <!-- Home -->
       <li
         [ngClass]="{
-          'bg-[#12182b] text-white': selectedMenuItem === '',
-          'text-gray-700 hover:bg-[#fdfeff]': selectedMenuItem !== ''
+          'bg-[#12182b] dark:bg-[#1564fc] text-white': selectedMenuItem === '',
+          'text-gray-700 dark:text-gray-300 hover:bg-[#fdfeff] dark:hover:bg-white/5': selectedMenuItem !== ''
         }"
         class="w-full rounded-lg p-3 flex flex-row gap-2 font-normal text-sm cursor-pointer transition-all duration-300"
         (click)="navigate('')"
       >
         <img *ngIf="selectedMenuItem === ''" src="./assets/icons/home.svg" height="18" width="18" alt="home" />
-        <img *ngIf="selectedMenuItem !== ''" src="./assets/icons/home-black.svg" height="18" width="18" alt="home" />
+        <img *ngIf="selectedMenuItem !== ''" src="./assets/icons/home-black.svg" height="18" width="18" alt="home" class="dark:invert" />
         Home
       </li>
       <!-- Notebook -->
       <li
         [ngClass]="{
-          'bg-[#12182b] text-white': selectedMenuItem === 'notebook',
-          'text-gray-700 hover:bg-[#fdfeff]': selectedMenuItem !== 'notebook'
+          'bg-[#12182b] dark:bg-[#1564fc] text-white': selectedMenuItem === 'notebook',
+          'text-gray-700 dark:text-gray-300 hover:bg-[#fdfeff] dark:hover:bg-white/5': selectedMenuItem !== 'notebook'
         }"
         class="w-full rounded-lg p-3 flex flex-row gap-2 font-normal text-sm cursor-pointer transition-all duration-300"
         (click)="navigate('notebook')"
@@ -39,16 +54,16 @@
       @if (selectedMenuItem === 'notebook') {
         <img  src="./assets/icons/notebook-white.svg" height="20" width="20" alt="note" />
        }
-       @else{ <img  src="./assets/icons/Note.svg" height="20" width="20" alt="note" />
+       @else{ <img  src="./assets/icons/Note.svg" height="20" width="20" alt="note" class="dark:invert" />
       }
         Notebook
       </li>
-  
-     
+
+
       <li
         [ngClass]="{
-          'bg-[#12182b] text-white': selectedMenuItem === 'journey',
-          'text-gray-700 hover:bg-[#fdfeff]': selectedMenuItem !== 'journey'
+          'bg-[#12182b] dark:bg-[#1564fc] text-white': selectedMenuItem === 'journey',
+          'text-gray-700 dark:text-gray-300 hover:bg-[#fdfeff] dark:hover:bg-white/5': selectedMenuItem !== 'journey'
         }"
         class="w-full rounded-lg p-3 flex flex-row gap-2 font-normal text-sm cursor-pointer transition-all duration-300"
         (click)="navigate('journey')"
@@ -57,17 +72,17 @@
         <img src="./assets/icons/journey-white.svg" height="20" width="20" alt="journey" />
        }
        @else {
-        <img src="./assets/icons/journey.svg" height="20" width="20" alt="journey" />
+        <img src="./assets/icons/journey.svg" height="20" width="20" alt="journey" class="dark:invert" />
 
        }
-       
+
        Journey
       </li>
 
       <li
       [ngClass]="{
-        'bg-[#12182b] text-white': selectedMenuItem === 'projects',
-        'text-gray-700 hover:bg-[#fdfeff]': selectedMenuItem !== 'projects'
+        'bg-[#12182b] dark:bg-[#1564fc] text-white': selectedMenuItem === 'projects',
+        'text-gray-700 dark:text-gray-300 hover:bg-[#fdfeff] dark:hover:bg-white/5': selectedMenuItem !== 'projects'
       }"
       class="w-full rounded-lg p-3 flex flex-row gap-2 font-normal text-sm cursor-pointer transition-all duration-300"
       (click)="navigate('projects')"
@@ -76,64 +91,64 @@
       <img src="./assets/icons/project-white.svg" height="20" width="20" alt="note" />
     }
     @else {
-      <img src="./assets/icons/projects.svg" height="20" width="20" alt="note" />
+      <img src="./assets/icons/projects.svg" height="20" width="20" alt="note" class="dark:invert" />
     }
       Projects
     </li>
-  
+
       <div class="mt-16">
-        <div class="border-t-2 border-gray-200 mb-2"></div>
-  
+        <div class="border-t-2 border-gray-200 dark:border-white/10 mb-2"></div>
+
 
         <li
-        class="w-full rounded-lg p-3 flex flex-row gap-2 font-normal text-sm cursor-pointer transition-all duration-300 hover:bg-[#fdfeff]"
+        class="w-full rounded-lg p-3 flex flex-row gap-2 font-normal text-sm text-gray-700 dark:text-gray-300 cursor-pointer transition-all duration-300 hover:bg-[#fdfeff] dark:hover:bg-white/5"
         (click)="Socialmedia('email')"
       >
-        <img src="./assets/icons/mail.svg" height="20" width="20" alt="email" />
+        <img src="./assets/icons/mail.svg" height="20" width="20" alt="email" class="dark:invert" />
         Email
       </li>
 
 
         <li
-        class="w-full rounded-lg p-3 flex flex-row gap-2 font-normal text-sm cursor-pointer transition-all duration-300 hover:bg-[#fdfeff]"
+        class="w-full rounded-lg p-3 flex flex-row gap-2 font-normal text-sm text-gray-700 dark:text-gray-300 cursor-pointer transition-all duration-300 hover:bg-[#fdfeff] dark:hover:bg-white/5"
         (click)="Socialmedia('github')"
       >
-        <img src="./assets/icons/github.svg" height="20" width="20" alt="note" />
+        <img src="./assets/icons/github.svg" height="20" width="20" alt="note" class="dark:invert" />
         Github
       </li>
 
 
         <li
-          class="w-full rounded-lg p-3 flex flex-row gap-2 font-normal text-sm cursor-pointer transition-all duration-300 hover:bg-[#fdfeff]"
+          class="w-full rounded-lg p-3 flex flex-row gap-2 font-normal text-sm text-gray-700 dark:text-gray-300 cursor-pointer transition-all duration-300 hover:bg-[#fdfeff] dark:hover:bg-white/5"
           (click)="Socialmedia('linkedin')"
         >
-          <img src="./assets/icons/linkedin.svg" height="20" width="20" alt="note" />
+          <img src="./assets/icons/linkedin.svg" height="20" width="20" alt="note" class="dark:invert" />
           Linkedin
         </li>
-  
 
 
- 
+
+
 
 
     <li
-    class="w-full rounded-lg p-3 flex flex-row gap-2 font-normal text-sm cursor-pointer transition-all duration-300 hover:bg-[#fdfeff]"
+    class="w-full rounded-lg p-3 flex flex-row gap-2 font-normal text-sm text-gray-700 dark:text-gray-300 cursor-pointer transition-all duration-300 hover:bg-[#fdfeff] dark:hover:bg-white/5"
     (click)="Socialmedia('telegram')"
   >
-    <img src="./assets/icons/Telegram.svg" height="15" width="15" alt="telegram" />
+    <img src="./assets/icons/Telegram.svg" height="15" width="15" alt="telegram" class="dark:invert" />
     Telegram
   </li>
-     
+
 
     <li
-    class="w-full rounded-lg p-3 flex flex-row gap-2 font-normal text-sm cursor-pointer transition-all duration-300 hover:bg-[#fdfeff]"
+    class="w-full rounded-lg p-3 flex flex-row gap-2 font-normal text-sm text-gray-700 dark:text-gray-300 cursor-pointer transition-all duration-300 hover:bg-[#fdfeff] dark:hover:bg-white/5"
     (click)="Socialmedia('x')"
   >
-    <img src="./assets/icons/Twitter.svg" height="15" width="15" alt="x" />
+    <img src="./assets/icons/Twitter.svg" height="15" width="15" alt="x" class="dark:invert" />
     X (Twitter)
   </li>
       </div>
-    
+
     </ul>
     <!-- <button
     type="button"
@@ -145,68 +160,98 @@
       AI
     </div>
   </button> -->
-
+  </div>
 
     <a
       href="./assets/Alireza-Paziresh-Cv.pdf"
       download="Alireza-Paziresh-Cv.pdf"
-      class="text-gray-500 duration-300 absolute bottom-3 hover:bg-stone-200 text-sm cursor-pointer p-1 rounded-lg flex flex-row items-center justify-center gap-1"
+      (click)="downloadResume($event)"
+      class="text-gray-500 dark:text-gray-400 duration-300 absolute bottom-3 hover:bg-stone-200 dark:hover:bg-white/10 text-sm cursor-pointer p-1 rounded-lg flex flex-row items-center justify-center gap-1.5 min-w-[9.5rem] bg-[#f2f6ff] dark:bg-[#1c1c1f]"
     >
-      <img src="./assets/icons/download.svg" height="18" width="18" alt="download">
-      Download resume</a>
+      @if (resumeState === 'downloading') {
+        <svg class="animate-spin" height="16" width="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3" stroke-opacity="0.25" />
+          <path d="M22 12a10 10 0 0 0-10-10" stroke="currentColor" stroke-width="3" stroke-linecap="round" />
+        </svg>
+        <span>Downloading…</span>
+      } @else if (resumeState === 'done') {
+        <svg height="16" width="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 12.5 9.5 18 20 6" stroke="#16a34a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        <span class="text-green-600">Downloaded</span>
+      } @else {
+        <img src="./assets/icons/download.svg" height="18" width="18" alt="download" class="dark:invert">
+        <span>Download resume</span>
+      }
+    </a>
 
   </aside>
 
   <!-- Mobile top bar -->
   <header
-    class="flex md:hidden fixed top-0 inset-x-0 z-40 h-14 items-center justify-between px-4 bg-[#f2f6ff]/95 backdrop-blur-md border-b border-gray-200/70"
+    class="flex md:hidden fixed top-0 inset-x-0 z-40 h-14 items-center justify-between px-4 bg-[#f2f6ff]/95 dark:bg-[#1c1c1f]/95 backdrop-blur-md border-b border-gray-200/70 dark:border-white/10"
     style="view-transition-name: mobile-header"
   >
     <div class="flex flex-row items-baseline gap-1.5 min-w-0 overflow-hidden cursor-pointer" (click)="navigate('')">
-      <span class="font-semibold text-sm text-[#12182b] shrink-0">Paziresh<span class="text-[#1564fc]">.</span>me</span>
-      <span class="text-gray-300 text-sm shrink-0">|</span>
-      <span class="font-light text-xs text-gray-500 truncate">Ali Reza Paziresh</span>
+      <span class="font-semibold text-sm text-[#12182b] dark:text-gray-100 shrink-0">Paziresh<span class="text-[#1564fc]">.</span>me</span>
+      <span class="text-gray-300 dark:text-gray-600 text-sm shrink-0">|</span>
+      <span class="font-light text-xs text-gray-500 dark:text-gray-400 truncate">Ali Reza Paziresh</span>
     </div>
 
-    <div class="relative shrink-0">
+    <div class="flex flex-row items-center gap-2 shrink-0">
       <button
         type="button"
-        class="flex items-center gap-1 text-sm font-medium text-gray-700 px-3 py-1.5 rounded-full border border-gray-200/80 hover:bg-white/60 transition-colors duration-200"
-        (click)="toggleContactMenu($event)"
+        (click)="toggleTheme()"
+        class="flex items-center justify-center h-8 w-8 rounded-full text-gray-600 hover:bg-white/60 dark:text-gray-400 dark:hover:bg-white/10 transition-colors duration-200"
+        [attr.aria-label]="themeService.theme() === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'"
       >
-        Contact
+        @if (themeService.theme() === 'dark') {
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+        } @else {
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
+        }
       </button>
 
-      @if (contactMenuOpen) {
-        <div class="absolute right-0 top-[calc(100%+0.5rem)] flex flex-col gap-0.5 bg-white/95 backdrop-blur-3xl rounded-2xl border border-white/50 shadow-[0_8px_30px_rgba(0,0,0,0.12)] p-1.5 min-w-[10rem]">
-          <button type="button" class="flex items-center gap-3 px-3 py-2 rounded-xl text-sm text-gray-700 hover:bg-white/70 transition-colors duration-200" (click)="Socialmedia('email')">
-            <img src="./assets/icons/mail.svg" height="18" width="18" alt="email" />
-            Email
-          </button>
-          <button type="button" class="flex items-center gap-3 px-3 py-2 rounded-xl text-sm text-gray-700 hover:bg-white/70 transition-colors duration-200" (click)="Socialmedia('github')">
-            <img src="./assets/icons/github.svg" height="18" width="18" alt="github" />
-            Github
-          </button>
-          <button type="button" class="flex items-center gap-3 px-3 py-2 rounded-xl text-sm text-gray-700 hover:bg-white/70 transition-colors duration-200" (click)="Socialmedia('linkedin')">
-            <img src="./assets/icons/linkedin.svg" height="18" width="18" alt="linkedin" />
-            LinkedIn
-          </button>
-          <button type="button" class="flex items-center gap-3 px-3 py-2 rounded-xl text-sm text-gray-700 hover:bg-white/70 transition-colors duration-200" (click)="Socialmedia('x')">
-            <img src="./assets/icons/Twitter.svg" height="16" width="16" alt="x" />
-            X (Twitter)
-          </button>
-          <button type="button" class="flex items-center gap-3 px-3 py-2 rounded-xl text-sm text-gray-700 hover:bg-white/70 transition-colors duration-200" (click)="Socialmedia('telegram')">
-            <img src="./assets/icons/Telegram.svg" height="16" width="16" alt="telegram" />
-            Telegram
-          </button>
-        </div>
-      }
+      <div class="relative">
+        <button
+          type="button"
+          class="flex items-center gap-1 text-sm font-medium text-gray-700 dark:text-gray-300 px-3 py-1.5 rounded-full border border-gray-200/80 dark:border-white/10 hover:bg-white/60 dark:hover:bg-white/10 transition-colors duration-200"
+          (click)="toggleContactMenu($event)"
+        >
+          Contact
+        </button>
+
+        @if (contactMenuOpen) {
+          <div class="absolute right-0 top-[calc(100%+0.5rem)] flex flex-col gap-0.5 bg-white/95 dark:bg-[#1c1c1f]/95 backdrop-blur-3xl rounded-2xl border border-white/50 dark:border-white/10 shadow-[0_8px_30px_rgba(0,0,0,0.12)] p-1.5 min-w-[10rem]">
+            <button type="button" class="flex items-center gap-3 px-3 py-2 rounded-xl text-sm text-gray-700 dark:text-gray-300 hover:bg-white/70 dark:hover:bg-white/10 transition-colors duration-200" (click)="Socialmedia('email')">
+              <img src="./assets/icons/mail.svg" height="18" width="18" alt="email" class="dark:invert" />
+              Email
+            </button>
+            <button type="button" class="flex items-center gap-3 px-3 py-2 rounded-xl text-sm text-gray-700 dark:text-gray-300 hover:bg-white/70 dark:hover:bg-white/10 transition-colors duration-200" (click)="Socialmedia('github')">
+              <img src="./assets/icons/github.svg" height="18" width="18" alt="github" class="dark:invert" />
+              Github
+            </button>
+            <button type="button" class="flex items-center gap-3 px-3 py-2 rounded-xl text-sm text-gray-700 dark:text-gray-300 hover:bg-white/70 dark:hover:bg-white/10 transition-colors duration-200" (click)="Socialmedia('linkedin')">
+              <img src="./assets/icons/linkedin.svg" height="18" width="18" alt="linkedin" class="dark:invert" />
+              LinkedIn
+            </button>
+            <button type="button" class="flex items-center gap-3 px-3 py-2 rounded-xl text-sm text-gray-700 dark:text-gray-300 hover:bg-white/70 dark:hover:bg-white/10 transition-colors duration-200" (click)="Socialmedia('x')">
+              <img src="./assets/icons/Twitter.svg" height="16" width="16" alt="x" class="dark:invert" />
+              X (Twitter)
+            </button>
+            <button type="button" class="flex items-center gap-3 px-3 py-2 rounded-xl text-sm text-gray-700 dark:text-gray-300 hover:bg-white/70 dark:hover:bg-white/10 transition-colors duration-200" (click)="Socialmedia('telegram')">
+              <img src="./assets/icons/Telegram.svg" height="16" width="16" alt="telegram" class="dark:invert" />
+              Telegram
+            </button>
+          </div>
+        }
+      </div>
     </div>
   </header>
 
   <!-- Mobile bottom tab bar -->
   <nav
-    class="flex md:hidden fixed inset-x-4 z-40 bg-white/70 backdrop-blur-2xl rounded-full border border-white/50 shadow-[0_8px_30px_rgba(0,0,0,0.12)] px-2 py-1.5"
+    class="flex md:hidden fixed inset-x-4 z-40 bg-white/70 dark:bg-[#1c1c1f]/80 backdrop-blur-2xl rounded-full border border-white/50 dark:border-white/10 shadow-[0_8px_30px_rgba(0,0,0,0.12)] px-2 py-1.5"
     style="bottom: calc(env(safe-area-inset-bottom, 0px) + 14px); view-transition-name: mobile-nav"
   >
     <div class="flex flex-row w-full items-stretch justify-between gap-1">
@@ -214,24 +259,24 @@
       <button
         type="button"
         class="flex flex-1 flex-col items-center justify-center gap-1 py-1.5 rounded-full transition-colors duration-200"
-        [ngClass]="selectedMenuItem === '' ? 'bg-[#12182b] text-white' : 'text-gray-500'"
+        [ngClass]="selectedMenuItem === '' ? 'bg-[#12182b] dark:bg-[#1564fc] text-white' : 'text-gray-500 dark:text-gray-400'"
         (click)="navigate('')"
       >
         <img *ngIf="selectedMenuItem === ''" src="./assets/icons/home.svg" height="18" width="18" alt="home" />
-        <img *ngIf="selectedMenuItem !== ''" src="./assets/icons/home-black.svg" height="18" width="18" alt="home" />
+        <img *ngIf="selectedMenuItem !== ''" src="./assets/icons/home-black.svg" height="18" width="18" alt="home" class="dark:invert" />
         <span class="text-[10px] font-medium">Home</span>
       </button>
 
       <button
         type="button"
         class="flex flex-1 flex-col items-center justify-center gap-1 py-1.5 rounded-full transition-colors duration-200"
-        [ngClass]="selectedMenuItem === 'notebook' ? 'bg-[#12182b] text-white' : 'text-gray-500'"
+        [ngClass]="selectedMenuItem === 'notebook' ? 'bg-[#12182b] dark:bg-[#1564fc] text-white' : 'text-gray-500 dark:text-gray-400'"
         (click)="navigate('notebook')"
       >
         @if (selectedMenuItem === 'notebook') {
           <img src="./assets/icons/notebook-white.svg" height="20" width="20" alt="note" />
         } @else {
-          <img src="./assets/icons/Note.svg" height="20" width="20" alt="note" />
+          <img src="./assets/icons/Note.svg" height="20" width="20" alt="note" class="dark:invert" />
         }
         <span class="text-[10px] font-medium">Notebook</span>
       </button>
@@ -239,13 +284,13 @@
       <button
         type="button"
         class="flex flex-1 flex-col items-center justify-center gap-1 py-1.5 rounded-full transition-colors duration-200"
-        [ngClass]="selectedMenuItem === 'journey' ? 'bg-[#12182b] text-white' : 'text-gray-500'"
+        [ngClass]="selectedMenuItem === 'journey' ? 'bg-[#12182b] dark:bg-[#1564fc] text-white' : 'text-gray-500 dark:text-gray-400'"
         (click)="navigate('journey')"
       >
         @if (selectedMenuItem === 'journey') {
           <img src="./assets/icons/journey-white.svg" height="20" width="20" alt="journey" />
         } @else {
-          <img src="./assets/icons/journey.svg" height="20" width="20" alt="journey" />
+          <img src="./assets/icons/journey.svg" height="20" width="20" alt="journey" class="dark:invert" />
         }
         <span class="text-[10px] font-medium">Journey</span>
       </button>
@@ -253,13 +298,13 @@
       <button
         type="button"
         class="flex flex-1 flex-col items-center justify-center gap-1 py-1.5 rounded-full transition-colors duration-200"
-        [ngClass]="selectedMenuItem === 'projects' ? 'bg-[#12182b] text-white' : 'text-gray-500'"
+        [ngClass]="selectedMenuItem === 'projects' ? 'bg-[#12182b] dark:bg-[#1564fc] text-white' : 'text-gray-500 dark:text-gray-400'"
         (click)="navigate('projects')"
       >
         @if (selectedMenuItem === 'projects') {
           <img src="./assets/icons/project-white.svg" height="20" width="20" alt="projects" />
         } @else {
-          <img src="./assets/icons/projects.svg" height="20" width="20" alt="projects" />
+          <img src="./assets/icons/projects.svg" height="20" width="20" alt="projects" class="dark:invert" />
         }
         <span class="text-[10px] font-medium">Projects</span>
       </button>

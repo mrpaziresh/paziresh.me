@@ -42,7 +42,7 @@ export const PROJECTS: Project[] = [
   {
     slug: 'Joule',
     title: 'Joule',
-    tagline: 'AI-powered Energy Optimization Assistant',
+    tagline: 'Energy Optimization Assistant',
     description: 'An intelligent energy management platform that reduces energy waste while maintaining comfort in homes and small businesses.',
     image: './assets/images/joule.png',
     logo: './assets/images/projects-logo/joule.png',
@@ -102,23 +102,23 @@ export const PROJECTS: Project[] = [
     {
     slug: 'Buf',
     title: 'Buf',
-    tagline: 'Resume scoring and instant feedback',
-    description: 'A browser-based resume analysis tool that scores resumes out of 100 and gives actionable feedback, processing everything client-side with no server or upload required.',
+    tagline: 'An educational platform for learning, competing, and sharing knowledge.',
+    description: 'A learning platform that brings education, challenges, and community together in one engaging experience.',
     image: './assets/images/buf-poster.png',
     logo: './assets/images/projects-logo/buf.png',
-    tags: ['Web', 'Angular'],
-    year: '2024',
+    tags: ['PHP', 'React', 'MySQL'],
+    year: '2022',
     role: 'Developer',
     overview: "ApplyBooster helps job seekers get instant, honest feedback on their resumes without waiting on a backend or handing their document to a third-party server. Users drag and drop a PDF resume, and a rule-based NLP engine running entirely in the browser analyzes contact info, section structure, formatting, action verbs, quantified achievements, and length. The tool returns an overall score out of 100 along with a clear breakdown of strengths to keep, weaknesses that could hurt in an interview, and specific rewrite suggestions — plus a dashboard that tracks score history and recurring weak points over time.",
-    highlights: [
-      'Built a fully client-side resume analyzer — PDF parsing and NLP scoring run in the browser with no backend.',
-      'Designed a rule-based scoring engine covering structure, formatting, action verbs, and quantified achievements.',
-      'Added a progress dashboard tracking check history, average/best scores, and recurring weaknesses over time.'
-    ],
-    stack: ['Angular', 'TypeScript', 'Angular Material', 'pdf.js', 'Compromise (NLP)', 'SCSS'],
-    liveUrl: 'https://mrpaziresh.github.io/Apply-Booster/',
-    repoUrl: 'https://github.com/mrpaziresh/Apply-Booster'
-  },
+highlights: [
+  'Built an educational platform combining learning content, competitions, podcasts, films, and community features.',
+  'Designed interactive sections for book summaries, biographies, knowledge sharing, study leagues, and brain-training challenges.',
+  'Created a gamified learning experience where users can compete, earn points, join challenges, and share knowledge with others.'
+],
+stack: ['HTML', 'CSS', 'JavaScript', 'PHP', 'Java'],
+liveUrl: '',
+repoUrl: ''
+},
   // {
   //   slug: 'project-three',
   //   title: 'Project Three',
