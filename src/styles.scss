@@ -8,10 +8,12 @@ height: 100%;
 width: 100%;
 font-family: 'Poppins', sans-serif;
 background-color: #fff;
+color: #12182b;
 }
 
 html.dark body, html.dark {
     background-color: #121212;
+    color: #f3f4f6;
 }
 
 app-root, app-sidebar, app-container, app-home, app-notebook, app-notebook-article, app-projects, app-project-detail, app-journey, app-contribution-graph {

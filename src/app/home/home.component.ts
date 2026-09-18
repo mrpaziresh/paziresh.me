@@ -71,27 +71,27 @@ export class HomeComponent implements OnInit, AfterViewInit {
   ];
 
   movies: MediaItem[] = [
-    { title: 'Silicon Valley', subtitle: '2014', color: 'bg-gray-700', thumbUrl: 'https://upload.wikimedia.org/wikipedia/en/4/44/Silicon_Valley_Season_1.jpg', coverUrl: 'https://upload.wikimedia.org/wikipedia/en/4/44/Silicon_Valley_Season_1.jpg' },
+    { title: 'Silicon Valley', subtitle: '2014', color: 'bg-gray-700', thumbUrl: './assets/images/movies/Silicon_Valley.jpg', coverUrl: './assets/images/movies/Silicon_Valley.jpg' },
     { title: 'Super Pumped', subtitle: '2022', color: 'bg-gray-800', thumbUrl: 'https://media.themoviedb.org/t/p/w500/kOB0MnnpRj0xAXJSCYpDrJRw9z9.jpg', coverUrl: 'https://media.themoviedb.org/t/p/w500/kOB0MnnpRj0xAXJSCYpDrJRw9z9.jpg' },
-    { title: 'I Swear', subtitle: '2025', color: 'bg-gray-700', thumbUrl: 'https://upload.wikimedia.org/wikipedia/en/5/57/I_Swear_film_poster.jpg', coverUrl: 'https://upload.wikimedia.org/wikipedia/en/5/57/I_Swear_film_poster.jpg' },
-    { title: 'WeCrashed', subtitle: '2022', color: 'bg-gray-900', thumbUrl: 'https://upload.wikimedia.org/wikipedia/en/0/02/WeCrashed_TV_poster.png', coverUrl: 'https://upload.wikimedia.org/wikipedia/en/0/02/WeCrashed_TV_poster.png' },
+    { title: 'I Swear', subtitle: '2025', color: 'bg-gray-700', thumbUrl: './assets/images/movies/I_Swear.jpg', coverUrl: './assets/images/movies/I_Swear.jpg' },
+    { title: 'WeCrashed', subtitle: '2022', color: 'bg-gray-900', thumbUrl: './assets/images/movies/WeCrashed.png', coverUrl: './assets/images/movies/WeCrashed.png' },
     { title: 'The Playlist', subtitle: '2022', color: 'bg-gray-600', thumbUrl: 'https://media.themoviedb.org/t/p/w500/yc1JCG56UHsbRDhEzX9VlTEToyk.jpg', coverUrl: 'https://media.themoviedb.org/t/p/w500/yc1JCG56UHsbRDhEzX9VlTEToyk.jpg' },
-    { title: 'Forrest Gump', subtitle: '1994', color: 'bg-gray-800', thumbUrl: 'https://upload.wikimedia.org/wikipedia/en/6/67/Forrest_Gump_poster.jpg', coverUrl: 'https://upload.wikimedia.org/wikipedia/en/6/67/Forrest_Gump_poster.jpg' },
-    { title: 'From', subtitle: '2022', color: 'bg-gray-800', thumbUrl: 'https://upload.wikimedia.org/wikipedia/en/f/fa/From_title_card.jpg', coverUrl: 'https://upload.wikimedia.org/wikipedia/en/f/fa/From_title_card.jpg' },
-    { title: 'Free Guy', subtitle: '2021', color: 'bg-gray-600', thumbUrl: 'https://upload.wikimedia.org/wikipedia/en/1/1c/Free_Guy_2021_Poster.jpg', coverUrl: 'https://upload.wikimedia.org/wikipedia/en/1/1c/Free_Guy_2021_Poster.jpg' },
-    { title: 'The Matrix', subtitle: '1999', color: 'bg-gray-800', thumbUrl: 'https://upload.wikimedia.org/wikipedia/en/d/db/The_Matrix.png', coverUrl: 'https://upload.wikimedia.org/wikipedia/en/d/db/The_Matrix.png' },
-    { title: 'Interstellar', subtitle: '2014', color: 'bg-gray-700', thumbUrl: 'https://upload.wikimedia.org/wikipedia/en/b/bc/Interstellar_film_poster.jpg', coverUrl: 'https://upload.wikimedia.org/wikipedia/en/b/bc/Interstellar_film_poster.jpg' },
-    { title: 'The Social Network', subtitle: '2010', color: 'bg-gray-600', thumbUrl: 'https://upload.wikimedia.org/wikipedia/en/8/8c/The_Social_Network_film_poster.png', coverUrl: 'https://upload.wikimedia.org/wikipedia/en/8/8c/The_Social_Network_film_poster.png' },
-    { title: 'Ex Machina', subtitle: '2014', color: 'bg-gray-900', thumbUrl: 'https://upload.wikimedia.org/wikipedia/en/b/ba/Ex-machina-uk-poster.jpg', coverUrl: 'https://upload.wikimedia.org/wikipedia/en/b/ba/Ex-machina-uk-poster.jpg' },
-    { title: 'Inception', subtitle: '2010', color: 'bg-gray-500', thumbUrl: 'https://upload.wikimedia.org/wikipedia/en/2/2e/Inception_%282010%29_theatrical_poster.jpg', coverUrl: 'https://upload.wikimedia.org/wikipedia/en/2/2e/Inception_%282010%29_theatrical_poster.jpg' },
-    { title: 'Whiplash', subtitle: '2014', color: 'bg-gray-700', thumbUrl: 'https://upload.wikimedia.org/wikipedia/en/0/01/Whiplash_poster.jpg', coverUrl: 'https://upload.wikimedia.org/wikipedia/en/0/01/Whiplash_poster.jpg' },
-    { title: 'Her', subtitle: '2013', color: 'bg-gray-800', thumbUrl: 'https://upload.wikimedia.org/wikipedia/en/4/44/Her2013Poster.jpg', coverUrl: 'https://upload.wikimedia.org/wikipedia/en/4/44/Her2013Poster.jpg' },
-    { title: 'Project Hail Mary', subtitle: '2026', color: 'bg-gray-700', thumbUrl: 'https://upload.wikimedia.org/wikipedia/en/3/3b/Project_Hail_Mary_poster.jpg', coverUrl: 'https://upload.wikimedia.org/wikipedia/en/3/3b/Project_Hail_Mary_poster.jpg' },
-    { title: '1917', subtitle: '2019', color: 'bg-gray-800', thumbUrl: 'https://upload.wikimedia.org/wikipedia/en/f/fe/1917_%282019%29_Film_Poster.jpeg', coverUrl: 'https://upload.wikimedia.org/wikipedia/en/f/fe/1917_%282019%29_Film_Poster.jpeg' },
-    { title: 'Léon: The Professional', subtitle: '1994', color: 'bg-gray-900', thumbUrl: 'https://upload.wikimedia.org/wikipedia/en/0/03/Leon-poster.jpg', coverUrl: 'https://upload.wikimedia.org/wikipedia/en/0/03/Leon-poster.jpg' },
-    { title: 'The Shawshank Redemption', subtitle: '1994', color: 'bg-gray-700', thumbUrl: 'https://upload.wikimedia.org/wikipedia/en/8/81/ShawshankRedemptionMoviePoster.jpg', coverUrl: 'https://upload.wikimedia.org/wikipedia/en/8/81/ShawshankRedemptionMoviePoster.jpg' },
-    { title: 'Papillon', subtitle: '1973', color: 'bg-gray-600', thumbUrl: 'https://upload.wikimedia.org/wikipedia/en/2/23/Papillon_ver1.jpg', coverUrl: 'https://upload.wikimedia.org/wikipedia/en/2/23/Papillon_ver1.jpg' },
-    { title: 'The Green Mile', subtitle: '1999', color: 'bg-gray-800', thumbUrl: 'https://upload.wikimedia.org/wikipedia/en/e/e2/The_Green_Mile_%28movie_poster%29.jpg', coverUrl: 'https://upload.wikimedia.org/wikipedia/en/e/e2/The_Green_Mile_%28movie_poster%29.jpg' },
+    { title: 'Forrest Gump', subtitle: '1994', color: 'bg-gray-800', thumbUrl: './assets/images/movies/Forrest_Gump.jpg', coverUrl: './assets/images/movies/Forrest_Gump.jpg' },
+    { title: 'From', subtitle: '2022', color: 'bg-gray-800', thumbUrl: './assets/images/movies/From.jpg', coverUrl: './assets/images/movies/From.jpg' },
+    { title: 'Free Guy', subtitle: '2021', color: 'bg-gray-600', thumbUrl: './assets/images/movies/Free_Guy.jpg', coverUrl: './assets/images/movies/Free_Guy.jpg' },
+    { title: 'The Matrix', subtitle: '1999', color: 'bg-gray-800', thumbUrl: './assets/images/movies/The_Matrix.png', coverUrl: './assets/images/movies/The_Matrix.png' },
+    { title: 'Interstellar', subtitle: '2014', color: 'bg-gray-700', thumbUrl: './assets/images/movies/Interstellar.jpg', coverUrl: './assets/images/movies/Interstellar.jpg' },
+    { title: 'The Social Network', subtitle: '2010', color: 'bg-gray-600', thumbUrl: './assets/images/movies/The_Social_Network.png', coverUrl: './assets/images/movies/The_Social_Network.png' },
+    { title: 'Ex Machina', subtitle: '2014', color: 'bg-gray-900', thumbUrl: './assets/images/movies/Ex_Machina.jpg', coverUrl: './assets/images/movies/Ex_Machina.jpg' },
+    { title: 'Inception', subtitle: '2010', color: 'bg-gray-500', thumbUrl: './assets/images/movies/Inception.jpg', coverUrl: './assets/images/movies/Inception.jpg' },
+    { title: 'Whiplash', subtitle: '2014', color: 'bg-gray-700', thumbUrl: './assets/images/movies/Whiplash.jpg', coverUrl: './assets/images/movies/Whiplash.jpg' },
+    { title: 'Her', subtitle: '2013', color: 'bg-gray-800', thumbUrl: './assets/images/movies/Her.jpg', coverUrl: './assets/images/movies/Her.jpg' },
+    { title: 'Project Hail Mary', subtitle: '2026', color: 'bg-gray-700', thumbUrl: './assets/images/movies/Project_Hail_Mary.jpg', coverUrl: './assets/images/movies/Project_Hail_Mary.jpg' },
+    { title: '1917', subtitle: '2019', color: 'bg-gray-800', thumbUrl: './assets/images/movies/1917.jpeg', coverUrl: './assets/images/movies/1917.jpeg' },
+    { title: 'Léon: The Professional', subtitle: '1994', color: 'bg-gray-900', thumbUrl: './assets/images/movies/Leon.jpg', coverUrl: './assets/images/movies/Leon.jpg' },
+    { title: 'The Shawshank Redemption', subtitle: '1994', color: 'bg-gray-700', thumbUrl: './assets/images/movies/Shawshank_Redemption.jpg', coverUrl: './assets/images/movies/Shawshank_Redemption.jpg' },
+    { title: 'Papillon', subtitle: '1973', color: 'bg-gray-600', thumbUrl: './assets/images/movies/Papillon.jpg', coverUrl: './assets/images/movies/Papillon.jpg' },
+    { title: 'The Green Mile', subtitle: '1999', color: 'bg-gray-800', thumbUrl: './assets/images/movies/Green_Mile.jpg', coverUrl: './assets/images/movies/Green_Mile.jpg' },
   ];
 
   // Sample entries — swap in real press/speaking links & write-ups as they happen.
@@ -108,7 +108,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
       title: 'European Young Innovators Award',
       subtitle: 'World Summit Award (WSA) · Austria',
       description: 'AISA School was named a winner by the World Summit Award (WSA) Global, recognizing European young innovators.',
-      mediaUrl: 'https://wsa-global.org/wp-content/uploads/2024/09/thumbnail_IMG_0631.jpg',
+      mediaUrl: './assets/images/journey/wsa-award.jpg',
+      thumbUrl: './assets/images/journey/thumbs/wsa-award.jpg',
       link: 'https://wsa-global.org/winner/aisa-school/'
     },
      {
@@ -148,8 +149,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
       title: 'Interview with 7learn',
       subtitle: '7learn · Interview',
       description: 'Interviewed by 7learn.',
-      mediaUrl: 'https://img.youtube.com/vi/Mi_uFTeLRsk/maxresdefault.jpg',
-      thumbUrl: 'https://img.youtube.com/vi/Mi_uFTeLRsk/hqdefault.jpg',
+      mediaUrl: './assets/images/journey/7learn-interview.jpg',
+      thumbUrl: './assets/images/journey/thumbs/7learn-interview.jpg',
       link: 'https://www.youtube.com/watch?v=Mi_uFTeLRsk'
     }
   ];
