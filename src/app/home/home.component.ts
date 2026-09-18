@@ -71,27 +71,27 @@ export class HomeComponent implements OnInit, AfterViewInit {
   ];
 
   movies: MediaItem[] = [
-    { title: 'Silicon Valley', subtitle: '2014', color: 'bg-gray-700', thumbUrl: './assets/images/movies/Silicon_Valley.jpg', coverUrl: './assets/images/movies/Silicon_Valley.jpg' },
+    { title: 'Silicon Valley', subtitle: '2014', color: 'bg-gray-700', thumbUrl: '/assets/images/movies/Silicon_Valley.jpg', coverUrl: '/assets/images/movies/Silicon_Valley.jpg' },
     { title: 'Super Pumped', subtitle: '2022', color: 'bg-gray-800', thumbUrl: 'https://media.themoviedb.org/t/p/w500/kOB0MnnpRj0xAXJSCYpDrJRw9z9.jpg', coverUrl: 'https://media.themoviedb.org/t/p/w500/kOB0MnnpRj0xAXJSCYpDrJRw9z9.jpg' },
-    { title: 'I Swear', subtitle: '2025', color: 'bg-gray-700', thumbUrl: './assets/images/movies/I_Swear.jpg', coverUrl: './assets/images/movies/I_Swear.jpg' },
-    { title: 'WeCrashed', subtitle: '2022', color: 'bg-gray-900', thumbUrl: './assets/images/movies/WeCrashed.png', coverUrl: './assets/images/movies/WeCrashed.png' },
+    { title: 'I Swear', subtitle: '2025', color: 'bg-gray-700', thumbUrl: '/assets/images/movies/I_Swear.jpg', coverUrl: '/assets/images/movies/I_Swear.jpg' },
+    { title: 'WeCrashed', subtitle: '2022', color: 'bg-gray-900', thumbUrl: '/assets/images/movies/WeCrashed.png', coverUrl: '/assets/images/movies/WeCrashed.png' },
     { title: 'The Playlist', subtitle: '2022', color: 'bg-gray-600', thumbUrl: 'https://media.themoviedb.org/t/p/w500/yc1JCG56UHsbRDhEzX9VlTEToyk.jpg', coverUrl: 'https://media.themoviedb.org/t/p/w500/yc1JCG56UHsbRDhEzX9VlTEToyk.jpg' },
-    { title: 'Forrest Gump', subtitle: '1994', color: 'bg-gray-800', thumbUrl: './assets/images/movies/Forrest_Gump.jpg', coverUrl: './assets/images/movies/Forrest_Gump.jpg' },
-    { title: 'From', subtitle: '2022', color: 'bg-gray-800', thumbUrl: './assets/images/movies/From.jpg', coverUrl: './assets/images/movies/From.jpg' },
-    { title: 'Free Guy', subtitle: '2021', color: 'bg-gray-600', thumbUrl: './assets/images/movies/Free_Guy.jpg', coverUrl: './assets/images/movies/Free_Guy.jpg' },
-    { title: 'The Matrix', subtitle: '1999', color: 'bg-gray-800', thumbUrl: './assets/images/movies/The_Matrix.png', coverUrl: './assets/images/movies/The_Matrix.png' },
-    { title: 'Interstellar', subtitle: '2014', color: 'bg-gray-700', thumbUrl: './assets/images/movies/Interstellar.jpg', coverUrl: './assets/images/movies/Interstellar.jpg' },
-    { title: 'The Social Network', subtitle: '2010', color: 'bg-gray-600', thumbUrl: './assets/images/movies/The_Social_Network.png', coverUrl: './assets/images/movies/The_Social_Network.png' },
-    { title: 'Ex Machina', subtitle: '2014', color: 'bg-gray-900', thumbUrl: './assets/images/movies/Ex_Machina.jpg', coverUrl: './assets/images/movies/Ex_Machina.jpg' },
-    { title: 'Inception', subtitle: '2010', color: 'bg-gray-500', thumbUrl: './assets/images/movies/Inception.jpg', coverUrl: './assets/images/movies/Inception.jpg' },
-    { title: 'Whiplash', subtitle: '2014', color: 'bg-gray-700', thumbUrl: './assets/images/movies/Whiplash.jpg', coverUrl: './assets/images/movies/Whiplash.jpg' },
-    { title: 'Her', subtitle: '2013', color: 'bg-gray-800', thumbUrl: './assets/images/movies/Her.jpg', coverUrl: './assets/images/movies/Her.jpg' },
-    { title: 'Project Hail Mary', subtitle: '2026', color: 'bg-gray-700', thumbUrl: './assets/images/movies/Project_Hail_Mary.jpg', coverUrl: './assets/images/movies/Project_Hail_Mary.jpg' },
-    { title: '1917', subtitle: '2019', color: 'bg-gray-800', thumbUrl: './assets/images/movies/1917.jpeg', coverUrl: './assets/images/movies/1917.jpeg' },
-    { title: 'Léon: The Professional', subtitle: '1994', color: 'bg-gray-900', thumbUrl: './assets/images/movies/Leon.jpg', coverUrl: './assets/images/movies/Leon.jpg' },
-    { title: 'The Shawshank Redemption', subtitle: '1994', color: 'bg-gray-700', thumbUrl: './assets/images/movies/Shawshank_Redemption.jpg', coverUrl: './assets/images/movies/Shawshank_Redemption.jpg' },
-    { title: 'Papillon', subtitle: '1973', color: 'bg-gray-600', thumbUrl: './assets/images/movies/Papillon.jpg', coverUrl: './assets/images/movies/Papillon.jpg' },
-    { title: 'The Green Mile', subtitle: '1999', color: 'bg-gray-800', thumbUrl: './assets/images/movies/Green_Mile.jpg', coverUrl: './assets/images/movies/Green_Mile.jpg' },
+    { title: 'Forrest Gump', subtitle: '1994', color: 'bg-gray-800', thumbUrl: '/assets/images/movies/Forrest_Gump.jpg', coverUrl: '/assets/images/movies/Forrest_Gump.jpg' },
+    { title: 'From', subtitle: '2022', color: 'bg-gray-800', thumbUrl: '/assets/images/movies/From.jpg', coverUrl: '/assets/images/movies/From.jpg' },
+    { title: 'Free Guy', subtitle: '2021', color: 'bg-gray-600', thumbUrl: '/assets/images/movies/Free_Guy.jpg', coverUrl: '/assets/images/movies/Free_Guy.jpg' },
+    { title: 'The Matrix', subtitle: '1999', color: 'bg-gray-800', thumbUrl: '/assets/images/movies/The_Matrix.png', coverUrl: '/assets/images/movies/The_Matrix.png' },
+    { title: 'Interstellar', subtitle: '2014', color: 'bg-gray-700', thumbUrl: '/assets/images/movies/Interstellar.jpg', coverUrl: '/assets/images/movies/Interstellar.jpg' },
+    { title: 'The Social Network', subtitle: '2010', color: 'bg-gray-600', thumbUrl: '/assets/images/movies/The_Social_Network.png', coverUrl: '/assets/images/movies/The_Social_Network.png' },
+    { title: 'Ex Machina', subtitle: '2014', color: 'bg-gray-900', thumbUrl: '/assets/images/movies/Ex_Machina.jpg', coverUrl: '/assets/images/movies/Ex_Machina.jpg' },
+    { title: 'Inception', subtitle: '2010', color: 'bg-gray-500', thumbUrl: '/assets/images/movies/Inception.jpg', coverUrl: '/assets/images/movies/Inception.jpg' },
+    { title: 'Whiplash', subtitle: '2014', color: 'bg-gray-700', thumbUrl: '/assets/images/movies/Whiplash.jpg', coverUrl: '/assets/images/movies/Whiplash.jpg' },
+    { title: 'Her', subtitle: '2013', color: 'bg-gray-800', thumbUrl: '/assets/images/movies/Her.jpg', coverUrl: '/assets/images/movies/Her.jpg' },
+    { title: 'Project Hail Mary', subtitle: '2026', color: 'bg-gray-700', thumbUrl: '/assets/images/movies/Project_Hail_Mary.jpg', coverUrl: '/assets/images/movies/Project_Hail_Mary.jpg' },
+    { title: '1917', subtitle: '2019', color: 'bg-gray-800', thumbUrl: '/assets/images/movies/1917.jpeg', coverUrl: '/assets/images/movies/1917.jpeg' },
+    { title: 'Léon: The Professional', subtitle: '1994', color: 'bg-gray-900', thumbUrl: '/assets/images/movies/Leon.jpg', coverUrl: '/assets/images/movies/Leon.jpg' },
+    { title: 'The Shawshank Redemption', subtitle: '1994', color: 'bg-gray-700', thumbUrl: '/assets/images/movies/Shawshank_Redemption.jpg', coverUrl: '/assets/images/movies/Shawshank_Redemption.jpg' },
+    { title: 'Papillon', subtitle: '1973', color: 'bg-gray-600', thumbUrl: '/assets/images/movies/Papillon.jpg', coverUrl: '/assets/images/movies/Papillon.jpg' },
+    { title: 'The Green Mile', subtitle: '1999', color: 'bg-gray-800', thumbUrl: '/assets/images/movies/Green_Mile.jpg', coverUrl: '/assets/images/movies/Green_Mile.jpg' },
   ];
 
   // Sample entries — swap in real press/speaking links & write-ups as they happen.
@@ -100,31 +100,31 @@ export class HomeComponent implements OnInit, AfterViewInit {
       title: 'Digiato — Elecomp Pitch Winners',
       subtitle: 'Digiato · Elecomp Competition',
       description: "Digiato's coverage of the Elecomp Pitch competition, where the top prize went to a medical AI startup.",
-      mediaUrl: './assets/images/journey/digiato-news.png',
-      thumbUrl: './assets/images/journey/thumbs/digiato-news.jpg',
+      mediaUrl: '/assets/images/journey/digiato-news.png',
+      thumbUrl: '/assets/images/journey/thumbs/digiato-news.jpg',
       link: 'https://digiato.com/iran-technology-news/the-winners-of-elecom-pitch-were-announced'
     },
     {
       title: 'European Young Innovators Award',
       subtitle: 'World Summit Award (WSA) · Austria',
       description: 'AISA School was named a winner by the World Summit Award (WSA) Global, recognizing European young innovators.',
-      mediaUrl: './assets/images/journey/wsa-award.jpg',
-      thumbUrl: './assets/images/journey/thumbs/wsa-award.jpg',
+      mediaUrl: '/assets/images/journey/wsa-award.jpg',
+      thumbUrl: '/assets/images/journey/thumbs/wsa-award.jpg',
       link: 'https://wsa-global.org/winner/aisa-school/'
     },
      {
       title: 'Featured on TV Channel 5 News',
       subtitle: 'Channel 5 · TV News',
       description: 'A segment on Channel 5 TV news.',
-      mediaUrl: './assets/images/journey/thumbs/TV5.mp4',
-      thumbUrl: './assets/images/journey/thumbs/TV5.jpg'
+      mediaUrl: '/assets/images/journey/thumbs/TV5.mp4',
+      thumbUrl: '/assets/images/journey/thumbs/TV5.jpg'
     },
     {
       title: 'Peivast — Web Summit Qatar',
       subtitle: 'Peivast News · Web Summit Qatar',
       description: 'Peivast covered our presence at Web Summit Qatar, one of the largest tech events in the region.',
-      mediaUrl: './assets/images/journey/thumbs/payvast.mp4',
-      thumbUrl: './assets/images/journey/thumbs/payvast.jpg',
+      mediaUrl: '/assets/images/journey/thumbs/payvast.mp4',
+      thumbUrl: '/assets/images/journey/thumbs/payvast.jpg',
       link: 'https://www.instagram.com/reel/DGi0S_dyyp-/'
     },
 
@@ -134,23 +134,23 @@ export class HomeComponent implements OnInit, AfterViewInit {
       description: 'A talk on networking and career growth for Gen Z.',
       // Google Drive's thumbnail endpoint gets blocked by Chrome's Opaque
       // Response Blocking when hotlinked directly, so this is a local copy.
-      mediaUrl: './assets/images/journey/gen-z-seminar1.JPG',
-      thumbUrl: './assets/images/journey/gen-z-seminar1.JPG',
+      mediaUrl: '/assets/images/journey/gen-z-seminar1.JPG',
+      thumbUrl: '/assets/images/journey/gen-z-seminar1.JPG',
       link: 'https://drive.google.com/file/d/17N8qb6wDa0iMYCGQvqlFGUNi62wPXcfz/view?usp=drive_link'
     },
     {
       title: 'CS50x Iran Interview',
       subtitle: 'CS50x Iran · 2021',
       description: 'Interviewed for CS50x Iran about BUF, the education platform I built with my best friend to make studying more social.',
-      mediaUrl: './assets/images/journey/cs50interview.mp4',
-      thumbUrl: './assets/images/journey/thumbs/cs50interview.jpg'
+      mediaUrl: '/assets/images/journey/cs50interview.mp4',
+      thumbUrl: '/assets/images/journey/thumbs/cs50interview.jpg'
     },
     {
       title: 'Interview with 7learn',
       subtitle: '7learn · Interview',
       description: 'Interviewed by 7learn.',
-      mediaUrl: './assets/images/journey/7learn-interview.jpg',
-      thumbUrl: './assets/images/journey/thumbs/7learn-interview.jpg',
+      mediaUrl: '/assets/images/journey/7learn-interview.jpg',
+      thumbUrl: '/assets/images/journey/thumbs/7learn-interview.jpg',
       link: 'https://www.youtube.com/watch?v=Mi_uFTeLRsk'
     }
   ];
