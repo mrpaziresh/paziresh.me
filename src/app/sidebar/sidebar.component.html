@@ -160,26 +160,11 @@
   </div>
 
     <a
-      href="/assets/AliReza-Paziresh-CV.pdf"
-      download="AliReza-Paziresh-CV.pdf"
-      (click)="downloadResume($event)"
+      href="https://paziresh.me/assets/AliReza-Paziresh-CV.pdf"
       class="text-gray-500 dark:text-gray-400 duration-300 absolute bottom-3 hover:bg-stone-200 dark:hover:bg-white/10 text-sm cursor-pointer p-1 rounded-lg flex flex-row items-center justify-center gap-1.5 min-w-[9.5rem] bg-[#f2f6ff] dark:bg-[#1c1c1f]"
     >
-      @if (resumeState === 'downloading') {
-        <svg class="animate-spin" height="16" width="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3" stroke-opacity="0.25" />
-          <path d="M22 12a10 10 0 0 0-10-10" stroke="currentColor" stroke-width="3" stroke-linecap="round" />
-        </svg>
-        <span>Downloading…</span>
-      } @else if (resumeState === 'done') {
-        <svg height="16" width="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M4 12.5 9.5 18 20 6" stroke="#16a34a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
-        </svg>
-        <span class="text-green-600">Downloaded</span>
-      } @else {
-        <img src="/assets/icons/download.svg" height="18" width="18" alt="download" class="dark:invert">
-        <span>Download resume</span>
-      }
+      <img src="/assets/icons/download.svg" height="18" width="18" alt="download" class="dark:invert">
+      <span>Download resume</span>
     </a>
 
   </aside>
