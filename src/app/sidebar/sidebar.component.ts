@@ -55,13 +55,13 @@ async downloadResume(event: MouseEvent) {
   this.resumeState = 'downloading';
 
   try {
-    const response = await fetch('./assets/Alireza-Paziresh-Cv.pdf');
+    const response = await fetch('./assets/AliReza-Paziresh-CV.pdf');
     const blob = await response.blob();
     const url = window.URL.createObjectURL(blob);
 
     const link = document.createElement('a');
     link.href = url;
-    link.download = 'Alireza-Paziresh-Cv.pdf';
+    link.download = 'AliReza-Paziresh-CV.pdf';
     link.click();
 
     window.URL.revokeObjectURL(url);
