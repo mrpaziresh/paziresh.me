@@ -3,7 +3,6 @@ import { Component, OnDestroy } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { getProjectBySlug, Project } from '../projects.data';
 import { SeoService, SITE_URL } from '../../shared/seo.service';
-import { ThemeService } from '../../shared/theme.service';
 
 @Component({
   selector: 'app-project-detail',
@@ -15,7 +14,7 @@ import { ThemeService } from '../../shared/theme.service';
 export class ProjectDetailComponent implements OnDestroy {
   project: Project | undefined;
 
-  constructor(private route: ActivatedRoute, private seo: SeoService, public themeService: ThemeService) {
+  constructor(private route: ActivatedRoute, private seo: SeoService) {
     this.route.paramMap.subscribe((params) => {
       this.project = getProjectBySlug(params.get('slug') ?? '');
 

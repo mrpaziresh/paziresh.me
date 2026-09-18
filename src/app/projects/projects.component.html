@@ -20,9 +20,18 @@
                     <div class="relative w-full aspect-[4/3] rounded-xl overflow-hidden bg-gray-100 dark:bg-white/5">
 
                         <img
-                            [src]="(themeService.theme() === 'dark' && project.imageDark) ? project.imageDark : project.image"
+                            [src]="project.image"
                             [alt]="project.title"
+                            loading="lazy"
                             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                            [class.dark:hidden]="project.imageDark"
+                        />
+                        <img
+                            *ngIf="project.imageDark"
+                            [src]="project.imageDark"
+                            [alt]="project.title"
+                            loading="lazy"
+                            class="hidden dark:block w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                         />
 
                         <div

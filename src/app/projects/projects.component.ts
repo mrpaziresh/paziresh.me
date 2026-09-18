@@ -3,7 +3,6 @@ import { Component, Inject, OnDestroy, OnInit, PLATFORM_ID } from '@angular/core
 import { RouterLink } from '@angular/router';
 import { PROJECTS, Project } from './projects.data';
 import { SeoService } from '../shared/seo.service';
-import { ThemeService } from '../shared/theme.service';
 
 interface LogoSlot {
   project: Project;
@@ -41,8 +40,7 @@ export class ProjectsComponent implements OnInit, OnDestroy {
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: object,
-    private seo: SeoService,
-    public themeService: ThemeService
+    private seo: SeoService
   ) {}
 
   ngOnInit(): void {

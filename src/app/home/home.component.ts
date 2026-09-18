@@ -67,6 +67,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
     { title: 'Deep Work', subtitle: 'Cal Newport', color: 'bg-gray-500', thumbUrl: 'https://covers.openlibrary.org/b/isbn/9781455586691-M.jpg', coverUrl: 'https://covers.openlibrary.org/b/isbn/9781455586691-L.jpg' },
     { title: 'The Design of Everyday Things', subtitle: 'Don Norman', color: 'bg-gray-700', thumbUrl: 'https://covers.openlibrary.org/b/isbn/9780465050659-M.jpg', coverUrl: 'https://covers.openlibrary.org/b/isbn/9780465050659-L.jpg' },
     { title: 'Superintelligence', subtitle: 'Nick Bostrom', color: 'bg-gray-800', thumbUrl: 'https://covers.openlibrary.org/b/isbn/9780199678112-M.jpg', coverUrl: 'https://covers.openlibrary.org/b/isbn/9780199678112-L.jpg' },
+    { title: 'The Black Swan', subtitle: 'Nassim Nicholas Taleb', color: 'bg-gray-900', thumbUrl: 'https://covers.openlibrary.org/b/id/5721840-M.jpg', coverUrl: 'https://covers.openlibrary.org/b/id/5721840-L.jpg' },
   ];
 
   movies: MediaItem[] = [
