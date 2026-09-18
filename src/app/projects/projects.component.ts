@@ -3,6 +3,7 @@ import { Component, Inject, OnDestroy, OnInit, PLATFORM_ID } from '@angular/core
 import { RouterLink } from '@angular/router';
 import { PROJECTS, Project } from './projects.data';
 import { SeoService } from '../shared/seo.service';
+import { ThemeService } from '../shared/theme.service';
 
 interface LogoSlot {
   project: Project;
@@ -38,7 +39,11 @@ export class ProjectsComponent implements OnInit, OnDestroy {
 
   private timers: ReturnType<typeof setTimeout>[] = [];
 
-  constructor(@Inject(PLATFORM_ID) private platformId: object, private seo: SeoService) {}
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: object,
+    private seo: SeoService,
+    public themeService: ThemeService
+  ) {}
 
   ngOnInit(): void {
     this.seo.set({

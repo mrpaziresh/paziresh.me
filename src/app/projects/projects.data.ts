@@ -4,6 +4,7 @@ export interface Project {
   tagline: string;
   description: string;
   image: string;
+  imageDark?: string;
   logo: string;
   tags: string[];
   year: string;
@@ -19,11 +20,12 @@ export interface Project {
 // Replace these with your real projects — every card and detail page reads from this array.
 export const PROJECTS: Project[] = [
   {
-    slug: 'AISA School',
+    slug: 'AISA-School',
     title: 'AISA School',
     tagline: 'AI-powered Sign Language Learning Platform',
     description: 'An AI-powered platform that makes learning sign language accessible through interactive lessons and a digital ASL dictionary.',
     image: './assets/images/AISA-Banner.png',
+    imageDark: './assets/images/AISA-Banner-Dark.png',
     logo: './assets/images/projects-logo/AISA-School.png',
     tags: ['Web', 'AI'],
     year: '2024',
@@ -45,6 +47,7 @@ export const PROJECTS: Project[] = [
     tagline: 'Energy Optimization Assistant',
     description: 'An intelligent energy management platform that reduces energy waste while maintaining comfort in homes and small businesses.',
     image: './assets/images/joule.png',
+    imageDark: './assets/images/Joule-Dark.png',
     logo: './assets/images/projects-logo/joule.png',
     tags: ['Web', 'AI'],
     year: '2025',
@@ -65,6 +68,7 @@ export const PROJECTS: Project[] = [
     tagline: 'Personal Assistant in your new tab',
     description: 'A new-tab replacement that brings weather, clock, calendar, tasks, and quick links together on one clean screen, so you never have to open a dozen tabs just to check the basics.',
     image: './assets/images/Miz-poster.png',
+    imageDark: './assets/images/Miz-Dark.png',
     logo: './assets/images/projects-logo/miz.png',
     tags: ['TypeScript', 'Angular'],
     year: '2024',
@@ -85,6 +89,7 @@ export const PROJECTS: Project[] = [
     tagline: 'Resume scoring and instant feedback',
     description: 'A browser-based resume analysis tool that scores resumes out of 100 and gives actionable feedback, processing everything client-side with no server or upload required.',
     image: './assets/images/apply-booster-poster.png',
+    imageDark: './assets/images/Apply-Booster-Dark.png',
     logo: './assets/images/projects-logo/apply-booster.png',
     tags: ['Web', 'Angular'],
     year: '2024',
@@ -105,15 +110,16 @@ export const PROJECTS: Project[] = [
     tagline: 'An educational platform for learning, competing, and sharing knowledge.',
     description: 'A learning platform that brings education, challenges, and community together in one engaging experience.',
     image: './assets/images/buf-poster.png',
+    imageDark: './assets/images/Buf-Dark.png',
     logo: './assets/images/projects-logo/buf.png',
     tags: ['PHP', 'React', 'MySQL'],
     year: '2022',
     role: 'Developer',
-    overview: "ApplyBooster helps job seekers get instant, honest feedback on their resumes without waiting on a backend or handing their document to a third-party server. Users drag and drop a PDF resume, and a rule-based NLP engine running entirely in the browser analyzes contact info, section structure, formatting, action verbs, quantified achievements, and length. The tool returns an overall score out of 100 along with a clear breakdown of strengths to keep, weaknesses that could hurt in an interview, and specific rewrite suggestions — plus a dashboard that tracks score history and recurring weak points over time.",
+    overview: "BUF was my first step into the startup world. I built it with my best friend as an education platform designed to bring students together, make studying more social, and turn learning into something genuinely fun. What started as a simple CS50 project grew into a product where we experimented with combining education, community, and technology. In 2021, BUF was selected as one of the best applications presented at the CS50 Fair.",
 highlights: [
-  'Built an educational platform combining learning content, competitions, podcasts, films, and community features.',
-  'Designed interactive sections for book summaries, biographies, knowledge sharing, study leagues, and brain-training challenges.',
-  'Created a gamified learning experience where users can compete, earn points, join challenges, and share knowledge with others.'
+  'Built an education platform focused on making learning more social, collaborative, and engaging.',
+  'Turned a CS50 project into my first startup experience, working from idea to a functional product.',
+  'Selected as one of the best applications at the CS50 Fair 2021.'
 ],
 stack: ['HTML', 'CSS', 'JavaScript', 'PHP', 'Java'],
 liveUrl: '',

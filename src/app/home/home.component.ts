@@ -71,6 +71,11 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   movies: MediaItem[] = [
     { title: 'Silicon Valley', subtitle: '2014', color: 'bg-gray-700', thumbUrl: 'https://upload.wikimedia.org/wikipedia/en/4/44/Silicon_Valley_Season_1.jpg', coverUrl: 'https://upload.wikimedia.org/wikipedia/en/4/44/Silicon_Valley_Season_1.jpg' },
+    { title: 'Super Pumped', subtitle: '2022', color: 'bg-gray-800', thumbUrl: 'https://media.themoviedb.org/t/p/w500/kOB0MnnpRj0xAXJSCYpDrJRw9z9.jpg', coverUrl: 'https://media.themoviedb.org/t/p/w500/kOB0MnnpRj0xAXJSCYpDrJRw9z9.jpg' },
+    { title: 'I Swear', subtitle: '2025', color: 'bg-gray-700', thumbUrl: 'https://upload.wikimedia.org/wikipedia/en/5/57/I_Swear_film_poster.jpg', coverUrl: 'https://upload.wikimedia.org/wikipedia/en/5/57/I_Swear_film_poster.jpg' },
+    { title: 'WeCrashed', subtitle: '2022', color: 'bg-gray-900', thumbUrl: 'https://upload.wikimedia.org/wikipedia/en/0/02/WeCrashed_TV_poster.png', coverUrl: 'https://upload.wikimedia.org/wikipedia/en/0/02/WeCrashed_TV_poster.png' },
+    { title: 'The Playlist', subtitle: '2022', color: 'bg-gray-600', thumbUrl: 'https://media.themoviedb.org/t/p/w500/yc1JCG56UHsbRDhEzX9VlTEToyk.jpg', coverUrl: 'https://media.themoviedb.org/t/p/w500/yc1JCG56UHsbRDhEzX9VlTEToyk.jpg' },
+    { title: 'Forrest Gump', subtitle: '1994', color: 'bg-gray-800', thumbUrl: 'https://upload.wikimedia.org/wikipedia/en/6/67/Forrest_Gump_poster.jpg', coverUrl: 'https://upload.wikimedia.org/wikipedia/en/6/67/Forrest_Gump_poster.jpg' },
     { title: 'From', subtitle: '2022', color: 'bg-gray-800', thumbUrl: 'https://upload.wikimedia.org/wikipedia/en/f/fa/From_title_card.jpg', coverUrl: 'https://upload.wikimedia.org/wikipedia/en/f/fa/From_title_card.jpg' },
     { title: 'Free Guy', subtitle: '2021', color: 'bg-gray-600', thumbUrl: 'https://upload.wikimedia.org/wikipedia/en/1/1c/Free_Guy_2021_Poster.jpg', coverUrl: 'https://upload.wikimedia.org/wikipedia/en/1/1c/Free_Guy_2021_Poster.jpg' },
     { title: 'The Matrix', subtitle: '1999', color: 'bg-gray-800', thumbUrl: 'https://upload.wikimedia.org/wikipedia/en/d/db/The_Matrix.png', coverUrl: 'https://upload.wikimedia.org/wikipedia/en/d/db/The_Matrix.png' },
@@ -80,6 +85,12 @@ export class HomeComponent implements OnInit, AfterViewInit {
     { title: 'Inception', subtitle: '2010', color: 'bg-gray-500', thumbUrl: 'https://upload.wikimedia.org/wikipedia/en/2/2e/Inception_%282010%29_theatrical_poster.jpg', coverUrl: 'https://upload.wikimedia.org/wikipedia/en/2/2e/Inception_%282010%29_theatrical_poster.jpg' },
     { title: 'Whiplash', subtitle: '2014', color: 'bg-gray-700', thumbUrl: 'https://upload.wikimedia.org/wikipedia/en/0/01/Whiplash_poster.jpg', coverUrl: 'https://upload.wikimedia.org/wikipedia/en/0/01/Whiplash_poster.jpg' },
     { title: 'Her', subtitle: '2013', color: 'bg-gray-800', thumbUrl: 'https://upload.wikimedia.org/wikipedia/en/4/44/Her2013Poster.jpg', coverUrl: 'https://upload.wikimedia.org/wikipedia/en/4/44/Her2013Poster.jpg' },
+    { title: 'Project Hail Mary', subtitle: '2026', color: 'bg-gray-700', thumbUrl: 'https://upload.wikimedia.org/wikipedia/en/3/3b/Project_Hail_Mary_poster.jpg', coverUrl: 'https://upload.wikimedia.org/wikipedia/en/3/3b/Project_Hail_Mary_poster.jpg' },
+    { title: '1917', subtitle: '2019', color: 'bg-gray-800', thumbUrl: 'https://upload.wikimedia.org/wikipedia/en/f/fe/1917_%282019%29_Film_Poster.jpeg', coverUrl: 'https://upload.wikimedia.org/wikipedia/en/f/fe/1917_%282019%29_Film_Poster.jpeg' },
+    { title: 'Léon: The Professional', subtitle: '1994', color: 'bg-gray-900', thumbUrl: 'https://upload.wikimedia.org/wikipedia/en/0/03/Leon-poster.jpg', coverUrl: 'https://upload.wikimedia.org/wikipedia/en/0/03/Leon-poster.jpg' },
+    { title: 'The Shawshank Redemption', subtitle: '1994', color: 'bg-gray-700', thumbUrl: 'https://upload.wikimedia.org/wikipedia/en/8/81/ShawshankRedemptionMoviePoster.jpg', coverUrl: 'https://upload.wikimedia.org/wikipedia/en/8/81/ShawshankRedemptionMoviePoster.jpg' },
+    { title: 'Papillon', subtitle: '1973', color: 'bg-gray-600', thumbUrl: 'https://upload.wikimedia.org/wikipedia/en/2/23/Papillon_ver1.jpg', coverUrl: 'https://upload.wikimedia.org/wikipedia/en/2/23/Papillon_ver1.jpg' },
+    { title: 'The Green Mile', subtitle: '1999', color: 'bg-gray-800', thumbUrl: 'https://upload.wikimedia.org/wikipedia/en/e/e2/The_Green_Mile_%28movie_poster%29.jpg', coverUrl: 'https://upload.wikimedia.org/wikipedia/en/e/e2/The_Green_Mile_%28movie_poster%29.jpg' },
   ];
 
   // Sample entries — swap in real press/speaking links & write-ups as they happen.
